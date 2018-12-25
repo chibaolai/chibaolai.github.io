@@ -63,6 +63,57 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-iftop" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/25/iftop/" class="article-date">
+  <time datetime="2018-12-25T09:56:14.181Z" itemprop="datePublished">2018-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="iftop"><a href="#iftop" class="headerlink" title="iftop"></a>iftop</h1><p>TX：发送流量<br>RX：接收流量<br>TOTAL：总流量<br>Cumm：运行iftop到目前时间的总流量<br>peak：流量峰值<br>rates：分别表示过去 2s 10s 40s 的平均流量</p>
+<p>按h切换是否显示帮助;</p>
+<p>按n切换显示本机的IP或主机名;</p>
+<p>按s切换是否显示本机的host信息;</p>
+<p>按d切换是否显示远端目标主机的host信息;</p>
+<p>按t切换显示格式为2行/1行/只显示发送流量/只显示接收流量;</p>
+<p>按N切换显示端口号或端口服务名称;</p>
+<p>按S切换是否显示本机的端口信息;</p>
+<p>按D切换是否显示远端目标主机的端口信息;</p>
+<p>按p切换是否显示端口信息;</p>
+<p>按P切换暂停/继续显示;</p>
+<p>按b切换是否显示平均流量图形条;</p>
+<p>按B切换计算2秒或10秒或40秒内的平均流量;</p>
+<p>按T切换是否显示每个连接的总流量;</p>
+<p>按l打开屏幕过滤功能，输入要过滤的字符，比如ip,按回车后，屏幕就只显示这个IP相关的流量信息;</p>
+<p>按L切换显示画面上边的刻度;刻度不同，流量图形条会有变化;</p>
+<p>按j或按k可以向上或向下滚动屏幕显示的连接记录;</p>
+<p>按1或2或3可以根据右侧显示的三列流量数据进行排序;</p>
+<p>按&lt;根据左边的本机名或IP排序;</p>
+<p>按&gt;根据远端目标主机的主机名或IP排序;</p>
+<p>按o切换是否固定只显示当前的连接;</p>
+<p>按f可以编辑过滤代码，这是翻译过来的说法，我还没用过这个！</p>
+<p>按!可以使用shell命令，这个没用过！没搞明白啥命令在这好用呢！</p>
+<p>按q退出监控。</p>
+<p>常用：t p n</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://chibl.github.io/2018/12/25/iftop/" data-id="cjq4eirl200017l641iidxcqt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-内核调优sysctl.conf" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/24/内核调优sysctl.conf/" class="article-date">
@@ -103,7 +154,59 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://chibl.github.io/2018/12/24/内核调优sysctl.conf/" data-id="cjq4edv4k0000wz64pncy1z3v" class="article-share-link">Share</a>
+      <a data-url="http://chibl.github.io/2018/12/24/内核调优sysctl.conf/" data-id="cjq4eirkx00007l646falrf21" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Linux查看CPU，内存，硬盘" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/28/Linux查看CPU，内存，硬盘/" class="article-date">
+  <time datetime="2018-02-28T02:28:44.991Z" itemprop="datePublished">2018-02-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux查看CPU，内存，硬盘"><a href="#Linux查看CPU，内存，硬盘" class="headerlink" title="Linux查看CPU，内存，硬盘"></a>Linux查看CPU，内存，硬盘</h1><h2 id="查看CPU"><a href="#查看CPU" class="headerlink" title="查看CPU"></a>查看CPU</h2><h3 id="查看CPU核数"><a href="#查看CPU核数" class="headerlink" title="查看CPU核数"></a>查看CPU核数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cat /proc/cpuinfo | grep &quot;cpu cores&quot; | uniq</span><br><span class="line">cpu cores : 4</span><br></pre></td></tr></table></figure>
+<h3 id="查看CPU个数"><a href="#查看CPU个数" class="headerlink" title="查看CPU个数"></a>查看CPU个数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cat /proc/cpuinfo | grep &quot;physical id&quot; | uniq | wc -l</span><br><span class="line">2 **uniq命令：删除重复行;wc –l命令：统计行数**</span><br></pre></td></tr></table></figure>
+<h3 id="查看CPU型号"><a href="#查看CPU型号" class="headerlink" title="查看CPU型号"></a>查看CPU型号</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cat /proc/cpuinfo | grep &apos;model name&apos; |uniq</span><br><span class="line">model name : Intel(R) Xeon(R) CPU E5630 @ 2.53GHz</span><br></pre></td></tr></table></figure>
+<p><strong>总结：该服务器有2个4核CPU，型号Intel(R) Xeon(R) CPU E5630 @ 2.53GHz</strong></p>
+<h2 id="查看内存"><a href="#查看内存" class="headerlink" title="查看内存"></a>查看内存</h2><h3 id="查看内存总数"><a href="#查看内存总数" class="headerlink" title="查看内存总数"></a>查看内存总数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#cat /proc/meminfo | grep MemTotal</span><br><span class="line">MemTotal: 32941268 kB //内存32G</span><br></pre></td></tr></table></figure>
+<h3 id="查看内存条数"><a href="#查看内存条数" class="headerlink" title="查看内存条数"></a>查看内存条数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># dmidecode |grep -A16 &quot;Memory Device$&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>总结：该服务器有两条2G内存 ，空余4个插槽</strong></p>
+<h2 id="查看硬盘"><a href="#查看硬盘" class="headerlink" title="查看硬盘"></a>查看硬盘</h2><h3 id="查看硬盘大小"><a href="#查看硬盘大小" class="headerlink" title="查看硬盘大小"></a>查看硬盘大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># fdisk -l | grep Disk</span><br><span class="line">Disk /dev/cciss/c0d0: 146.7 GB, 146778685440 bytes</span><br></pre></td></tr></table></figure>
+<p><strong>总结：硬盘大小146.7G，即厂商标称的160G</strong></p>
+<h2 id="同步系统时间"><a href="#同步系统时间" class="headerlink" title="同步系统时间"></a>同步系统时间</h2><ul>
+<li>yum install -y ntpdate </li>
+<li><p>ntpdate time.nuri.net</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">time.nist.gov</span><br><span class="line">time.nuri.net</span><br><span class="line">0.asia.pool.ntp.org</span><br><span class="line">1.asia.pool.ntp.org</span><br><span class="line">2.asia.pool.ntp.org</span><br><span class="line">3.asia.pool.ntp.org</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hwclock -w</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#date</span><br><span class="line">#hwclock</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">定时执行时间同步任务，所以我们利用crontab -e 来添加定时任务</span><br><span class="line"></span><br><span class="line">#* */1 * * * root ntpdate time.nuri.net;hwclock -w </span><br><span class="line"></span><br><span class="line">即：每隔一个小时同步一下internet时间。</span><br></pre></td></tr></table></figure>
+<h3 id="TCP状态查看："><a href="#TCP状态查看：" class="headerlink" title="TCP状态查看："></a>TCP状态查看：</h3><p>netstat -n | grep 60.214.137.170</p>
+<p>查看公网IP：ip addr show eth0 | grep inet | awk ‘{ print $2; }’ | sed ‘s/\/.*$//‘</p>
+<h3 id="查看系统："><a href="#查看系统：" class="headerlink" title="查看系统："></a>查看系统：</h3><p>lsb_release -a<br>cat /proc/version</p>
+<h3 id="查看yum安装创建相关文件："><a href="#查看yum安装创建相关文件：" class="headerlink" title="查看yum安装创建相关文件："></a>查看yum安装创建相关文件：</h3><p>rpm -qa|grep redis<br>rpm -ql redis</p>
+<h3 id="挂载硬盘"><a href="#挂载硬盘" class="headerlink" title="挂载硬盘"></a>挂载硬盘</h3><p>umount /dev/vdb1<br>fuser -mv /home</p>
+<h3 id="uname-a"><a href="#uname-a" class="headerlink" title="uname -a"></a>uname -a</h3><p>Linux（系统名） iZ23jnmf7iwZ（节点名称） 2.6.32-431.23.3.el6.x86_64（操作系统的发行版号） #1 SMP Thu Jul 31 17:20:51 UTC 2014（内核版本） x86_64（硬件平台） x86_64（机器硬件名） x86_64（系统处理器的体系结构） GNU/Linux（操作系统）</p>
+<h3 id="查看外网ip"><a href="#查看外网ip" class="headerlink" title="查看外网ip"></a>查看外网ip</h3><p>curl members.3322.org/dyndns/getip</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://chibl.github.io/2018/02/28/Linux查看CPU，内存，硬盘/" data-id="cjq4eirl400027l646pzo21lq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -131,7 +234,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
   </div>
 
@@ -144,7 +247,15 @@
       <ul>
         
           <li>
+            <a href="/2018/12/25/iftop/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2018/12/24/内核调优sysctl.conf/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/28/Linux查看CPU，内存，硬盘/">(no title)</a>
           </li>
         
       </ul>

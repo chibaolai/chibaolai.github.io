@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>宝来博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Linux查看CPU，内存，硬盘查看CPU查看CPU核数12# cat /proc/cpuinfo | grep &amp;quot;cpu cores&amp;quot; | uniqcpu cores : 4 查看CPU个数12# cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l2 **uniq命令：删除重复行;wc –l命令：统计">
+<meta name="keywords" content="bolly">
+<meta property="og:type" content="article">
+<meta property="og:title" content="宝来博客">
+<meta property="og:url" content="http://chibl.github.io/2018/02/28/Linux查看CPU，内存，硬盘/index.html">
+<meta property="og:site_name" content="宝来博客">
+<meta property="og:description" content="Linux查看CPU，内存，硬盘查看CPU查看CPU核数12# cat /proc/cpuinfo | grep &amp;quot;cpu cores&amp;quot; | uniqcpu cores : 4 查看CPU个数12# cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l2 **uniq命令：删除重复行;wc –l命令：统计">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-09T06:25:02.128Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="宝来博客">
+<meta name="twitter:description" content="Linux查看CPU，内存，硬盘查看CPU查看CPU核数12# cat /proc/cpuinfo | grep &amp;quot;cpu cores&amp;quot; | uniqcpu cores : 4 查看CPU个数12# cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l2 **uniq命令：删除重复行;wc –l命令：统计">
+  
+    <link rel="alternate" href="/atom.xml" title="宝来博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">宝来博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://chibl.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux查看CPU，内存，硬盘" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/28/Linux查看CPU，内存，硬盘/" class="article-date">
+  <time datetime="2018-02-28T02:28:44.991Z" itemprop="datePublished">2018-02-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux查看CPU，内存，硬盘"><a href="#Linux查看CPU，内存，硬盘" class="headerlink" title="Linux查看CPU，内存，硬盘"></a>Linux查看CPU，内存，硬盘</h1><h2 id="查看CPU"><a href="#查看CPU" class="headerlink" title="查看CPU"></a>查看CPU</h2><h3 id="查看CPU核数"><a href="#查看CPU核数" class="headerlink" title="查看CPU核数"></a>查看CPU核数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cat /proc/cpuinfo | grep &quot;cpu cores&quot; | uniq</span><br><span class="line">cpu cores : 4</span><br></pre></td></tr></table></figure>
+<h3 id="查看CPU个数"><a href="#查看CPU个数" class="headerlink" title="查看CPU个数"></a>查看CPU个数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cat /proc/cpuinfo | grep &quot;physical id&quot; | uniq | wc -l</span><br><span class="line">2 **uniq命令：删除重复行;wc –l命令：统计行数**</span><br></pre></td></tr></table></figure>
+<h3 id="查看CPU型号"><a href="#查看CPU型号" class="headerlink" title="查看CPU型号"></a>查看CPU型号</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cat /proc/cpuinfo | grep &apos;model name&apos; |uniq</span><br><span class="line">model name : Intel(R) Xeon(R) CPU E5630 @ 2.53GHz</span><br></pre></td></tr></table></figure>
+<p><strong>总结：该服务器有2个4核CPU，型号Intel(R) Xeon(R) CPU E5630 @ 2.53GHz</strong></p>
+<h2 id="查看内存"><a href="#查看内存" class="headerlink" title="查看内存"></a>查看内存</h2><h3 id="查看内存总数"><a href="#查看内存总数" class="headerlink" title="查看内存总数"></a>查看内存总数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#cat /proc/meminfo | grep MemTotal</span><br><span class="line">MemTotal: 32941268 kB //内存32G</span><br></pre></td></tr></table></figure>
+<h3 id="查看内存条数"><a href="#查看内存条数" class="headerlink" title="查看内存条数"></a>查看内存条数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># dmidecode |grep -A16 &quot;Memory Device$&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>总结：该服务器有两条2G内存 ，空余4个插槽</strong></p>
+<h2 id="查看硬盘"><a href="#查看硬盘" class="headerlink" title="查看硬盘"></a>查看硬盘</h2><h3 id="查看硬盘大小"><a href="#查看硬盘大小" class="headerlink" title="查看硬盘大小"></a>查看硬盘大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># fdisk -l | grep Disk</span><br><span class="line">Disk /dev/cciss/c0d0: 146.7 GB, 146778685440 bytes</span><br></pre></td></tr></table></figure>
+<p><strong>总结：硬盘大小146.7G，即厂商标称的160G</strong></p>
+<h2 id="同步系统时间"><a href="#同步系统时间" class="headerlink" title="同步系统时间"></a>同步系统时间</h2><ul>
+<li>yum install -y ntpdate </li>
+<li><p>ntpdate time.nuri.net</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">time.nist.gov</span><br><span class="line">time.nuri.net</span><br><span class="line">0.asia.pool.ntp.org</span><br><span class="line">1.asia.pool.ntp.org</span><br><span class="line">2.asia.pool.ntp.org</span><br><span class="line">3.asia.pool.ntp.org</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hwclock -w</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#date</span><br><span class="line">#hwclock</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">定时执行时间同步任务，所以我们利用crontab -e 来添加定时任务</span><br><span class="line"></span><br><span class="line">#* */1 * * * root ntpdate time.nuri.net;hwclock -w </span><br><span class="line"></span><br><span class="line">即：每隔一个小时同步一下internet时间。</span><br></pre></td></tr></table></figure>
+<h3 id="TCP状态查看："><a href="#TCP状态查看：" class="headerlink" title="TCP状态查看："></a>TCP状态查看：</h3><p>netstat -n | grep 60.214.137.170</p>
+<p>查看公网IP：ip addr show eth0 | grep inet | awk ‘{ print $2; }’ | sed ‘s/\/.*$//‘</p>
+<h3 id="查看系统："><a href="#查看系统：" class="headerlink" title="查看系统："></a>查看系统：</h3><p>lsb_release -a<br>cat /proc/version</p>
+<h3 id="查看yum安装创建相关文件："><a href="#查看yum安装创建相关文件：" class="headerlink" title="查看yum安装创建相关文件："></a>查看yum安装创建相关文件：</h3><p>rpm -qa|grep redis<br>rpm -ql redis</p>
+<h3 id="挂载硬盘"><a href="#挂载硬盘" class="headerlink" title="挂载硬盘"></a>挂载硬盘</h3><p>umount /dev/vdb1<br>fuser -mv /home</p>
+<h3 id="uname-a"><a href="#uname-a" class="headerlink" title="uname -a"></a>uname -a</h3><p>Linux（系统名） iZ23jnmf7iwZ（节点名称） 2.6.32-431.23.3.el6.x86_64（操作系统的发行版号） #1 SMP Thu Jul 31 17:20:51 UTC 2014（内核版本） x86_64（硬件平台） x86_64（机器硬件名） x86_64（系统处理器的体系结构） GNU/Linux（操作系统）</p>
+<h3 id="查看外网ip"><a href="#查看外网ip" class="headerlink" title="查看外网ip"></a>查看外网ip</h3><p>curl members.3322.org/dyndns/getip</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://chibl.github.io/2018/02/28/Linux查看CPU，内存，硬盘/" data-id="cjq4eirl400027l646pzo21lq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/12/24/内核调优sysctl.conf/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/25/iftop/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/24/内核调优sysctl.conf/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/28/Linux查看CPU，内存，硬盘/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 bolly<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
