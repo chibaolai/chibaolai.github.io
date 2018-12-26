@@ -104,24 +104,25 @@
 
 
 
-  <meta name="description" content="不疯魔，不成佛">
+  <meta name="description" content="JVM调优基础知识： 基本数据类型，堆对象的引用，程序存储在栈中，方法以先进后出进栈，栈的起点是main方法一个线程对应一个栈空间，栈是运行单元，栈调优参数：-Xss，StackOverFlowError是栈中死循环无法返回递归。 对象存储在堆中，堆是存储单元。堆调优参数：-Xms  垃圾回收算法 引用计数：增加一个对象引用，计数加1，减少一个对象引用，计数减1，计数为0 回收，问题：循环引用无法">
 <meta name="keywords" content="bolly">
-<meta property="og:type" content="website">
-<meta property="og:title" content="点点滴滴">
-<meta property="og:url" content="http://chibaolai.github.io/archives/2018/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM调优">
+<meta property="og:url" content="http://chibaolai.github.io/2018/11/20/JVM/JVM调优/index.html">
 <meta property="og:site_name" content="点点滴滴">
-<meta property="og:description" content="不疯魔，不成佛">
+<meta property="og:description" content="JVM调优基础知识： 基本数据类型，堆对象的引用，程序存储在栈中，方法以先进后出进栈，栈的起点是main方法一个线程对应一个栈空间，栈是运行单元，栈调优参数：-Xss，StackOverFlowError是栈中死循环无法返回递归。 对象存储在堆中，堆是存储单元。堆调优参数：-Xms  垃圾回收算法 引用计数：增加一个对象引用，计数加1，减少一个对象引用，计数减1，计数为0 回收，问题：循环引用无法">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-26T09:39:20.048Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="点点滴滴">
-<meta name="twitter:description" content="不疯魔，不成佛">
+<meta name="twitter:title" content="JVM调优">
+<meta name="twitter:description" content="JVM调优基础知识： 基本数据类型，堆对象的引用，程序存储在栈中，方法以先进后出进栈，栈的起点是main方法一个线程对应一个栈空间，栈是运行单元，栈调优参数：-Xss，StackOverFlowError是栈中死循环无法返回递归。 对象存储在堆中，堆是存储单元。堆调优参数：-Xms  垃圾回收算法 引用计数：增加一个对象引用，计数加1，减少一个对象引用，计数减1，计数为0 回收，问题：循环引用无法">
 
 
 
 
 
 
-  <link rel="canonical" href="http://chibaolai.github.io/archives/2018/">
+  <link rel="canonical" href="http://chibaolai.github.io/2018/11/20/JVM/JVM调优/">
 
 
 
@@ -131,7 +132,7 @@
   };
 </script>
 
-  <title>归档 | 点点滴滴</title>
+  <title>JVM调优 | 点点滴滴</title>
   
 
 
@@ -179,7 +180,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/chibaolai" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -289,7 +290,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -411,253 +412,236 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/11/20/JVM/JVM调优/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bolly">
+      <meta itemprop="description" content="不疯魔，不成佛">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点点滴滴">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">JVM调优
+
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-20 09:17:13" itemprop="dateCreated datePublished" datetime="2018-11-20T09:17:13+08:00">2018-11-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-26 17:39:20" itemprop="dateModified" datetime="2018-12-26T17:39:20+08:00">2018-12-26</time>
+              
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 5 篇日志。 继续努力。
-      </span>
-      
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/25/linux/iftop/" itemprop="url">
-              
-                <span itemprop="name">网络监控</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-25T17:56:14+08:00" content="2018-12-25">
-          12-25
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/24/linux/内核调优sysctl.conf/" itemprop="url">
-              
-                <span itemprop="name">内核调优</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-24T10:43:20+08:00" content="2018-12-24">
-          12-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/20/JVM/JVM调优/" itemprop="url">
-              
-                <span itemprop="name">JVM调优</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-20T09:17:13+08:00" content="2018-11-20">
-          11-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="JVM调优"><a href="#JVM调优" class="headerlink" title="JVM调优"></a>JVM调优</h1><h2 id="基础知识："><a href="#基础知识：" class="headerlink" title="基础知识："></a>基础知识：</h2><ol>
+<li>基本数据类型，堆对象的引用，程序存储在栈中，方法以先进后出进栈，栈的起点是main方法<br>一个线程对应一个栈空间，栈是运行单元，<strong>栈调优参数：-Xss</strong>，StackOverFlowError是栈中死循环无法返回递归。</li>
+<li>对象存储在堆中，堆是存储单元。<strong>堆调优参数：-Xms</strong></li>
+</ol>
+<h2 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a>垃圾回收算法</h2><ol>
+<li>引用计数：增加一个对象引用，计数加1，减少一个对象引用，计数减1，计数为0 回收，问题：循环引用无法回收</li>
+<li>标记-清除：第一阶段从根节点开始标记对象引用，第二阶段未标记的对象清除。问题：空间碎片</li>
+<li>复制：两块内存，复制正在使用对象到另外一块内存空间。问题：两倍空间</li>
+<li>标记-整理：第一阶段从根节点开始标记对象引用，第二阶段未标记的对象清除同时整理存活对象到清除的对象空间上</li>
+</ol>
+<h2 id="分代回收"><a href="#分代回收" class="headerlink" title="分代回收"></a>分代回收</h2><p>不同对象有不同的生命周期（人也如此），session，socket等需要长周期，String 这种不变类需要短周期</p>
+<ol>
+<li>分代：</li>
+</ol>
+<ul>
+<li>年轻代（Eden，survivor），有意思的命名！Eden：伊甸园，亚当夏娃居住地。survivor：幸存者</li>
+<li>年老代，</li>
+<li>持久代（方法区），java.lang.OutOfMemoryError: PermGen space，<strong>调优参数：-XX:MaxPermSize</strong>。<br>调优经验：<br>问题描述：thrift定义了大量big class，尽管以及做了生产环境1024M的调优，但依旧出现PerGen space错误。<br>解决办法：升级到jdk8。<br>原理：因为jdk8已经元空间代替持久代，metaspace占用本地内存，不占用虚拟机内存。</li>
+</ul>
+<ol start="2">
+<li>GC类型</li>
+</ol>
+<ul>
+<li>scavenge（搜索） GC：主要作用于年轻代，高频清理Eden，采用并行收集器，<strong>调优参数：XX:+UseParallelGC</strong></li>
+<li>full GC</li>
+</ul>
+<h2 id="配置参数"><a href="#配置参数" class="headerlink" title="配置参数"></a>配置参数</h2><ul>
+<li>-Xmx：JVM最大可用内存</li>
+<li>-Xms：JVM初始内存，设置与-Xmx相同，以避免每次垃圾回收完成后JVM重新分配内存</li>
+<li>-Xmn：年轻代内存</li>
+<li>-Xss：</li>
+</ul>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/11/k8s/k8s集群部署/" itemprop="url">
-              
-                <span itemprop="name">k8s集群部署</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-10-11T18:40:31+08:00" content="2018-10-11">
-          10-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/28/linux/Linux查看CPU，内存，硬盘/" itemprop="url">
-              
-                <span itemprop="name">查看CPU，内存，硬盘</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-02-28T10:28:44+08:00" content="2018-02-28">
-          02-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/11/k8s/k8s集群部署/" rel="next" title="k8s集群部署">
+                <i class="fa fa-chevron-left"></i> k8s集群部署
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/24/linux/内核调优sysctl.conf/" rel="prev" title="内核调优">
+                内核调优 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -678,8 +662,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -766,6 +759,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM调优"><span class="nav-number">1.</span> <span class="nav-text">JVM调优</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础知识："><span class="nav-number">1.1.</span> <span class="nav-text">基础知识：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾回收算法"><span class="nav-number">1.2.</span> <span class="nav-text">垃圾回收算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分代回收"><span class="nav-number">1.3.</span> <span class="nav-text">分代回收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置参数"><span class="nav-number">1.4.</span> <span class="nav-text">配置参数</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -901,6 +911,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
 
   
 
