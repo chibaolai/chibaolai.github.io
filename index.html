@@ -432,6 +432,333 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2019/01/03/mysql/Mysql-使用/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bolly">
+      <meta itemprop="description" content="不疯魔，不成佛">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点点滴滴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/03/mysql/Mysql-使用/" class="post-title-link" itemprop="url">Mysql-使用</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-03 17:52:21 / 修改时间：18:30:41" itemprop="dateCreated datePublished" datetime="2019-01-03T17:52:21+08:00">2019-01-03</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Mysql-使用"><a href="#Mysql-使用" class="headerlink" title="Mysql-使用"></a>Mysql-使用</h1><h2 id="查看变量"><a href="#查看变量" class="headerlink" title="查看变量"></a>查看变量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br></pre></td><td class="code"><pre><span class="line">show variables;</span><br><span class="line">set global max_connections = 1000;</span><br><span class="line">show variables like &apos;%下面变量%&apos;</span><br><span class="line">max_connections 最大允许连接数</span><br><span class="line">1. back_log</span><br><span class="line"></span><br><span class="line">指定MySQL可能的连接数量。当MySQL主线程在很短的时间内得到非常多的连接请求，该参数就起作用，之后主线程花些时间(尽管很短)检查连接并且启动一个新线程。</span><br><span class="line"></span><br><span class="line">back_log参数的值指出在MySQL暂时停止响应新请求之前的短时间内多少个请求可以被存在堆栈中。如果系统在一个短时间内有很多连接，则需要增大该参数的值，该参数值指定到来的TCP/IP连接的侦听队列的大小。不同的操作系统在这个队列大小上有它自己的限制。 试图设定back_log高于你的操作系统的限制将是无效的。</span><br><span class="line"></span><br><span class="line">当观察MySQL进程列表，发现大量 264084 | unauthenticated user | xxx.xxx.xxx.xxx | NULL | Connect | NULL | login | NULL 的待连接进程时，就要加大 back_log 的值。back_log默认值为50。</span><br><span class="line"></span><br><span class="line">2. basedir</span><br><span class="line"></span><br><span class="line">MySQL主程序所在路径，即：--basedir参数的值。</span><br><span class="line"></span><br><span class="line">3. bdb_cache_size</span><br><span class="line"></span><br><span class="line">分配给BDB类型数据表的缓存索引和行排列的缓冲区大小，如果不使用DBD类型数据表，则应该在启动MySQL时加载 --skip-bdb 参数以避免内存浪费。</span><br><span class="line"></span><br><span class="line">4.bdb_log_buffer_size</span><br><span class="line"></span><br><span class="line">分配给BDB类型数据表的缓存索引和行排列的缓冲区大小，如果不使用DBD类型数据表，则应该将该参数值设置为0，或者在启动MySQL时加载 --skip-bdb 参数以避免内存浪费。</span><br><span class="line"></span><br><span class="line">5.bdb_home</span><br><span class="line"></span><br><span class="line">参见 --bdb-home 选项。</span><br><span class="line"></span><br><span class="line">6. bdb_max_lock</span><br><span class="line"></span><br><span class="line">指定最大的锁表进程数量(默认为10000)，如果使用BDB类型数据表，则可以使用该参数。如果在执行大型事物处理或者查询时发现 bdb: Lock table is out of available locks or Got error 12 from ... 错误，则应该加大该参数值。</span><br><span class="line"></span><br><span class="line">7. bdb_logdir</span><br><span class="line"></span><br><span class="line">指定使用BDB类型数据表提供服务时的日志存放位置。即为 --bdb-logdir 的值。</span><br><span class="line"></span><br><span class="line">8. bdb_shared_data</span><br><span class="line"></span><br><span class="line">如果使用 --bdb-shared-data 选项则该参数值为On。</span><br><span class="line"></span><br><span class="line">9. bdb_tmpdir</span><br><span class="line"></span><br><span class="line">BDB类型数据表的临时文件目录。即为 --bdb-tmpdir 的值。</span><br><span class="line"></span><br><span class="line">10. binlog_cache_size</span><br><span class="line"></span><br><span class="line">为binary log指定在查询请求处理过程中SQL 查询语句使用的缓存大小。如果频繁应用于大量、复杂的SQL表达式处理，则应该加大该参数值以获得性能提升。</span><br><span class="line"></span><br><span class="line">11. bulk_insert_buffer_size</span><br><span class="line"></span><br><span class="line">指定 MyISAM 类型数据表表使用特殊的树形结构的缓存。使用整块方式(bulk)能够加快插入操作( INSERT ... SELECT, INSERT ... VALUES (...), (...), ..., 和 LOAD DATA INFILE) 的速度和效率。该参数限制每个线程使用的树形结构缓存大小，如果设置为0则禁用该加速缓存功能。注意：该参数对应的缓存操作只能用户向非空数据表中执行插入操作!默认值为 8MB。</span><br><span class="line"></span><br><span class="line">12. character_set</span><br><span class="line"></span><br><span class="line">MySQL的默认字符集。</span><br><span class="line"></span><br><span class="line">13. character_sets</span><br><span class="line"></span><br><span class="line">MySQL所能提供支持的字符集。</span><br><span class="line"></span><br><span class="line">14. concurrent_inserts</span><br><span class="line"></span><br><span class="line">如果开启该参数，MySQL则允许在执行 SELECT 操作的同时进行 INSERT 操作。如果要关闭该参数，可以在启动 mysqld 时加载 --safe 选项，或者使用 --skip-new 选项。默认为On。</span><br><span class="line"></span><br><span class="line">15. connect_timeout</span><br><span class="line"></span><br><span class="line">指定MySQL服务等待应答一个连接报文的最大秒数，超出该时间，MySQL向客户端返回 bad handshake。</span><br><span class="line"></span><br><span class="line">16. datadir</span><br><span class="line"></span><br><span class="line">指定数据库路径。即为 --datadir 选项的值。</span><br><span class="line"></span><br><span class="line">17. delay_key_write</span><br><span class="line"></span><br><span class="line">该参数只对 MyISAM 类型数据表有效。有如下的取值种类：</span><br><span class="line"></span><br><span class="line">off: 如果在建表语句中使用 CREATE TABLE ... DELAYED_KEY_WRITES，则全部忽略</span><br><span class="line"></span><br><span class="line">DELAYED_KEY_WRITES;</span><br><span class="line"></span><br><span class="line">on: 如果在建表语句中使用 CREATE TABLE ... DELAYED_KEY_WRITES，则使用该选项(默认);</span><br><span class="line"></span><br><span class="line">all: 所有打开的数据表都将按照 DELAYED_KEY_WRITES 处理。</span><br><span class="line"></span><br><span class="line">如果 DELAYED_KEY_WRITES 开启，对于已经打开的数据表而言，在每次索引更新时都不刷新带有</span><br><span class="line"></span><br><span class="line">DELAYED_KEY_WRITES 选项的数据表的key buffer，除非该数据表关闭。该参数会大幅提升写入键值的速</span><br><span class="line"></span><br><span class="line">度。如果使用该参数，则应该检查所有数据表：myisamchk --fast --force。</span><br><span class="line"></span><br><span class="line">18.delayed_insert_limit</span><br><span class="line"></span><br><span class="line">在插入delayed_insert_limit行后，INSERT DELAYED处理模块将检查是否有未执行的SELECT语句。如果有，在继续处理前执行允许这些语句。</span><br><span class="line"></span><br><span class="line">19. delayed_insert_timeout</span><br><span class="line"></span><br><span class="line">一个INSERT DELAYED线程应该在终止之前等待INSERT语句的时间。</span><br><span class="line"></span><br><span class="line">20. delayed_queue_size</span><br><span class="line"></span><br><span class="line">为处理INSERT DELAYED分配的队列大小(以行为单位)。如果排队满了，任何进行INSERT DELAYED的客户必须等待队列空间释放后才能继续。</span><br><span class="line"></span><br><span class="line">21. flush</span><br><span class="line"></span><br><span class="line">在启动MySQL时加载 --flush 参数打开该功能。</span><br><span class="line"></span><br><span class="line">22. flush_time</span><br><span class="line"></span><br><span class="line">如果该设置为非0值，那么每flush_time秒，所有打开的表将被关，以释放资源和sync到磁盘。注意：只建议在使用 Windows9x/Me 或者当前操作系统资源严重不足时才使用该参数!</span><br><span class="line"></span><br><span class="line">23. ft_boolean_syntax</span><br><span class="line"></span><br><span class="line">搜索引擎维护员希望更改允许用于逻辑全文搜索的操作符。这些则由变量 ft_boolean_syntax 控制。</span><br><span class="line"></span><br><span class="line">24. ft_min_word_len</span><br><span class="line"></span><br><span class="line">指定被索引的关键词的最小长度。注意：在更改该参数值后，索引必须重建!</span><br><span class="line"></span><br><span class="line">25. ft_max_word_len</span><br><span class="line"></span><br><span class="line">指定被索引的关键词的最大长度。注意：在更改该参数值后，索引必须重建!</span><br><span class="line"></span><br><span class="line">26. ft_max_word_len_for_sort</span><br><span class="line"></span><br><span class="line">指定在使用REPAIR, CREATE INDEX, or ALTER TABLE等方法进行快速全文索引重建过程中所能使用的关键词的最大长度。超出该长度限制的关键词将使用低速方式进行插入。加大该参数的值，MySQL将会建立更大的临时文件(这会减轻CPU负载，但效率将取决于磁盘I/O效率)，并且在一个排序取内存放更少的键值。</span><br><span class="line"></span><br><span class="line">27. ft_stopword_file</span><br><span class="line"></span><br><span class="line">从 ft_stopword_file 变量指定的文件中读取列表。在修改了 stopword 列表后，必须重建 FULLTEXT 索引。</span><br><span class="line"></span><br><span class="line">28. have_innodb</span><br><span class="line"></span><br><span class="line">YES: MySQL支持InnoDB类型数据表; DISABLE: 使用 --skip-innodb 关闭对InnoDB类型数据表的支持。</span><br><span class="line"></span><br><span class="line">29. have_bdb</span><br><span class="line"></span><br><span class="line">YES: MySQL支持伯克利类型数据表; DISABLE: 使用 --skip-bdb 关闭对伯克利类型数据表的支持。</span><br><span class="line"></span><br><span class="line">30. have_raid</span><br><span class="line"></span><br><span class="line">YES: 使MySQL支持RAID功能。</span><br><span class="line"></span><br><span class="line">31. have_openssl</span><br><span class="line"></span><br><span class="line">YES: 使MySQL支持SSL加密协议。</span><br><span class="line"></span><br><span class="line">32. init_file</span><br><span class="line"></span><br><span class="line">指定一个包含SQL查询语句的文件，该文件在MySQL启动时将被加载，文件中的SQL语句也会被执行。</span><br><span class="line"></span><br><span class="line">33. interactive_timeout</span><br><span class="line"></span><br><span class="line">服务器在关上它前在一个交互连接上等待行动的秒数。一个交互的客户被定义为对mysql_real_connect()使用CLIENT_INTERACTIVE选项的客户。也可见wait_timeout。</span><br><span class="line"></span><br><span class="line">34. join_buffer_size</span><br><span class="line"></span><br><span class="line">用于全部联合(join)的缓冲区大小(不是用索引的联结)。缓冲区对2个表间的每个全部联结分配一次缓冲区，当增加索引不可能时，增加该值可得到一个更快的全部联结。(通常得到快速联结的最佳方法是增加索引。)</span><br><span class="line"></span><br><span class="line">35. key_buffer_size</span><br><span class="line"></span><br><span class="line">用于索引块的缓冲区大小，增加它可得到更好处理的索引(对所有读和多重写)，到你能负担得起那样多。如果你使它太大，系统将开始变慢慢。必须为OS文件系统缓存留下一些空间。为了在写入多个行时得到更多的速度。</span><br><span class="line"></span><br><span class="line">36. language</span><br><span class="line"></span><br><span class="line">用户输出报错信息的语言。</span><br><span class="line"></span><br><span class="line">37. large_file_support</span><br><span class="line"></span><br><span class="line">开启大文件支持。</span><br><span class="line"></span><br><span class="line">38. locked_in_memory</span><br><span class="line"></span><br><span class="line">使用 --memlock 将mysqld锁定在内存中。</span><br><span class="line"></span><br><span class="line">39. log</span><br><span class="line"></span><br><span class="line">记录所有查询操作。</span><br><span class="line"></span><br><span class="line">40. log_update</span><br><span class="line"></span><br><span class="line">开启update log。</span><br><span class="line"></span><br><span class="line">41. log_bin</span><br><span class="line"></span><br><span class="line">开启 binary log。</span><br><span class="line"></span><br><span class="line">42. log_slave_updates</span><br><span class="line"></span><br><span class="line">如果使用链状同步或者多台Slave之间进行同步则需要开启此参数。</span><br><span class="line"></span><br><span class="line">43. long_query_time</span><br><span class="line"></span><br><span class="line">如果一个查询所用时间超过该参数值，则该查询操作将被记录在Slow_queries中。</span><br><span class="line"></span><br><span class="line">44. lower_case_table_names</span><br><span class="line"></span><br><span class="line">1: MySQL总使用小写字母进行SQL操作;</span><br><span class="line"></span><br><span class="line">0: 关闭该功能。</span><br><span class="line"></span><br><span class="line">注意：如果使用该参数，则应该在启用前将所有数据表转换为小写字母。</span><br><span class="line"></span><br><span class="line">45. max_allowed_packet</span><br><span class="line"></span><br><span class="line">一个查询语句包的最大尺寸。消息缓冲区被初始化为net_buffer_length字节，但是可在需要时增加到max_allowed_packet个字节。该值太小则会在处理大包时产生错误。如果使用大的BLOB列，必须增加该值。</span><br><span class="line"></span><br><span class="line">46. net_buffer_length</span><br><span class="line"></span><br><span class="line">通信缓冲区在查询期间被重置到该大小。通常不要改变该参数值，但是如果内存不足，可以将它设置为查询期望的大小。(即，客户发出的SQL语句期望的长度。如果语句超过这个长度，缓冲区自动地被扩大，直到max_allowed_packet个字节。)</span><br><span class="line"></span><br><span class="line">47. max_binlog_cache_size</span><br><span class="line"></span><br><span class="line">指定binary log缓存的最大容量，如果设置的过小，则在执行复杂查询语句时MySQL会出错。</span><br><span class="line"></span><br><span class="line">48. max_binlog_size</span><br><span class="line"></span><br><span class="line">指定binary log文件的最大容量，默认为1GB。</span><br><span class="line"></span><br><span class="line">49. max_connections</span><br><span class="line"></span><br><span class="line">允许同时连接MySQL服务器的客户数量。如果超出该值，MySQL会返回Too many connections错误，但通常情况下，MySQL能够自行解决。</span><br><span class="line"></span><br><span class="line">50. max_connect_errors</span><br><span class="line"></span><br><span class="line">对于同一主机，如果有超出该参数值个数的中断错误连接，则该主机将被禁止连接。如需对该主机进行解禁，执行：FLUSH HOST;。</span><br><span class="line"></span><br><span class="line">51. max_delayed_threads</span><br><span class="line"></span><br><span class="line">不要启动多于的这个数字的线程来处理INSERT DELAYED语句。如果你试图在所有INSERT DELAYED线程在用后向一张新表插入数据，行将被插入，就像DELAYED属性没被指定那样。</span><br><span class="line"></span><br><span class="line">52. max_heap_table_size</span><br><span class="line"></span><br><span class="line">内存表所能使用的最大容量。</span><br><span class="line"></span><br><span class="line">53. max_join_size</span><br><span class="line"></span><br><span class="line">如果要查询多于max_join_size个记录的联合将返回一个错误。如果要执行没有一个WHERE的语句并且耗费大量时间，且返回上百万行的联结，则需要加大该参数值。</span><br><span class="line"></span><br><span class="line">54. max_sort_length</span><br><span class="line"></span><br><span class="line">在排序BLOB或TEXT值时使用的字节数(每个值仅头max_sort_length个字节被使用;其余的被忽略)。</span><br><span class="line"></span><br><span class="line">55. max_user_connections</span><br><span class="line"></span><br><span class="line">指定来自同一用户的最多连接数。设置为0则代表不限制。</span><br><span class="line"></span><br><span class="line">56. max_tmp_tables</span><br><span class="line"></span><br><span class="line">(该参数目前还没有作用)。一个客户能同时保持打开的临时表的最大数量。</span><br><span class="line"></span><br><span class="line">57. max_write_lock_count</span><br><span class="line"></span><br><span class="line">当出现max_write_lock_count个写入锁定数量后，开始允许一些被锁定的读操作开始执行。避免写入锁定过多，读取操作处于长时间等待状态。</span><br><span class="line"></span><br><span class="line">58. myisam_recover_options</span><br></pre></td></tr></table></figure>
+<h2 id="查看连接数"><a href="#查看连接数" class="headerlink" title="查看连接数"></a>查看连接数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show processlist; #只列出前100条</span><br><span class="line">show full processlist;</span><br></pre></td></tr></table></figure>
+<h2 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">show status;</span><br><span class="line">show status like &apos;%下面变量%&apos;;</span><br><span class="line">Aborted_clients 由于客户没有正确关闭连接已经死掉，已经放弃的连接数量。 </span><br><span class="line">Aborted_connects 尝试已经失败的MySQL服务器的连接的次数。 </span><br><span class="line">Connections 试图连接MySQL服务器的次数。 </span><br><span class="line">Created_tmp_tables 当执行语句时，已经被创造了的隐含临时表的数量。 </span><br><span class="line">Delayed_insert_threads 正在使用的延迟插入处理器线程的数量。 </span><br><span class="line">Delayed_writes 用INSERT DELAYED写入的行数。 </span><br><span class="line">Delayed_errors 用INSERT DELAYED写入的发生某些错误(可能重复键值)的行数。 </span><br><span class="line">Flush_commands 执行FLUSH命令的次数。 </span><br><span class="line">Handler_delete 请求从一张表中删除行的次数。 </span><br><span class="line">Handler_read_first 请求读入表中第一行的次数。 </span><br><span class="line">Handler_read_key 请求数字基于键读行。 </span><br><span class="line">Handler_read_next 请求读入基于一个键的一行的次数。 </span><br><span class="line">Handler_read_rnd 请求读入基于一个固定位置的一行的次数。 </span><br><span class="line">Handler_update 请求更新表中一行的次数。 </span><br><span class="line">Handler_write 请求向表中插入一行的次数。 </span><br><span class="line">Key_blocks_used 用于关键字缓存的块的数量。 </span><br><span class="line">Key_read_requests 请求从缓存读入一个键值的次数。 </span><br><span class="line">Key_reads 从磁盘物理读入一个键值的次数。 </span><br><span class="line">Key_write_requests 请求将一个关键字块写入缓存次数。 </span><br><span class="line">Key_writes 将一个键值块物理写入磁盘的次数。 </span><br><span class="line">Max_used_connections 同时使用的连接的最大数目。 </span><br><span class="line">Not_flushed_key_blocks 在键缓存中已经改变但是还没被清空到磁盘上的键块。 </span><br><span class="line">Not_flushed_delayed_rows 在INSERT DELAY队列中等待写入的行的数量。 </span><br><span class="line">Open_tables 打开表的数量。 </span><br><span class="line">Open_files 打开文件的数量。 </span><br><span class="line">Open_streams 打开流的数量(主要用于日志记载） </span><br><span class="line">Opened_tables 已经打开的表的数量。 </span><br><span class="line">Questions 发往服务器的查询的数量。 </span><br><span class="line">Slow_queries 要花超过long_query_time时间的查询数量。 </span><br><span class="line">Threads_connected 当前打开的连接的数量。 </span><br><span class="line">Threads_running 不在睡眠的线程数量。 </span><br><span class="line">Uptime 服务器工作了多少秒。</span><br></pre></td></tr></table></figure>
+<h2 id="mysql-按照条件导出sql"><a href="#mysql-按照条件导出sql" class="headerlink" title="mysql 按照条件导出sql"></a>mysql 按照条件导出sql</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u root -p nioxdb --no-create-db=TRUE --no-create-info=TRUE --add-drop-table=FALSE --where=&quot;hospital_id = 10067&quot; biz_appointment&gt;rs.sql;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u root -p nioxdb --no-create-db=TRUE --no-create-info=TRUE --add-drop-table=FALSE -w &quot;(order_id) in (select id from biz_order where hospital_id=10067&quot; --lock-all-tables biz_order_trade &gt; rs_order_trade.sql;</span><br></pre></td></tr></table></figure>
+<h2 id="忘记root密码"><a href="#忘记root密码" class="headerlink" title="忘记root密码"></a>忘记root密码</h2><h3 id="修改MySQL的登录设置"><a href="#修改MySQL的登录设置" class="headerlink" title="修改MySQL的登录设置"></a>修改MySQL的登录设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/my.cnf </span><br><span class="line">在[mysqld]的段中加上一句：skip-grant-tables</span><br></pre></td></tr></table></figure>
+<h3 id="重新启动mysqld"><a href="#重新启动mysqld" class="headerlink" title="重新启动mysqld"></a>重新启动mysqld</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld restart</span><br></pre></td></tr></table></figure>
+<h3 id="登录并修改MySQL的root密码"><a href="#登录并修改MySQL的root密码" class="headerlink" title="登录并修改MySQL的root密码"></a>登录并修改MySQL的root密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql</span><br><span class="line">use mysql</span><br><span class="line">update user set authentication_string=password(&apos;123456&apos;) where user=&apos;root&apos;;</span><br><span class="line">flush privileges ;</span><br></pre></td></tr></table></figure>
+<h3 id="改回登录设置"><a href="#改回登录设置" class="headerlink" title="改回登录设置"></a>改回登录设置</h3><h3 id="重新启动mysqld-1"><a href="#重新启动mysqld-1" class="headerlink" title="重新启动mysqld"></a>重新启动mysqld</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2019/01/03/mysql/MySQL配置文件/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bolly">
+      <meta itemprop="description" content="不疯魔，不成佛">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点点滴滴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/03/mysql/MySQL配置文件/" class="post-title-link" itemprop="url">Mysql-配置</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-03 17:47:58 / 修改时间：17:50:53" itemprop="dateCreated datePublished" datetime="2019-01-03T17:47:58+08:00">2019-01-03</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="MySQL配置文件"><a href="#MySQL配置文件" class="headerlink" title="MySQL配置文件"></a>MySQL配置文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line"></span><br><span class="line">port = 3306</span><br><span class="line"></span><br><span class="line">socket = /tmp/mysql.sock</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"></span><br><span class="line">port = 3306</span><br><span class="line"></span><br><span class="line">socket = /tmp/mysql.sock</span><br><span class="line"></span><br><span class="line">basedir = /usr/local/mysql</span><br><span class="line"></span><br><span class="line">datadir = /data/mysql</span><br><span class="line"></span><br><span class="line">pid-file = /data/mysql/mysql.pid</span><br><span class="line"></span><br><span class="line">user = mysql</span><br><span class="line"></span><br><span class="line">bind-address = 0.0.0.0</span><br><span class="line"></span><br><span class="line">server-id = 1 #表示是本机的序号为1,一般来讲就是master的意思</span><br><span class="line"></span><br><span class="line">skip-name-resolve</span><br><span class="line"></span><br><span class="line"># 禁止MySQL对外部连接进行DNS解析，使用这一选项可以消除MySQL进行DNS解析的时间。但需要注意，如果开启该选项，</span><br><span class="line"></span><br><span class="line"># 则所有远程主机连接授权都要使用IP地址方式，否则MySQL将无法正常处理连接请求</span><br><span class="line"></span><br><span class="line">#skip-networking</span><br><span class="line"></span><br><span class="line">back_log = 600</span><br><span class="line"></span><br><span class="line"># MySQL能有的连接数量。当主要MySQL线程在一个很短时间内得到非常多的连接请求，这就起作用，</span><br><span class="line"></span><br><span class="line"># 然后主线程花些时间(尽管很短)检查连接并且启动一个新线程。back_log值指出在MySQL暂时停止回答新请求之前的短时间内多少个请求可以被存在堆栈中。</span><br><span class="line"></span><br><span class="line"># 如果期望在一个短时间内有很多连接，你需要增加它。也就是说，如果MySQL的连接数据达到max_connections时，新来的请求将会被存在堆栈中，</span><br><span class="line"></span><br><span class="line"># 以等待某一连接释放资源，该堆栈的数量即back_log，如果等待连接的数量超过back_log，将不被授予连接资源。</span><br><span class="line"></span><br><span class="line"># 另外，这值（back_log）限于您的操作系统对到来的TCP/IP连接的侦听队列的大小。</span><br><span class="line"></span><br><span class="line"># 你的操作系统在这个队列大小上有它自己的限制（可以检查你的OS文档找出这个变量的最大值），试图设定back_log高于你的操作系统的限制将是无效的。</span><br><span class="line"></span><br><span class="line">max_connections = 1000</span><br><span class="line"></span><br><span class="line"># MySQL的最大连接数，如果服务器的并发连接请求量比较大，建议调高此值，以增加并行连接数量，当然这建立在机器能支撑的情况下，因为如果连接数越多，介于MySQL会为每个连接提供连接缓冲区，就会开销越多的内存，所以要适当调整该值，不能盲目提高设值。可以过&apos;conn%&apos;通配符查看当前状态的连接数量，以定夺该值的大小。</span><br><span class="line"></span><br><span class="line">max_connect_errors = 6000</span><br><span class="line"></span><br><span class="line"># 对于同一主机，如果有超出该参数值个数的中断错误连接，则该主机将被禁止连接。如需对该主机进行解禁，执行：FLUSH HOST。</span><br><span class="line"></span><br><span class="line">open_files_limit = 65535</span><br><span class="line"></span><br><span class="line"># MySQL打开的文件描述符限制，默认最小1024;当open_files_limit没有被配置的时候，比较max_connections*5和ulimit -n的值，哪个大用哪个，</span><br><span class="line"></span><br><span class="line"># 当open_file_limit被配置的时候，比较open_files_limit和max_connections*5的值，哪个大用哪个。</span><br><span class="line"></span><br><span class="line">table_open_cache = 128</span><br><span class="line"></span><br><span class="line"># MySQL每打开一个表，都会读入一些数据到table_open_cache缓存中，当MySQL在这个缓存中找不到相应信息时，才会去磁盘上读取。默认值64</span><br><span class="line"></span><br><span class="line"># 假定系统有200个并发连接，则需将此参数设置为200*N(N为每个连接所需的文件描述符数目)；</span><br><span class="line"></span><br><span class="line"># 当把table_open_cache设置为很大时，如果系统处理不了那么多文件描述符，那么就会出现客户端失效，连接不上</span><br><span class="line"></span><br><span class="line">max_allowed_packet = 4M</span><br><span class="line"></span><br><span class="line"># 接受的数据包大小；增加该变量的值十分安全，这是因为仅当需要时才会分配额外内存。例如，仅当你发出长查询或MySQLd必须返回大的结果行时MySQLd才会分配更多内存。</span><br><span class="line"></span><br><span class="line"># 该变量之所以取较小默认值是一种预防措施，以捕获客户端和服务器之间的错误信息包，并确保不会因偶然使用大的信息包而导致内存溢出。</span><br><span class="line"></span><br><span class="line">binlog_cache_size = 1M</span><br><span class="line"></span><br><span class="line"># 一个事务，在没有提交的时候，产生的日志，记录到Cache中；等到事务提交需要提交的时候，则把日志持久化到磁盘。默认binlog_cache_size大小32K</span><br><span class="line"></span><br><span class="line">max_heap_table_size = 8M</span><br><span class="line"></span><br><span class="line"># 定义了用户可以创建的内存表(memory table)的大小。这个值用来计算内存表的最大行数值。这个变量支持动态改变</span><br><span class="line"></span><br><span class="line">tmp_table_size = 16M</span><br><span class="line"></span><br><span class="line"># MySQL的heap（堆积）表缓冲大小。所有联合在一个DML指令内完成，并且大多数联合甚至可以不用临时表即可以完成。</span><br><span class="line"></span><br><span class="line"># 大多数临时表是基于内存的(HEAP)表。具有大的记录长度的临时表 (所有列的长度的和)或包含BLOB列的表存储在硬盘上。</span><br><span class="line"></span><br><span class="line"># 如果某个内部heap（堆积）表大小超过tmp_table_size，MySQL可以根据需要自动将内存中的heap表改为基于硬盘的MyISAM表。还可以通过设置tmp_table_size选项来增加临时表的大小。也就是说，如果调高该值，MySQL同时将增加heap表的大小，可达到提高联接查询速度的效果</span><br><span class="line"></span><br><span class="line">read_buffer_size = 2M</span><br><span class="line"></span><br><span class="line"># MySQL读入缓冲区大小。对表进行顺序扫描的请求将分配一个读入缓冲区，MySQL会为它分配一段内存缓冲区。read_buffer_size变量控制这一缓冲区的大小。</span><br><span class="line"></span><br><span class="line"># 如果对表的顺序扫描请求非常频繁，并且你认为频繁扫描进行得太慢，可以通过增加该变量值以及内存缓冲区大小提高其性能</span><br><span class="line"></span><br><span class="line">read_rnd_buffer_size = 8M</span><br><span class="line"></span><br><span class="line"># MySQL的随机读缓冲区大小。当按任意顺序读取行时(例如，按照排序顺序)，将分配一个随机读缓存区。进行排序查询时，</span><br><span class="line"></span><br><span class="line"># MySQL会首先扫描一遍该缓冲，以避免磁盘搜索，提高查询速度，如果需要排序大量数据，可适当调高该值。但MySQL会为每个客户连接发放该缓冲空间，所以应尽量适当设置该值，以避免内存开销过大</span><br><span class="line"></span><br><span class="line">sort_buffer_size = 8M</span><br><span class="line"></span><br><span class="line"># MySQL执行排序使用的缓冲大小。如果想要增加ORDER BY的速度，首先看是否可以让MySQL使用索引而不是额外的排序阶段。</span><br><span class="line"></span><br><span class="line"># 如果不能，可以尝试增加sort_buffer_size变量的大小</span><br><span class="line"></span><br><span class="line">join_buffer_size = 8M</span><br><span class="line"></span><br><span class="line"># 联合查询操作所能使用的缓冲区大小，和sort_buffer_size一样，该参数对应的分配内存也是每连接独享</span><br><span class="line"></span><br><span class="line">thread_cache_size = 8</span><br><span class="line"></span><br><span class="line"># 这个值（默认8）表示可以重新利用保存在缓存中线程的数量，当断开连接时如果缓存中还有空间，那么客户端的线程将被放到缓存中，</span><br><span class="line"></span><br><span class="line"># 如果线程重新被请求，那么请求将从缓存中读取,如果缓存中是空的或者是新的请求，那么这个线程将被重新创建,如果有很多新的线程，</span><br><span class="line"></span><br><span class="line"># 增加这个值可以改善系统性能.通过比较Connections和Threads_created状态的变量，可以看到这个变量的作用。(–&gt;表示要调整的值)</span><br><span class="line"></span><br><span class="line"># 根据物理内存设置规则如下：</span><br><span class="line"></span><br><span class="line"># 1G  —&gt; 8</span><br><span class="line"></span><br><span class="line"># 2G  —&gt; 16</span><br><span class="line"></span><br><span class="line"># 3G  —&gt; 32</span><br><span class="line"></span><br><span class="line"># 大于3G  —&gt; 64</span><br><span class="line"></span><br><span class="line">query_cache_size = 8M</span><br><span class="line"></span><br><span class="line">#MySQL的查询缓冲大小（从4.0.1开始，MySQL提供了查询缓冲机制）使用查询缓冲，MySQL将SELECT语句和查询结果存放在缓冲区中，</span><br><span class="line"></span><br><span class="line"># 今后对于同样的SELECT语句（区分大小写），将直接从缓冲区中读取结果。根据MySQL用户手册，使用查询缓冲最多可以达到238%的效率。</span><br><span class="line"></span><br><span class="line"># 通过检查状态值&apos;Qcache_%&apos;，可以知道query_cache_size设置是否合理：如果Qcache_lowmem_prunes的值非常大，则表明经常出现缓冲不够的情况，</span><br><span class="line"></span><br><span class="line"># 如果Qcache_hits的值也非常大，则表明查询缓冲使用非常频繁，此时需要增加缓冲大小；如果Qcache_hits的值不大，则表明你的查询重复率很低，</span><br><span class="line"></span><br><span class="line"># 这种情况下使用查询缓冲反而会影响效率，那么可以考虑不用查询缓冲。此外，在SELECT语句中加入SQL_NO_CACHE可以明确表示不使用查询缓冲</span><br><span class="line"></span><br><span class="line">query_cache_limit = 2M</span><br><span class="line"></span><br><span class="line">#指定单个查询能够使用的缓冲区大小，默认1M</span><br><span class="line"></span><br><span class="line">key_buffer_size = 4M</span><br><span class="line"></span><br><span class="line">#指定用于索引的缓冲区大小，增加它可得到更好处理的索引(对所有读和多重写)，到你能负担得起那样多。如果你使它太大，</span><br><span class="line"></span><br><span class="line"># 系统将开始换页并且真的变慢了。对于内存在4GB左右的服务器该参数可设置为384M或512M。通过检查状态值Key_read_requests和Key_reads，</span><br><span class="line"></span><br><span class="line"># 可以知道key_buffer_size设置是否合理。比例key_reads/key_read_requests应该尽可能的低，</span><br><span class="line"></span><br><span class="line"># 至少是1:100，1:1000更好(上述状态值可以使用SHOW STATUS LIKE &apos;key_read%&apos;获得)。注意：该参数值设置的过大反而会是服务器整体效率降低</span><br><span class="line"></span><br><span class="line">ft_min_word_len = 4</span><br><span class="line"></span><br><span class="line"># 分词词汇最小长度，默认4</span><br><span class="line"></span><br><span class="line">transaction_isolation = REPEATABLE-READ</span><br><span class="line"></span><br><span class="line"># MySQL支持4种事务隔离级别，他们分别是：</span><br><span class="line"></span><br><span class="line"># READ-UNCOMMITTED, READ-COMMITTED, REPEATABLE-READ, SERIALIZABLE.</span><br><span class="line"></span><br><span class="line"># 如没有指定，MySQL默认采用的是REPEATABLE-READ，ORACLE默认的是READ-COMMITTED</span><br><span class="line"></span><br><span class="line">log_bin = mysql-bin</span><br><span class="line"></span><br><span class="line">binlog_format = mixed</span><br><span class="line"></span><br><span class="line">expire_logs_days = 30 #超过30天的binlog删除</span><br><span class="line"></span><br><span class="line">log_error = /data/mysql/mysql-error.log #错误日志路径</span><br><span class="line"></span><br><span class="line">slow_query_log = 1</span><br><span class="line"></span><br><span class="line">long_query_time = 1 #慢查询时间 超过1秒则为慢查询</span><br><span class="line"></span><br><span class="line">slow_query_log_file = /data/mysql/mysql-slow.log</span><br><span class="line"></span><br><span class="line">performance_schema = 0</span><br><span class="line"></span><br><span class="line">explicit_defaults_for_timestamp</span><br><span class="line"></span><br><span class="line">#lower_case_table_names = 1 #不区分大小写</span><br><span class="line"></span><br><span class="line">skip-external-locking #MySQL选项以避免外部锁定。该选项默认开启</span><br><span class="line"></span><br><span class="line">default-storage-engine = InnoDB #默认存储引擎</span><br><span class="line"></span><br><span class="line">innodb_file_per_table = 1</span><br><span class="line"></span><br><span class="line"># InnoDB为独立表空间模式，每个数据库的每个表都会生成一个数据空间</span><br><span class="line"></span><br><span class="line"># 独立表空间优点：</span><br><span class="line"></span><br><span class="line"># 1．每个表都有自已独立的表空间。</span><br><span class="line"></span><br><span class="line"># 2．每个表的数据和索引都会存在自已的表空间中。</span><br><span class="line"></span><br><span class="line"># 3．可以实现单表在不同的数据库中移动。</span><br><span class="line"></span><br><span class="line"># 4．空间可以回收（除drop table操作处，表空不能自已回收）</span><br><span class="line"></span><br><span class="line"># 缺点：</span><br><span class="line"></span><br><span class="line"># 单表增加过大，如超过100G</span><br><span class="line"></span><br><span class="line"># 结论：</span><br><span class="line"></span><br><span class="line"># 共享表空间在Insert操作上少有优势。其它都没独立表空间表现好。当启用独立表空间时，请合理调整：innodb_open_files</span><br><span class="line"></span><br><span class="line">innodb_open_files = 500</span><br><span class="line"></span><br><span class="line"># 限制Innodb能打开的表的数据，如果库里的表特别多的情况，请增加这个。这个值默认是300</span><br><span class="line"></span><br><span class="line">innodb_buffer_pool_size = 64M</span><br><span class="line"></span><br><span class="line"># InnoDB使用一个缓冲池来保存索引和原始数据, 不像MyISAM.</span><br><span class="line"></span><br><span class="line"># 这里你设置越大,你在存取表里面数据时所需要的磁盘I/O越少.</span><br><span class="line"></span><br><span class="line"># 在一个独立使用的数据库服务器上,你可以设置这个变量到服务器物理内存大小的80%</span><br><span class="line"></span><br><span class="line"># 不要设置过大,否则,由于物理内存的竞争可能导致操作系统的换页颠簸.</span><br><span class="line"></span><br><span class="line"># 注意在32位系统上你每个进程可能被限制在 2-3.5G 用户层面内存限制,</span><br><span class="line"></span><br><span class="line"># 所以不要设置的太高.</span><br><span class="line"></span><br><span class="line">innodb_write_io_threads = 4</span><br><span class="line"></span><br><span class="line">innodb_read_io_threads = 4</span><br><span class="line"></span><br><span class="line"># innodb使用后台线程处理数据页上的读写 I/O(输入输出)请求,根据你的 CPU 核数来更改,默认是4</span><br><span class="line"></span><br><span class="line"># 注:这两个参数不支持动态改变,需要把该参数加入到my.cnf里，修改完后重启MySQL服务,允许值的范围从 1-64</span><br><span class="line"></span><br><span class="line">innodb_thread_concurrency = 0</span><br><span class="line"></span><br><span class="line"># 默认设置为 0,表示不限制并发数，这里推荐设置为0，更好去发挥CPU多核处理能力，提高并发量</span><br><span class="line"></span><br><span class="line">innodb_purge_threads = 1</span><br><span class="line"></span><br><span class="line"># InnoDB中的清除操作是一类定期回收无用数据的操作。在之前的几个版本中，清除操作是主线程的一部分，这意味着运行时它可能会堵塞其它的数据库操作。</span><br><span class="line"></span><br><span class="line"># 从MySQL5.5.X版本开始，该操作运行于独立的线程中,并支持更多的并发数。用户可通过设置innodb_purge_threads配置参数来选择清除操作是否使用单</span><br><span class="line"></span><br><span class="line"># 独线程,默认情况下参数设置为0(不使用单独线程),设置为 1 时表示使用单独的清除线程。建议为1</span><br><span class="line"></span><br><span class="line">innodb_flush_log_at_trx_commit = 2</span><br><span class="line"></span><br><span class="line"># 0：如果innodb_flush_log_at_trx_commit的值为0,log buffer每秒就会被刷写日志文件到磁盘，提交事务的时候不做任何操作（执行是由mysql的master thread线程来执行的。</span><br><span class="line"></span><br><span class="line"># 主线程中每秒会将重做日志缓冲写入磁盘的重做日志文件(REDO LOG)中。不论事务是否已经提交）默认的日志文件是ib_logfile0,ib_logfile1</span><br><span class="line"></span><br><span class="line"># 1：当设为默认值1的时候，每次提交事务的时候，都会将log buffer刷写到日志。</span><br><span class="line"></span><br><span class="line"># 2：如果设为2,每次提交事务都会写日志，但并不会执行刷的操作。每秒定时会刷到日志文件。要注意的是，并不能保证100%每秒一定都会刷到磁盘，这要取决于进程的调度。</span><br><span class="line"></span><br><span class="line"># 每次事务提交的时候将数据写入事务日志，而这里的写入仅是调用了文件系统的写入操作，而文件系统是有 缓存的，所以这个写入并不能保证数据已经写入到物理磁盘</span><br><span class="line"></span><br><span class="line"># 默认值1是为了保证完整的ACID。当然，你可以将这个配置项设为1以外的值来换取更高的性能，但是在系统崩溃的时候，你将会丢失1秒的数据。</span><br><span class="line"></span><br><span class="line"># 设为0的话，mysqld进程崩溃的时候，就会丢失最后1秒的事务。设为2,只有在操作系统崩溃或者断电的时候才会丢失最后1秒的数据。InnoDB在做恢复的时候会忽略这个值。</span><br><span class="line"></span><br><span class="line"># 总结</span><br><span class="line"></span><br><span class="line"># 设为1当然是最安全的，但性能页是最差的（相对其他两个参数而言，但不是不能接受）。如果对数据一致性和完整性要求不高，完全可以设为2，如果只最求性能，例如高并发写的日志服务器，设为0来获得更高性能</span><br><span class="line"></span><br><span class="line">innodb_log_buffer_size = 2M</span><br><span class="line"></span><br><span class="line"># 此参数确定些日志文件所用的内存大小，以M为单位。缓冲区更大能提高性能，但意外的故障将会丢失数据。MySQL开发人员建议设置为1－8M之间</span><br><span class="line"></span><br><span class="line">innodb_log_file_size = 32M</span><br><span class="line"></span><br><span class="line"># 此参数确定数据日志文件的大小，更大的设置可以提高性能，但也会增加恢复故障数据库所需的时间</span><br><span class="line"></span><br><span class="line">innodb_log_files_in_group = 3</span><br><span class="line"></span><br><span class="line"># 为提高性能，MySQL可以以循环方式将日志文件写到多个文件。推荐设置为3</span><br><span class="line"></span><br><span class="line">innodb_max_dirty_pages_pct = 90</span><br><span class="line"></span><br><span class="line"># innodb主线程刷新缓存池中的数据，使脏数据比例小于90%</span><br><span class="line"></span><br><span class="line">innodb_lock_wait_timeout = 120</span><br><span class="line"></span><br><span class="line"># InnoDB事务在被回滚之前可以等待一个锁定的超时秒数。InnoDB在它自己的锁定表中自动检测事务死锁并且回滚事务。InnoDB用LOCK TABLES语句注意到锁定设置。默认值是50秒</span><br><span class="line"></span><br><span class="line">bulk_insert_buffer_size = 8M</span><br><span class="line"></span><br><span class="line"># 批量插入缓存大小， 这个参数是针对MyISAM存储引擎来说的。适用于在一次性插入100-1000+条记录时， 提高效率。默认值是8M。可以针对数据量的大小，翻倍增加。</span><br><span class="line"></span><br><span class="line">myisam_sort_buffer_size = 8M</span><br><span class="line"></span><br><span class="line"># MyISAM设置恢复表之时使用的缓冲区的尺寸，当在REPAIR TABLE或用CREATE INDEX创建索引或ALTER TABLE过程中排序 MyISAM索引分配的缓冲区</span><br><span class="line"></span><br><span class="line">myisam_max_sort_file_size = 10G</span><br><span class="line"></span><br><span class="line"># 如果临时文件会变得超过索引，不要使用快速排序索引方法来创建一个索引。注释：这个参数以字节的形式给出</span><br><span class="line"></span><br><span class="line">myisam_repair_threads = 1</span><br><span class="line"></span><br><span class="line"># 如果该值大于1，在Repair by sorting过程中并行创建MyISAM表索引(每个索引在自己的线程内)</span><br><span class="line"></span><br><span class="line">interactive_timeout = 28800</span><br><span class="line"></span><br><span class="line"># 服务器关闭交互式连接前等待活动的秒数。交互式客户端定义为在mysql_real_connect()中使用CLIENT_INTERACTIVE选项的客户端。默认值：28800秒（8小时）</span><br><span class="line"></span><br><span class="line">wait_timeout = 28800</span><br><span class="line"></span><br><span class="line"># 服务器关闭非交互连接之前等待活动的秒数。在线程启动时，根据全局wait_timeout值或全局interactive_timeout值初始化会话wait_timeout值，</span><br><span class="line"></span><br><span class="line"># 取决于客户端类型(由mysql_real_connect()的连接选项CLIENT_INTERACTIVE定义)。参数默认值：28800秒（8小时）</span><br><span class="line"></span><br><span class="line"># MySQL服务器所支持的最大连接数是有上限的，因为每个连接的建立都会消耗内存，因此我们希望客户端在连接到MySQL Server处理完相应的操作后，</span><br><span class="line"></span><br><span class="line"># 应该断开连接并释放占用的内存。如果你的MySQL Server有大量的闲置连接，他们不仅会白白消耗内存，而且如果连接一直在累加而不断开，</span><br><span class="line"></span><br><span class="line"># 最终肯定会达到MySQL Server的连接上限数，这会报&apos;too many connections&apos;的错误。对于wait_timeout的值设定，应该根据系统的运行情况来判断。</span><br><span class="line"></span><br><span class="line"># 在系统运行一段时间后，可以通过show processlist命令查看当前系统的连接状态，如果发现有大量的sleep状态的连接进程，则说明该参数设置的过大，</span><br><span class="line"></span><br><span class="line"># 可以进行适当的调整小些。要同时设置interactive_timeout和wait_timeout才会生效。</span><br><span class="line"></span><br><span class="line">[mysqldump]</span><br><span class="line"></span><br><span class="line">quick</span><br><span class="line"></span><br><span class="line">max_allowed_packet = 16M #服务器发送和接受的最大包长度</span><br><span class="line"></span><br><span class="line">[myisamchk]</span><br><span class="line"></span><br><span class="line">key_buffer_size = 8M</span><br><span class="line"></span><br><span class="line">sort_buffer_size = 8M</span><br><span class="line"></span><br><span class="line">read_buffer = 4M</span><br><span class="line"></span><br><span class="line">write_buffer = 4M</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/12/25/linux/iftop/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1261,6 +1588,183 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/12/14/mysql/隔离级别/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bolly">
+      <meta itemprop="description" content="不疯魔，不成佛">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点点滴滴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/14/mysql/隔离级别/" class="post-title-link" itemprop="url">Mysql-隔离级别</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-14 07:01:21" itemprop="dateCreated datePublished" datetime="2018-12-14T07:01:21+08:00">2018-12-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-03 17:43:10" itemprop="dateModified" datetime="2019-01-03T17:43:10+08:00">2019-01-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Mysql隔离级别"><a href="#Mysql隔离级别" class="headerlink" title="Mysql隔离级别"></a>Mysql隔离级别</h1><p>场景一：B事务update 未commit<br>场景二：B事务update commit<br>场景三：B事务insert commit，A事务commit</p>
+<h2 id="read-uncommit："><a href="#read-uncommit：" class="headerlink" title="read-uncommit："></a>read-uncommit：</h2><p>一：A事务select出update后结果。脏读！不可重复读！幻读！</p>
+<h2 id="read-commit："><a href="#read-commit：" class="headerlink" title="read-commit："></a>read-commit：</h2><p>一：A事务select出update前结果。不脏读。<br>二：A事务select出update后结果。不可重复读！幻读！</p>
+<h2 id="repeatable-read"><a href="#repeatable-read" class="headerlink" title="repeatable-read:"></a>repeatable-read:</h2><p>一：A事务select出update前结果。不脏读。<br>二：A事务select出update前结果。可重复读。<br>三：突然多出一条记录。幻读！<br>原理：使用了MVCC机制，select操作不会更新版本号，是快照读（历史版本）；insert、update和delete会更新版本号，是当前读（当前版本）。</p>
+<h2 id="serializable"><a href="#serializable" class="headerlink" title="serializable:"></a>serializable:</h2><p>B事务insert 失败！<br>原理：锁表</p>
+<p>小结：不可重复读侧重于修改，幻读侧重于新增或删除。解决不可重复读的问题只需锁住满足条件的行，解决幻读需要锁表</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/12/12/tool/Homebrew/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1836,768 +2340,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/06/22/k8s/kubectl常用命令/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bolly">
-      <meta itemprop="description" content="不疯魔，不成佛">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="点点滴滴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/06/22/k8s/kubectl常用命令/" class="post-title-link" itemprop="url">kubectl常用命令</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-06-22 15:47:46" itemprop="dateCreated datePublished" datetime="2018-06-22T15:47:46+08:00">2018-06-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-03 17:35:24" itemprop="dateModified" datetime="2019-01-03T17:35:24+08:00">2019-01-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/k8s/" itemprop="url" rel="index"><span itemprop="name">k8s</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="kubectl常用命令"><a href="#kubectl常用命令" class="headerlink" title="kubectl常用命令"></a>kubectl常用命令</h1><h2 id="创建pods："><a href="#创建pods：" class="headerlink" title="创建pods："></a>创建pods：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create -f kubernetes-dashboard.yaml</span><br></pre></td></tr></table></figure>
-<h2 id="查看pods："><a href="#查看pods：" class="headerlink" title="查看pods："></a>查看pods：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods -n kube-system</span><br><span class="line">kubectl get po -o wide -n kube-system</span><br></pre></td></tr></table></figure>
-<h2 id="删除pods："><a href="#删除pods：" class="headerlink" title="删除pods："></a>删除pods：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete pods kubernetes-dashboard-302935354-0h7p6 -n kube-system</span><br></pre></td></tr></table></figure>
-<h2 id="查看报错日志："><a href="#查看报错日志：" class="headerlink" title="查看报错日志："></a>查看报错日志：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl describe pods kubernetes-dashboard-2496492025-rwczb -n kube-system</span><br></pre></td></tr></table></figure>
-<h2 id="查看明细日志："><a href="#查看明细日志：" class="headerlink" title="查看明细日志："></a>查看明细日志：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl logs kubernetes-dashboard-1338994370-w8bmt -n kube-system</span><br></pre></td></tr></table></figure>
-<h2 id="动态修改服务"><a href="#动态修改服务" class="headerlink" title="动态修改服务"></a>动态修改服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl -n kube-system edit service kubernetes-dashboard</span><br></pre></td></tr></table></figure>
-<h2 id="关键字补全"><a href="#关键字补全" class="headerlink" title="关键字补全"></a>关键字补全</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source &lt;(kubectl completion bash)</span><br></pre></td></tr></table></figure>
-<h2 id="获取yaml模板"><a href="#获取yaml模板" class="headerlink" title="获取yaml模板"></a>获取yaml模板</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl run --image=nginx my-deploy -o yaml --dry-run &gt; my-deploy.yaml</span><br><span class="line">kubectl get statefulset/foo -o yaml --export &gt; new.yaml</span><br><span class="line">kubectl get node/xx -o yaml --export &gt; node.yaml</span><br></pre></td></tr></table></figure>
-<h2 id="创建secret，从私用仓库拉取镜像"><a href="#创建secret，从私用仓库拉取镜像" class="headerlink" title="创建secret，从私用仓库拉取镜像"></a>创建secret，从私用仓库拉取镜像</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create secret docker-registry myregistrykey --docker-server=https://index.docker.io/v1/ --docker-username=xxxx --docker-password=xxxx --docker-email=xxxx@qq.com</span><br></pre></td></tr></table></figure>
-<h2 id="开放NodePort"><a href="#开放NodePort" class="headerlink" title="开放NodePort"></a>开放NodePort</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl expose deployment kube-node --type=NodePort</span><br></pre></td></tr></table></figure>
-<h2 id="helm命令"><a href="#helm命令" class="headerlink" title="helm命令"></a>helm命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">helm install --name elho-hook-1 ./elho-hook</span><br><span class="line">helm del elho-hook-1 —purge</span><br></pre></td></tr></table></figure>
-<h2 id="QA"><a href="#QA" class="headerlink" title="QA"></a>QA</h2><p>Q:<br>GPG error: <a href="http://archive.ubuntukylin.com:10006" target="_blank" rel="noopener">http://archive.ubuntukylin.com:10006</a> xenial InRelease: The following signatures couldn’t be verified because the public key is not available: NO_PUBKEY 8D5A09DC9B929006<br>A: <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8D5A09DC9B929006</span><br></pre></td></tr></table></figure></p>
-<p>Q: kubectl get pod -n kube_get_comp_words_by_ref: command not found<br>A: <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source /etc/bash_completion</span><br><span class="line">source &lt;(kubectl completion bash)</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/06/11/load balance/Haproxy配置文件说明/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bolly">
-      <meta itemprop="description" content="不疯魔，不成佛">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="点点滴滴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/06/11/load balance/Haproxy配置文件说明/" class="post-title-link" itemprop="url">Haproxy-配置</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-06-11 15:41:02" itemprop="dateCreated datePublished" datetime="2018-06-11T15:41:02+08:00">2018-06-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-03 17:17:12" itemprop="dateModified" datetime="2019-01-03T17:17:12+08:00">2019-01-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/lb/" itemprop="url" rel="index"><span itemprop="name">lb</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Haproxy配置文件说明"><a href="#Haproxy配置文件说明" class="headerlink" title="Haproxy配置文件说明"></a>Haproxy配置文件说明</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/sbin/haproxy -f /etc/haproxy/haproxy.cfg -st `cat /var/run/haproxy.pid`</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">       ####################全局配置信息######################## </span><br><span class="line"></span><br><span class="line">       #######参数是进程级的，通常和操作系统（OS）相关#########</span><br></pre></td></tr></table></figure>
-<pre><code>global 
-
-maxconn 20480                   #默认最大连接数 
-
-log 127.0.0.1 local3            #[err warning info debug] 
-
-chroot /var/haproxy             #chroot运行的路径 
-
-uid 99                          #所属运行的用户uid 
-
-gid 99                          #所属运行的用户组 
-
-daemon                          #以后台形式运行haproxy 
-
-nbproc 1                        #进程数量(可以设置多个进程提高性能) 
-
-pidfile /var/run/haproxy.pid    #haproxy的pid存放路径,启动进程的用户必须有权限访问此文件 
-
-ulimit-n 65535                  #ulimit的数量限制
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#####################默认的全局设置###################### </span><br><span class="line"></span><br><span class="line">       ##这些参数可以被利用配置到frontend，backend，listen组件##</span><br></pre></td></tr></table></figure>
-
-defaults 
-
-log global 
-
-mode http                       #所处理的类别 (#7层 http;4层tcp  ) 
-
-maxconn 20480                   #最大连接数 
-
-option httplog                  #日志类别http日志格式        
-
-option httpclose                #每次请求完毕后主动关闭http通道 
-
-option dontlognull              #不记录健康检查的日志信息 
-
-option forwardfor               #如果后端服务器需要获得客户端真实ip需要配置的参数，可以从Http Header中获得客户端ip  
-
-option redispatch               #serverId对应的服务器挂掉后,强制定向到其他健康的服务器  
-
-option abortonclose             #当服务器负载很高的时候，自动结束掉当前队列处理比较久的连接 
-
-stats refresh 30                #统计页面刷新间隔 
-
-retries 3                       #3次连接失败就认为服务不可用，也可以通过后面设置 
-
-balance roundrobin              #默认的负载均衡的方式,轮询方式 
-
-#balance source                  #默认的负载均衡的方式,类似nginx的ip_hash 
-
-#balance leastconn               #默认的负载均衡的方式,最小连接 
-
-contimeout 5000                 #连接超时 
-
-clitimeout 50000                #客户端超时 
-
-srvtimeout 50000                #服务器超时 
-
-timeout check 2000              #心跳检测超时
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">####################监控页面的设置#######################</span><br></pre></td></tr></table></figure>
-</code></pre><p>listen admin_status                    #Frontend和Backend的组合体,监控组的名称，按需自定义名称 </p>
-<pre><code> bind 0.0.0.0:65532             #监听端口 
-
- mode http                      #http的7层模式 
-
- log 127.0.0.1 local3 err       #错误日志记录 
-
- stats refresh 5s               #每隔5秒自动刷新监控页面 
-
- stats uri /admin?stats         #监控页面的url 
-
- stats realm xuequn\ xuequn   #监控页面的提示信息 
-
- stats auth admin:admin         #监控页面的用户和密码admin,可以设置多个用户名 
-
- stats auth admin1:admin1       #监控页面的用户和密码admin1 
-
- stats hide-version             #隐藏统计页面上的HAproxy版本信息  
-
- stats admin if TRUE            #手工启用/禁用,后端服务器(haproxy-1.4.9以后版本) 
-
-errorfile 403 /etc/haproxy/errorfiles/403.http 
-
-errorfile 500 /etc/haproxy/errorfiles/500.http 
-
-errorfile 502 /etc/haproxy/errorfiles/502.http 
-
-errorfile 503 /etc/haproxy/errorfiles/503.http 
-
-errorfile 504 /etc/haproxy/errorfiles/504.http
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#################HAProxy的日志记录内容设置###################</span><br></pre></td></tr></table></figure>
-<p>capture request  header Host           len 40 </p>
-<pre><code>capture request  header Content-Length len 10 
-
-capture request  header Referer        len 200 
-
-capture response header Server         len 40 
-
-capture response header Content-Length len 10 
-
-capture response header Cache-Control  len 8
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#######################网站监测listen配置##################### </span><br><span class="line"></span><br><span class="line">      ###########此用法主要是监控haproxy后端服务器的监控状态############</span><br></pre></td></tr></table></figure>
-<p>listen site_status </p>
-<pre><code>bind 0.0.0.0:1081                    #监听端口 
-
-mode http                            #http的7层模式 
-
-log 127.0.0.1 local3 err             #[err warning info debug] 
-
-monitor-uri /site_status             #网站健康检测URL，用来检测HAProxy管理的网站是否可以用，正常返回200，不正常返回503 
-
-acl site_dead nbsrv(server_web) lt 2 #定义网站down时的策略当挂在负载均衡上的指定backend的中有效机器数小于1台时返回true 
-
-acl site_dead nbsrv(server_blog) lt 2 
-
-acl site_dead nbsrv(server_bbs)  lt 2  
-
-monitor fail if site_dead            #当满足策略的时候返回503，网上文档说的是500，实际测试为503 
-
-monitor-net 192.168.16.2/32          #来自192.168.16.2的日志信息不会被记录和转发 
-
-monitor-net 192.168.16.3/32
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">########frontend配置############ </span><br><span class="line"></span><br><span class="line">       #####注意，frontend配置里面可以定义多个acl进行匹配操作########</span><br></pre></td></tr></table></figure>
-<pre><code>frontend http_80_in 
-
-bind 0.0.0.0:80      #监听端口，即haproxy提供web服务的端口，和lvs的vip端口类似 
-
-mode http            #http的7层模式 
-
-log global           #应用全局的日志配置 
-
-option httplog       #启用http的log 
-
-option httpclose     #每次请求完毕后主动关闭http通道，HA-Proxy不支持keep-alive模式 
-
-option forwardfor    #如果后端服务器需要获得客户端的真实IP需要配置次参数，将可以从Http Header中获得客户端IP
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">########acl策略配置#############</span><br></pre></td></tr></table></figure>
-</code></pre><p>acl xuequn_web hdr_reg(host) -i ^(<a href="http://www.xuequn.cn|ww1.xuequn.cn)$" target="_blank" rel="noopener">www.xuequn.cn|ww1.xuequn.cn)$</a>    #如果请求的域名满足正则表达式中的2个域名返回true -i是忽略大小写 </p>
-<pre><code>acl xuequn_blog hdr_dom(host) -i blog.xuequn.cn #如果请求的域名满足www.xuequn.cn返回true -i是忽略大小写 
-
-#acl xuequn    hdr(host) -i xuequn.cn    #如果请求的域名满足xuequn.cn返回true -i是忽略大小写 
-
-#acl file_req url_sub -i  killall   #在请求url中包含killall=，则此控制策略返回true,否则为false 
-
-#acl dir_req url_dir -i allow      #在请求url中存在allow作为部分地址路径，则此控制策略返回true,否则返回false 
-
-#acl missing_cl hdr_cnt(Content-length) eq 0    #当请求的header中Content-length等于0时返回true
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">########acl策略匹配相应#############</span><br></pre></td></tr></table></figure>
-<p>#block if missing_cl     #当请求中header中Content-length等于0阻止请求返回403 </p>
-<pre><code>#block if !file_req || dir_req       #block表示阻止请求，返回403错误，当前表示如果不满足策略file_req，或者满足策略dir_req，则阻止请求 
-
-use_backend  server_web  if xuequn_web    #当满足xuequn_web的策略时使用server_web的backend 
-
-use_backend  server_blog if xuequn_blog     #当满足xuequn_blog的策略时使用server_blog的backend 
-
-#redirect prefix http://192.168.16.3 code 301 if xuequn     #当访问xuequn.cn的时候，用http的301挑转到http://192.168.16.3 
-
-default_backend server_bbs     #以上都不满足的时候使用默认server_bbs的backend
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">##########backend的设置############## </span><br><span class="line"></span><br><span class="line">#下面我将设置三组服务器 server_web，server_blog，server_bbs</span><br><span class="line"></span><br><span class="line">###########################backend server_web#############################</span><br></pre></td></tr></table></figure>
-<p>backend server_web </p>
-<pre><code>mode http            #http的7层模式 
-
-balance roundrobin   #负载均衡的方式，roundrobin平均方式 
-
-cookie SERVERID      #允许插入serverid到cookie中，serverid后面可以定义 
-
-option httpchk GET /index.html #心跳检测的文件 
-
-server web1 192.168.16.2:80 cookie web1 check inter 1500 rise 3 fall 3 weight 1  
-
-#服务器定义，cookie 1表示serverid为web1，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用， 
-
-#fall 3是3次失败认为服务器不可用，weight代表权重 
-
-server web2 192.168.16.3:80 cookie web2 check inter 1500 rise 3 fall 3 weight 2 
-
-#服务器定义，cookie 1表示serverid为web2，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用， 
-
-#fall 3是3次失败认为服务器不可用，weight代表权重
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">###################################backend server_blog###############################################</span><br></pre></td></tr></table></figure>
-<p>backend server_blog </p>
-<pre><code>mode http            #http的7层模式 
-
-balance roundrobin   #负载均衡的方式，roundrobin平均方式 
-
-cookie SERVERID      #允许插入serverid到cookie中，serverid后面可以定义 
-
-option httpchk GET /index.html #心跳检测的文件 
-
-server blog1 192.168.16.2:80 cookie blog1 check inter 1500 rise 3 fall 3 weight 1  
-
-#服务器定义，cookie 1表示serverid为web1，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重 
-
-server blog2 192.168.16.3:80 cookie blog2 check inter 1500 rise 3 fall 3 weight 2 
-
- #服务器定义，cookie 1表示serverid为web2，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">###################################backend server_bbs###############################################</span><br></pre></td></tr></table></figure>
-<p>backend server_bbs </p>
-<pre><code>mode http            #http的7层模式 
-
-balance roundrobin   #负载均衡的方式，roundrobin平均方式 
-
-cookie SERVERID      #允许插入serverid到cookie中，serverid后面可以定义 
-
-option httpchk GET /index.html #心跳检测的文件 
-
-server bbs1 192.168.16.2:80 cookie bbs1 check inter 1500 rise 3 fall 3 weight 1  
-
-#服务器定义，cookie 1表示serverid为web1，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重 
-
-server bbs2 192.168.16.3:80 cookie bbs2 check inter 1500 rise 3 fall 3 weight 2 
-
- #服务器定义，cookie 1表示serverid为web2，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重
-</code></pre><p><code>`</code></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/02/28/linux/Linux查看CPU，内存，硬盘/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bolly">
-      <meta itemprop="description" content="不疯魔，不成佛">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="点点滴滴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/02/28/linux/Linux查看CPU，内存，硬盘/" class="post-title-link" itemprop="url">linux-系统信息</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-02-28 10:28:44" itemprop="dateCreated datePublished" datetime="2018-02-28T10:28:44+08:00">2018-02-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-03 17:18:14" itemprop="dateModified" datetime="2019-01-03T17:18:14+08:00">2019-01-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Linux查看CPU，内存，硬盘"><a href="#Linux查看CPU，内存，硬盘" class="headerlink" title="Linux查看CPU，内存，硬盘"></a>Linux查看CPU，内存，硬盘</h1><h2 id="查看CPU"><a href="#查看CPU" class="headerlink" title="查看CPU"></a>查看CPU</h2><h3 id="查看CPU核数"><a href="#查看CPU核数" class="headerlink" title="查看CPU核数"></a>查看CPU核数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cat /proc/cpuinfo | grep &quot;cpu cores&quot; | uniq</span><br><span class="line">cpu cores : 4</span><br></pre></td></tr></table></figure>
-<h3 id="查看CPU个数"><a href="#查看CPU个数" class="headerlink" title="查看CPU个数"></a>查看CPU个数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cat /proc/cpuinfo | grep &quot;physical id&quot; | uniq | wc -l</span><br><span class="line">2 **uniq命令：删除重复行;wc –l命令：统计行数**</span><br></pre></td></tr></table></figure>
-<h3 id="查看CPU型号"><a href="#查看CPU型号" class="headerlink" title="查看CPU型号"></a>查看CPU型号</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cat /proc/cpuinfo | grep &apos;model name&apos; |uniq</span><br><span class="line">model name : Intel(R) Xeon(R) CPU E5630 @ 2.53GHz</span><br></pre></td></tr></table></figure>
-<p><strong>总结：该服务器有2个4核CPU，型号Intel(R) Xeon(R) CPU E5630 @ 2.53GHz</strong></p>
-<h2 id="查看内存"><a href="#查看内存" class="headerlink" title="查看内存"></a>查看内存</h2><h3 id="查看内存总数"><a href="#查看内存总数" class="headerlink" title="查看内存总数"></a>查看内存总数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#cat /proc/meminfo | grep MemTotal</span><br><span class="line">MemTotal: 32941268 kB //内存32G</span><br></pre></td></tr></table></figure>
-<h3 id="查看内存条数"><a href="#查看内存条数" class="headerlink" title="查看内存条数"></a>查看内存条数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># dmidecode |grep -A16 &quot;Memory Device$&quot;</span><br></pre></td></tr></table></figure>
-<p><strong>总结：该服务器有两条2G内存 ，空余4个插槽</strong></p>
-<h2 id="查看硬盘"><a href="#查看硬盘" class="headerlink" title="查看硬盘"></a>查看硬盘</h2><h3 id="查看硬盘大小"><a href="#查看硬盘大小" class="headerlink" title="查看硬盘大小"></a>查看硬盘大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># fdisk -l | grep Disk</span><br><span class="line">Disk /dev/cciss/c0d0: 146.7 GB, 146778685440 bytes</span><br></pre></td></tr></table></figure>
-<p><strong>总结：硬盘大小146.7G，即厂商标称的160G</strong></p>
-<h2 id="同步系统时间"><a href="#同步系统时间" class="headerlink" title="同步系统时间"></a>同步系统时间</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y ntpdate </span><br><span class="line">ntpdate time.nuri.net</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">time.nist.gov</span><br><span class="line">time.nuri.net</span><br><span class="line">0.asia.pool.ntp.org</span><br><span class="line">1.asia.pool.ntp.org</span><br><span class="line">2.asia.pool.ntp.org</span><br><span class="line">3.asia.pool.ntp.org</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hwclock -w</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#date</span><br><span class="line">#hwclock</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">定时执行时间同步任务，所以我们利用crontab -e 来添加定时任务</span><br><span class="line"></span><br><span class="line">#* */1 * * * root ntpdate time.nuri.net;hwclock -w </span><br><span class="line"></span><br><span class="line">即：每隔一个小时同步一下internet时间。</span><br></pre></td></tr></table></figure>
-<h3 id="TCP状态查看："><a href="#TCP状态查看：" class="headerlink" title="TCP状态查看："></a>TCP状态查看：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -n | grep 60.214.137.170</span><br></pre></td></tr></table></figure>
-<h3 id="查看公网IP："><a href="#查看公网IP：" class="headerlink" title="查看公网IP："></a>查看公网IP：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr show eth0 | grep inet | awk &apos;&#123; print $2; &#125;&apos; | sed &apos;s/\/.*$//&apos;</span><br></pre></td></tr></table></figure>
-<h3 id="查看系统："><a href="#查看系统：" class="headerlink" title="查看系统："></a>查看系统：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsb_release -a</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/version</span><br></pre></td></tr></table></figure>
-<h3 id="查看yum安装创建相关文件："><a href="#查看yum安装创建相关文件：" class="headerlink" title="查看yum安装创建相关文件："></a>查看yum安装创建相关文件：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa|grep redis </span><br><span class="line">rpm -ql redis</span><br></pre></td></tr></table></figure>
-<h3 id="挂载硬盘"><a href="#挂载硬盘" class="headerlink" title="挂载硬盘"></a>挂载硬盘</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">umount /dev/vdb1</span><br><span class="line">fuser -mv /home</span><br></pre></td></tr></table></figure>
-<h3 id="uname-a"><a href="#uname-a" class="headerlink" title="uname -a"></a>uname -a</h3><p>Linux（系统名） iZ23jnmf7iwZ（节点名称） 2.6.32-431.23.3.el6.x86_64（操作系统的发行版号） #1 SMP Thu Jul 31 17:20:51 UTC 2014（内核版本） x86_64（硬件平台） x86_64（机器硬件名） x86_64（系统处理器的体系结构） GNU/Linux（操作系统）</p>
-<h3 id="查看外网ip"><a href="#查看外网ip" class="headerlink" title="查看外网ip"></a>查看外网ip</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl members.3322.org/dyndns/getip</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2645,7 +2387,7 @@ server bbs2 192.168.16.3:80 cookie bbs2 check inter 1500 rise 3 fall 3 weight 2
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2674,7 +2416,9 @@ server bbs2 192.168.16.3:80 cookie bbs2 check inter 1500 rise 3 fall 3 weight 2
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>

@@ -432,6 +432,589 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/06/22/k8s/kubectl常用命令/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bolly">
+      <meta itemprop="description" content="不疯魔，不成佛">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点点滴滴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/06/22/k8s/kubectl常用命令/" class="post-title-link" itemprop="url">kubectl常用命令</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-22 15:47:46" itemprop="dateCreated datePublished" datetime="2018-06-22T15:47:46+08:00">2018-06-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-03 17:35:24" itemprop="dateModified" datetime="2019-01-03T17:35:24+08:00">2019-01-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/k8s/" itemprop="url" rel="index"><span itemprop="name">k8s</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="kubectl常用命令"><a href="#kubectl常用命令" class="headerlink" title="kubectl常用命令"></a>kubectl常用命令</h1><h2 id="创建pods："><a href="#创建pods：" class="headerlink" title="创建pods："></a>创建pods：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create -f kubernetes-dashboard.yaml</span><br></pre></td></tr></table></figure>
+<h2 id="查看pods："><a href="#查看pods：" class="headerlink" title="查看pods："></a>查看pods：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods -n kube-system</span><br><span class="line">kubectl get po -o wide -n kube-system</span><br></pre></td></tr></table></figure>
+<h2 id="删除pods："><a href="#删除pods：" class="headerlink" title="删除pods："></a>删除pods：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete pods kubernetes-dashboard-302935354-0h7p6 -n kube-system</span><br></pre></td></tr></table></figure>
+<h2 id="查看报错日志："><a href="#查看报错日志：" class="headerlink" title="查看报错日志："></a>查看报错日志：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl describe pods kubernetes-dashboard-2496492025-rwczb -n kube-system</span><br></pre></td></tr></table></figure>
+<h2 id="查看明细日志："><a href="#查看明细日志：" class="headerlink" title="查看明细日志："></a>查看明细日志：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl logs kubernetes-dashboard-1338994370-w8bmt -n kube-system</span><br></pre></td></tr></table></figure>
+<h2 id="动态修改服务"><a href="#动态修改服务" class="headerlink" title="动态修改服务"></a>动态修改服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl -n kube-system edit service kubernetes-dashboard</span><br></pre></td></tr></table></figure>
+<h2 id="关键字补全"><a href="#关键字补全" class="headerlink" title="关键字补全"></a>关键字补全</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source &lt;(kubectl completion bash)</span><br></pre></td></tr></table></figure>
+<h2 id="获取yaml模板"><a href="#获取yaml模板" class="headerlink" title="获取yaml模板"></a>获取yaml模板</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl run --image=nginx my-deploy -o yaml --dry-run &gt; my-deploy.yaml</span><br><span class="line">kubectl get statefulset/foo -o yaml --export &gt; new.yaml</span><br><span class="line">kubectl get node/xx -o yaml --export &gt; node.yaml</span><br></pre></td></tr></table></figure>
+<h2 id="创建secret，从私用仓库拉取镜像"><a href="#创建secret，从私用仓库拉取镜像" class="headerlink" title="创建secret，从私用仓库拉取镜像"></a>创建secret，从私用仓库拉取镜像</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create secret docker-registry myregistrykey --docker-server=https://index.docker.io/v1/ --docker-username=xxxx --docker-password=xxxx --docker-email=xxxx@qq.com</span><br></pre></td></tr></table></figure>
+<h2 id="开放NodePort"><a href="#开放NodePort" class="headerlink" title="开放NodePort"></a>开放NodePort</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl expose deployment kube-node --type=NodePort</span><br></pre></td></tr></table></figure>
+<h2 id="helm命令"><a href="#helm命令" class="headerlink" title="helm命令"></a>helm命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">helm install --name elho-hook-1 ./elho-hook</span><br><span class="line">helm del elho-hook-1 —purge</span><br></pre></td></tr></table></figure>
+<h2 id="QA"><a href="#QA" class="headerlink" title="QA"></a>QA</h2><p>Q:<br>GPG error: <a href="http://archive.ubuntukylin.com:10006" target="_blank" rel="noopener">http://archive.ubuntukylin.com:10006</a> xenial InRelease: The following signatures couldn’t be verified because the public key is not available: NO_PUBKEY 8D5A09DC9B929006<br>A: <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8D5A09DC9B929006</span><br></pre></td></tr></table></figure></p>
+<p>Q: kubectl get pod -n kube_get_comp_words_by_ref: command not found<br>A: <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source /etc/bash_completion</span><br><span class="line">source &lt;(kubectl completion bash)</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/06/11/load balance/Haproxy配置文件说明/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bolly">
+      <meta itemprop="description" content="不疯魔，不成佛">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点点滴滴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/06/11/load balance/Haproxy配置文件说明/" class="post-title-link" itemprop="url">Haproxy-配置</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-11 15:41:02" itemprop="dateCreated datePublished" datetime="2018-06-11T15:41:02+08:00">2018-06-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-03 17:39:07" itemprop="dateModified" datetime="2019-01-03T17:39:07+08:00">2019-01-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/lb/" itemprop="url" rel="index"><span itemprop="name">lb</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Haproxy配置文件说明"><a href="#Haproxy配置文件说明" class="headerlink" title="Haproxy配置文件说明"></a>Haproxy配置文件说明</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/sbin/haproxy -f /etc/haproxy/haproxy.cfg -st `cat /var/run/haproxy.pid`</span><br><span class="line">```</span><br></pre></td></tr></table></figure>
+<pre><code>####################全局配置信息######################## 
+
+   #######参数是进程级的，通常和操作系统（OS）相关######### 
+
+
+   global 
+
+   maxconn 20480                   #默认最大连接数 
+
+   log 127.0.0.1 local3            #[err warning info debug] 
+
+   chroot /var/haproxy             #chroot运行的路径 
+
+   uid 99                          #所属运行的用户uid 
+
+   gid 99                          #所属运行的用户组 
+
+   daemon                          #以后台形式运行haproxy 
+
+   nbproc 1                        #进程数量(可以设置多个进程提高性能) 
+
+   pidfile /var/run/haproxy.pid    #haproxy的pid存放路径,启动进程的用户必须有权限访问此文件 
+
+   ulimit-n 65535                  #ulimit的数量限制
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">#####################默认的全局设置###################### </span><br><span class="line"></span><br><span class="line">       ##这些参数可以被利用配置到frontend，backend，listen组件## </span><br><span class="line">       </span><br><span class="line">       </span><br><span class="line">       defaults </span><br><span class="line"></span><br><span class="line">       log global </span><br><span class="line"></span><br><span class="line">       mode http                       #所处理的类别 (#7层 http;4层tcp  ) </span><br><span class="line"></span><br><span class="line">       maxconn 20480                   #最大连接数 </span><br><span class="line"></span><br><span class="line">       option httplog                  #日志类别http日志格式        </span><br><span class="line">       </span><br><span class="line">       option httpclose                #每次请求完毕后主动关闭http通道 </span><br><span class="line"></span><br><span class="line">       option dontlognull              #不记录健康检查的日志信息 </span><br><span class="line"></span><br><span class="line">       option forwardfor               #如果后端服务器需要获得客户端真实ip需要配置的参数，可以从Http Header中获得客户端ip  </span><br><span class="line"></span><br><span class="line">       option redispatch               #serverId对应的服务器挂掉后,强制定向到其他健康的服务器  </span><br><span class="line"></span><br><span class="line">       option abortonclose             #当服务器负载很高的时候，自动结束掉当前队列处理比较久的连接 </span><br><span class="line"></span><br><span class="line">       stats refresh 30                #统计页面刷新间隔 </span><br><span class="line"></span><br><span class="line">       retries 3                       #3次连接失败就认为服务不可用，也可以通过后面设置 </span><br><span class="line"></span><br><span class="line">       balance roundrobin              #默认的负载均衡的方式,轮询方式 </span><br><span class="line"></span><br><span class="line">       #balance source                  #默认的负载均衡的方式,类似nginx的ip_hash </span><br><span class="line"></span><br><span class="line">       #balance leastconn               #默认的负载均衡的方式,最小连接 </span><br><span class="line"></span><br><span class="line">       contimeout 5000                 #连接超时 </span><br><span class="line"></span><br><span class="line">       clitimeout 50000                #客户端超时 </span><br><span class="line"></span><br><span class="line">       srvtimeout 50000                #服务器超时 </span><br><span class="line"></span><br><span class="line">       timeout check 2000              #心跳检测超时</span><br></pre></td></tr></table></figure>
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">####################监控页面的设置####################### </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">listen admin_status                    #Frontend和Backend的组合体,监控组的名称，按需自定义名称 </span><br><span class="line"></span><br><span class="line">        bind 0.0.0.0:65532             #监听端口 </span><br><span class="line"></span><br><span class="line">        mode http                      #http的7层模式 </span><br><span class="line"></span><br><span class="line">        log 127.0.0.1 local3 err       #错误日志记录 </span><br><span class="line"></span><br><span class="line">        stats refresh 5s               #每隔5秒自动刷新监控页面 </span><br><span class="line"></span><br><span class="line">        stats uri /admin?stats         #监控页面的url </span><br><span class="line"></span><br><span class="line">        stats realm xuequn\ xuequn   #监控页面的提示信息 </span><br><span class="line"></span><br><span class="line">        stats auth admin:admin         #监控页面的用户和密码admin,可以设置多个用户名 </span><br><span class="line"></span><br><span class="line">        stats auth admin1:admin1       #监控页面的用户和密码admin1 </span><br><span class="line"></span><br><span class="line">        stats hide-version             #隐藏统计页面上的HAproxy版本信息  </span><br><span class="line"></span><br><span class="line">        stats admin if TRUE            #手工启用/禁用,后端服务器(haproxy-1.4.9以后版本) </span><br><span class="line"></span><br><span class="line">       errorfile 403 /etc/haproxy/errorfiles/403.http </span><br><span class="line"></span><br><span class="line">       errorfile 500 /etc/haproxy/errorfiles/500.http </span><br><span class="line"></span><br><span class="line">       errorfile 502 /etc/haproxy/errorfiles/502.http </span><br><span class="line"></span><br><span class="line">       errorfile 503 /etc/haproxy/errorfiles/503.http </span><br><span class="line"></span><br><span class="line">       errorfile 504 /etc/haproxy/errorfiles/504.http</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#################HAProxy的日志记录内容设置################### </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">capture request  header Host           len 40 </span><br><span class="line"></span><br><span class="line">       capture request  header Content-Length len 10 </span><br><span class="line"></span><br><span class="line">       capture request  header Referer        len 200 </span><br><span class="line"></span><br><span class="line">       capture response header Server         len 40 </span><br><span class="line"></span><br><span class="line">       capture response header Content-Length len 10 </span><br><span class="line"></span><br><span class="line">       capture response header Cache-Control  len 8</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"> #######################网站监测listen配置##################### </span><br><span class="line"></span><br><span class="line">       ###########此用法主要是监控haproxy后端服务器的监控状态############</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">listen site_status </span><br><span class="line"></span><br><span class="line">       bind 0.0.0.0:1081                    #监听端口 </span><br><span class="line"></span><br><span class="line">       mode http                            #http的7层模式 </span><br><span class="line"></span><br><span class="line">       log 127.0.0.1 local3 err             #[err warning info debug] </span><br><span class="line"></span><br><span class="line">       monitor-uri /site_status             #网站健康检测URL，用来检测HAProxy管理的网站是否可以用，正常返回200，不正常返回503 </span><br><span class="line"></span><br><span class="line">       acl site_dead nbsrv(server_web) lt 2 #定义网站down时的策略当挂在负载均衡上的指定backend的中有效机器数小于1台时返回true </span><br><span class="line"></span><br><span class="line">       acl site_dead nbsrv(server_blog) lt 2 </span><br><span class="line"></span><br><span class="line">       acl site_dead nbsrv(server_bbs)  lt 2  </span><br><span class="line"></span><br><span class="line">       monitor fail if site_dead            #当满足策略的时候返回503，网上文档说的是500，实际测试为503 </span><br><span class="line"></span><br><span class="line">       monitor-net 192.168.16.2/32          #来自192.168.16.2的日志信息不会被记录和转发 </span><br><span class="line"></span><br><span class="line">       monitor-net 192.168.16.3/32</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">########frontend配置############ </span><br><span class="line"></span><br><span class="line">       #####注意，frontend配置里面可以定义多个acl进行匹配操作########</span><br><span class="line">       </span><br><span class="line">       </span><br><span class="line">       frontend http_80_in </span><br><span class="line"></span><br><span class="line">       bind 0.0.0.0:80      #监听端口，即haproxy提供web服务的端口，和lvs的vip端口类似 </span><br><span class="line"></span><br><span class="line">       mode http            #http的7层模式 </span><br><span class="line"></span><br><span class="line">       log global           #应用全局的日志配置 </span><br><span class="line"></span><br><span class="line">       option httplog       #启用http的log </span><br><span class="line"></span><br><span class="line">       option httpclose     #每次请求完毕后主动关闭http通道，HA-Proxy不支持keep-alive模式 </span><br><span class="line"></span><br><span class="line">       option forwardfor    #如果后端服务器需要获得客户端的真实IP需要配置次参数，将可以从Http Header中获得客户端IP</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">########acl策略配置#############</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">acl xuequn_web hdr_reg(host) -i ^(www.xuequn.cn|ww1.xuequn.cn)$    #如果请求的域名满足正则表达式中的2个域名返回true -i是忽略大小写 </span><br><span class="line"></span><br><span class="line">       acl xuequn_blog hdr_dom(host) -i blog.xuequn.cn #如果请求的域名满足www.xuequn.cn返回true -i是忽略大小写 </span><br><span class="line"></span><br><span class="line">       #acl xuequn    hdr(host) -i xuequn.cn    #如果请求的域名满足xuequn.cn返回true -i是忽略大小写 </span><br><span class="line"></span><br><span class="line">       #acl file_req url_sub -i  killall   #在请求url中包含killall=，则此控制策略返回true,否则为false </span><br><span class="line"></span><br><span class="line">       #acl dir_req url_dir -i allow      #在请求url中存在allow作为部分地址路径，则此控制策略返回true,否则返回false </span><br><span class="line"></span><br><span class="line">       #acl missing_cl hdr_cnt(Content-length) eq 0    #当请求的header中Content-length等于0时返回true</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">########acl策略匹配相应############# </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#block if missing_cl     #当请求中header中Content-length等于0阻止请求返回403 </span><br><span class="line"></span><br><span class="line">       #block if !file_req || dir_req       #block表示阻止请求，返回403错误，当前表示如果不满足策略file_req，或者满足策略dir_req，则阻止请求 </span><br><span class="line"></span><br><span class="line">       use_backend  server_web  if xuequn_web    #当满足xuequn_web的策略时使用server_web的backend </span><br><span class="line"></span><br><span class="line">       use_backend  server_blog if xuequn_blog     #当满足xuequn_blog的策略时使用server_blog的backend </span><br><span class="line"></span><br><span class="line">       #redirect prefix http://192.168.16.3 code 301 if xuequn     #当访问xuequn.cn的时候，用http的301挑转到http://192.168.16.3 </span><br><span class="line"></span><br><span class="line">       default_backend server_bbs     #以上都不满足的时候使用默认server_bbs的backend</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">##########backend的设置############## </span><br><span class="line"></span><br><span class="line">#下面我将设置三组服务器 server_web，server_blog，server_bbs</span><br><span class="line"></span><br><span class="line">###########################backend server_web############################# </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">backend server_web </span><br><span class="line"></span><br><span class="line">       mode http            #http的7层模式 </span><br><span class="line"></span><br><span class="line">       balance roundrobin   #负载均衡的方式，roundrobin平均方式 </span><br><span class="line"></span><br><span class="line">       cookie SERVERID      #允许插入serverid到cookie中，serverid后面可以定义 </span><br><span class="line"></span><br><span class="line">       option httpchk GET /index.html #心跳检测的文件 </span><br><span class="line"></span><br><span class="line">       server web1 192.168.16.2:80 cookie web1 check inter 1500 rise 3 fall 3 weight 1  </span><br><span class="line"></span><br><span class="line">       #服务器定义，cookie 1表示serverid为web1，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用， </span><br><span class="line"></span><br><span class="line">       #fall 3是3次失败认为服务器不可用，weight代表权重 </span><br><span class="line"></span><br><span class="line">       server web2 192.168.16.3:80 cookie web2 check inter 1500 rise 3 fall 3 weight 2 </span><br><span class="line"></span><br><span class="line">       #服务器定义，cookie 1表示serverid为web2，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用， </span><br><span class="line"></span><br><span class="line">       #fall 3是3次失败认为服务器不可用，weight代表权重</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">###################################backend server_blog############################################### </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">backend server_blog </span><br><span class="line"></span><br><span class="line">       mode http            #http的7层模式 </span><br><span class="line"></span><br><span class="line">       balance roundrobin   #负载均衡的方式，roundrobin平均方式 </span><br><span class="line"></span><br><span class="line">       cookie SERVERID      #允许插入serverid到cookie中，serverid后面可以定义 </span><br><span class="line"></span><br><span class="line">       option httpchk GET /index.html #心跳检测的文件 </span><br><span class="line"></span><br><span class="line">       server blog1 192.168.16.2:80 cookie blog1 check inter 1500 rise 3 fall 3 weight 1  </span><br><span class="line"></span><br><span class="line">       #服务器定义，cookie 1表示serverid为web1，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重 </span><br><span class="line"></span><br><span class="line">       server blog2 192.168.16.3:80 cookie blog2 check inter 1500 rise 3 fall 3 weight 2 </span><br><span class="line"></span><br><span class="line">        #服务器定义，cookie 1表示serverid为web2，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">###################################backend server_bbs############################################### </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">backend server_bbs </span><br><span class="line"></span><br><span class="line">       mode http            #http的7层模式 </span><br><span class="line"></span><br><span class="line">       balance roundrobin   #负载均衡的方式，roundrobin平均方式 </span><br><span class="line"></span><br><span class="line">       cookie SERVERID      #允许插入serverid到cookie中，serverid后面可以定义 </span><br><span class="line"></span><br><span class="line">       option httpchk GET /index.html #心跳检测的文件 </span><br><span class="line"></span><br><span class="line">       server bbs1 192.168.16.2:80 cookie bbs1 check inter 1500 rise 3 fall 3 weight 1  </span><br><span class="line"></span><br><span class="line">       #服务器定义，cookie 1表示serverid为web1，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重 </span><br><span class="line"></span><br><span class="line">       server bbs2 192.168.16.3:80 cookie bbs2 check inter 1500 rise 3 fall 3 weight 2 </span><br><span class="line"></span><br><span class="line">        #服务器定义，cookie 1表示serverid为web2，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/02/28/linux/Linux查看CPU，内存，硬盘/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bolly">
+      <meta itemprop="description" content="不疯魔，不成佛">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点点滴滴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/02/28/linux/Linux查看CPU，内存，硬盘/" class="post-title-link" itemprop="url">linux-系统信息</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-02-28 10:28:44" itemprop="dateCreated datePublished" datetime="2018-02-28T10:28:44+08:00">2018-02-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-03 17:18:14" itemprop="dateModified" datetime="2019-01-03T17:18:14+08:00">2019-01-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Linux查看CPU，内存，硬盘"><a href="#Linux查看CPU，内存，硬盘" class="headerlink" title="Linux查看CPU，内存，硬盘"></a>Linux查看CPU，内存，硬盘</h1><h2 id="查看CPU"><a href="#查看CPU" class="headerlink" title="查看CPU"></a>查看CPU</h2><h3 id="查看CPU核数"><a href="#查看CPU核数" class="headerlink" title="查看CPU核数"></a>查看CPU核数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cat /proc/cpuinfo | grep &quot;cpu cores&quot; | uniq</span><br><span class="line">cpu cores : 4</span><br></pre></td></tr></table></figure>
+<h3 id="查看CPU个数"><a href="#查看CPU个数" class="headerlink" title="查看CPU个数"></a>查看CPU个数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cat /proc/cpuinfo | grep &quot;physical id&quot; | uniq | wc -l</span><br><span class="line">2 **uniq命令：删除重复行;wc –l命令：统计行数**</span><br></pre></td></tr></table></figure>
+<h3 id="查看CPU型号"><a href="#查看CPU型号" class="headerlink" title="查看CPU型号"></a>查看CPU型号</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cat /proc/cpuinfo | grep &apos;model name&apos; |uniq</span><br><span class="line">model name : Intel(R) Xeon(R) CPU E5630 @ 2.53GHz</span><br></pre></td></tr></table></figure>
+<p><strong>总结：该服务器有2个4核CPU，型号Intel(R) Xeon(R) CPU E5630 @ 2.53GHz</strong></p>
+<h2 id="查看内存"><a href="#查看内存" class="headerlink" title="查看内存"></a>查看内存</h2><h3 id="查看内存总数"><a href="#查看内存总数" class="headerlink" title="查看内存总数"></a>查看内存总数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#cat /proc/meminfo | grep MemTotal</span><br><span class="line">MemTotal: 32941268 kB //内存32G</span><br></pre></td></tr></table></figure>
+<h3 id="查看内存条数"><a href="#查看内存条数" class="headerlink" title="查看内存条数"></a>查看内存条数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># dmidecode |grep -A16 &quot;Memory Device$&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>总结：该服务器有两条2G内存 ，空余4个插槽</strong></p>
+<h2 id="查看硬盘"><a href="#查看硬盘" class="headerlink" title="查看硬盘"></a>查看硬盘</h2><h3 id="查看硬盘大小"><a href="#查看硬盘大小" class="headerlink" title="查看硬盘大小"></a>查看硬盘大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># fdisk -l | grep Disk</span><br><span class="line">Disk /dev/cciss/c0d0: 146.7 GB, 146778685440 bytes</span><br></pre></td></tr></table></figure>
+<p><strong>总结：硬盘大小146.7G，即厂商标称的160G</strong></p>
+<h2 id="同步系统时间"><a href="#同步系统时间" class="headerlink" title="同步系统时间"></a>同步系统时间</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y ntpdate </span><br><span class="line">ntpdate time.nuri.net</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">time.nist.gov</span><br><span class="line">time.nuri.net</span><br><span class="line">0.asia.pool.ntp.org</span><br><span class="line">1.asia.pool.ntp.org</span><br><span class="line">2.asia.pool.ntp.org</span><br><span class="line">3.asia.pool.ntp.org</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hwclock -w</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#date</span><br><span class="line">#hwclock</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">定时执行时间同步任务，所以我们利用crontab -e 来添加定时任务</span><br><span class="line"></span><br><span class="line">#* */1 * * * root ntpdate time.nuri.net;hwclock -w </span><br><span class="line"></span><br><span class="line">即：每隔一个小时同步一下internet时间。</span><br></pre></td></tr></table></figure>
+<h3 id="TCP状态查看："><a href="#TCP状态查看：" class="headerlink" title="TCP状态查看："></a>TCP状态查看：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -n | grep 60.214.137.170</span><br></pre></td></tr></table></figure>
+<h3 id="查看公网IP："><a href="#查看公网IP：" class="headerlink" title="查看公网IP："></a>查看公网IP：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr show eth0 | grep inet | awk &apos;&#123; print $2; &#125;&apos; | sed &apos;s/\/.*$//&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="查看系统："><a href="#查看系统：" class="headerlink" title="查看系统："></a>查看系统：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsb_release -a</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/version</span><br></pre></td></tr></table></figure>
+<h3 id="查看yum安装创建相关文件："><a href="#查看yum安装创建相关文件：" class="headerlink" title="查看yum安装创建相关文件："></a>查看yum安装创建相关文件：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa|grep redis </span><br><span class="line">rpm -ql redis</span><br></pre></td></tr></table></figure>
+<h3 id="挂载硬盘"><a href="#挂载硬盘" class="headerlink" title="挂载硬盘"></a>挂载硬盘</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">umount /dev/vdb1</span><br><span class="line">fuser -mv /home</span><br></pre></td></tr></table></figure>
+<h3 id="uname-a"><a href="#uname-a" class="headerlink" title="uname -a"></a>uname -a</h3><p>Linux（系统名） iZ23jnmf7iwZ（节点名称） 2.6.32-431.23.3.el6.x86_64（操作系统的发行版号） #1 SMP Thu Jul 31 17:20:51 UTC 2014（内核版本） x86_64（硬件平台） x86_64（机器硬件名） x86_64（系统处理器的体系结构） GNU/Linux（操作系统）</p>
+<h3 id="查看外网ip"><a href="#查看外网ip" class="headerlink" title="查看外网ip"></a>查看外网ip</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl members.3322.org/dyndns/getip</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2017/09/08/load balance/nginx/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1480,7 +2063,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1509,7 +2092,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
