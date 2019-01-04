@@ -104,25 +104,25 @@
 
 
 
-  <meta name="description" content="TODO第三方链接工具书Spring各种源码项目下载使用locust做服务器压力测试spring 熔断器Spring RestTemplate详解spring web源码思路结合Spring注解标签发布RMI / HTTPInvoker / Hessian / Burlap服务spring设计思想shiro豆瓣模拟登录验证码处理调研pdf加密Java 诊断工具 值得一看的代码库 国人写的模板引擎，">
+  <meta name="description" content="Haproxy配置文件说明12/usr/local/sbin/haproxy -f /etc/haproxy/haproxy.cfg -st `cat /var/run/haproxy.pid```` ####################全局配置信息########################      #######参数是进程级的，通常和操作系统（OS）相关#########">
 <meta name="keywords" content="bolly">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TODO-持续更新">
-<meta property="og:url" content="http://chibaolai.github.io/2017/11/20/other/TODO备忘录/index.html">
+<meta property="og:title" content="Haproxy-配置">
+<meta property="og:url" content="http://chibaolai.github.io/2018/06/11/lb/Haproxy配置文件说明/index.html">
 <meta property="og:site_name" content="点点滴滴">
-<meta property="og:description" content="TODO第三方链接工具书Spring各种源码项目下载使用locust做服务器压力测试spring 熔断器Spring RestTemplate详解spring web源码思路结合Spring注解标签发布RMI / HTTPInvoker / Hessian / Burlap服务spring设计思想shiro豆瓣模拟登录验证码处理调研pdf加密Java 诊断工具 值得一看的代码库 国人写的模板引擎，">
+<meta property="og:description" content="Haproxy配置文件说明12/usr/local/sbin/haproxy -f /etc/haproxy/haproxy.cfg -st `cat /var/run/haproxy.pid```` ####################全局配置信息########################      #######参数是进程级的，通常和操作系统（OS）相关#########">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-04T03:32:40.708Z">
+<meta property="og:updated_time" content="2019-01-03T09:39:07.163Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TODO-持续更新">
-<meta name="twitter:description" content="TODO第三方链接工具书Spring各种源码项目下载使用locust做服务器压力测试spring 熔断器Spring RestTemplate详解spring web源码思路结合Spring注解标签发布RMI / HTTPInvoker / Hessian / Burlap服务spring设计思想shiro豆瓣模拟登录验证码处理调研pdf加密Java 诊断工具 值得一看的代码库 国人写的模板引擎，">
+<meta name="twitter:title" content="Haproxy-配置">
+<meta name="twitter:description" content="Haproxy配置文件说明12/usr/local/sbin/haproxy -f /etc/haproxy/haproxy.cfg -st `cat /var/run/haproxy.pid```` ####################全局配置信息########################      #######参数是进程级的，通常和操作系统（OS）相关#########">
 
 
 
 
 
 
-  <link rel="canonical" href="http://chibaolai.github.io/2017/11/20/other/TODO备忘录/">
+  <link rel="canonical" href="http://chibaolai.github.io/2018/06/11/lb/Haproxy配置文件说明/">
 
 
 
@@ -132,7 +132,7 @@
   };
 </script>
 
-  <title>TODO-持续更新 | 点点滴滴</title>
+  <title>Haproxy-配置 | 点点滴滴</title>
   
 
 
@@ -432,7 +432,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2017/11/20/other/TODO备忘录/">
+    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/06/11/lb/Haproxy配置文件说明/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bolly">
@@ -449,7 +449,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">TODO-持续更新
+          <h1 class="post-title" itemprop="name headline">Haproxy-配置
 
               
             
@@ -475,7 +475,7 @@
                 
               
 
-              <time title="创建时间：2017-11-20 13:30:20" itemprop="dateCreated datePublished" datetime="2017-11-20T13:30:20+08:00">2017-11-20</time>
+              <time title="创建时间：2018-06-11 15:41:02" itemprop="dateCreated datePublished" datetime="2018-06-11T15:41:02+08:00">2018-06-11</time>
             
 
             
@@ -492,7 +492,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-04 11:32:40" itemprop="dateModified" datetime="2019-01-04T11:32:40+08:00">2019-01-04</time>
+                <time title="修改时间：2019-01-03 17:39:07" itemprop="dateModified" datetime="2019-01-03T17:39:07+08:00">2019-01-03</time>
               
             
           </span>
@@ -509,7 +509,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/other/" itemprop="url" rel="index"><span itemprop="name">other</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/lb/" itemprop="url" rel="index"><span itemprop="name">lb</span></a></span>
 
                 
                 
@@ -543,28 +543,41 @@
       
 
       
-        <h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h1><h2 id="第三方链接"><a href="#第三方链接" class="headerlink" title="第三方链接"></a>第三方链接</h2><p><a href="https://github.com/stanzhai/be-a-professional-programmer" target="_blank" rel="noopener">工具</a><br><a href="https://github.com/vhf/free-programming-books/blob/master/free-programming-books-zh.md" target="_blank" rel="noopener">书</a><br><a href="http://www.jdon.com/dl/best/springsource.html" target="_blank" rel="noopener">Spring各种源码项目下载</a><br><a href="http://blog.csdn.net/u014084065/article/details/53814943" target="_blank" rel="noopener">使用locust做服务器压力测试</a><br><a href="https://yq.aliyun.com/articles/92899" target="_blank" rel="noopener">spring 熔断器</a><br><a href="https://www.cnblogs.com/caolei1108/p/6169950.html" target="_blank" rel="noopener">Spring RestTemplate详解</a><br><a href="http://www.cnblogs.com/larryzeal/p/7430148.html" target="_blank" rel="noopener">spring web源码思路</a><br><a href="https://gitee.com/damivip/spring-remoting-annotation" target="_blank" rel="noopener">结合Spring注解标签发布RMI / HTTPInvoker / Hessian / Burlap服务</a><br><a href="https://www.ibm.com/developerworks/cn/java/j-lo-spring-principle/" target="_blank" rel="noopener">spring设计思想</a><br><a href="http://git.oschina.net/wangzhixuan/spring-shiro-training" target="_blank" rel="noopener">shiro</a><br><a href="https://www.cnblogs.com/jinxiao-pu/p/6670672.html" target="_blank" rel="noopener">豆瓣模拟登录验证码处理</a><br><a href="http://jingyan.baidu.com/article/d45ad14894b0d369552b80bd.html" target="_blank" rel="noopener">调研pdf加密</a><br><a href="https://alibaba.github.io/arthas/" target="_blank" rel="noopener">Java 诊断工具</a></p>
-<h2 id="值得一看的代码库"><a href="#值得一看的代码库" class="headerlink" title="值得一看的代码库"></a>值得一看的代码库</h2><ul>
-<li>国人写的模板引擎，代码质量很高：subchen/jetbrick-template-2x</li>
-<li>数据结构和算法类的，同时有测试代码：buptdavid/datastructure | kdn251/interviews</li>
-<li>Java写的高性能数据库：jankotek/mapdb</li>
-<li>Netty实现的高性能RPC，有写博文分析：tang-jie/NettyRPC</li>
-<li>Java编写的原子组件库，内功非常深厚：mindwind/craft-atom</li>
-<li>前点评网的一位大牛黄艺华写的爬虫框架：code4craft/webmagic</li>
-<li>针对Java8的一系列代码示例，纯干货无废话：winterbe/java8-tutorial</li>
-<li>Java设计模式的总结以及代码和文章：iluwatar/java-design-patterns</li>
-<li>线上问题排查神器-Btrace</li>
-<li>增量数据同步神器-canal</li>
-<li>mysql中间件：atlas,mycat</li>
-<li>分库分表数据库中间件：Sharding-JDBC</li>
-<li>调用链: hydra,zipkin,CAT,Hiro,skywalking,pinpoint</li>
-<li>代码静态检测工具：PMD</li>
-<li>canal监控对接一下：prometheus+grafana</li>
-<li>安全监测工具：burpsuit,AWVS,Nmap,Nessus,Openvas,Metasploit,kali<h2 id="jdk"><a href="#jdk" class="headerlink" title="jdk"></a>jdk</h2>util包：ArrayList,HashMap,LinkedHashMap,LinkedList,HashTable,HashSet。<br>lang包：String,Object,StringBuffer,StringBuilder,Integer</li>
-</ul>
-<p>《如何变得有思想》</p>
-<p>jdk里的util包，把这些类。<br>这些类弄明白了，你可以上升一个台阶。<br>还有平时你工作中用到什么类，就看什么类就ok了。<br>可叹的是，有些人写了五六年代码，连String这个类的源码都没看过，还老是对我说未来很迷茫，不知道怎么提升好，其实我想说，这样不迷茫才怪。<br>juc 包里的aqs框架<br>Okhttp：android开发最受欢迎的http客户端，支持http2，websocket等最新协议。总体采用责任链模式，架构简单且扩展性强，看完几个主要的拦截器相当于把http协议重新学习了一遍。<br>jdk8下的ConcurrentHashMap：Doug Lea 大神的大作，实现上非常精巧，采用cas操作就实现了无锁HashMap，仅仅在Hash冲突插入的情况下锁住一个hash桶，并发度比jdk7版的高出不少。<br>spring-mvc：MVC模式的最佳实践，玩设计模式的癫狂之作，扩展性极强最优雅的网络请求库，一个Java文件：kevinsawicki/http-request</p>
-<p><a href="https://pay.weixin.qq.com/wiki/doc/api/H5.php?chapter=23_2&amp;index=1" target="_blank" rel="noopener">网络设置指引：</a></p>
+        <h1 id="Haproxy配置文件说明"><a href="#Haproxy配置文件说明" class="headerlink" title="Haproxy配置文件说明"></a>Haproxy配置文件说明</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/sbin/haproxy -f /etc/haproxy/haproxy.cfg -st `cat /var/run/haproxy.pid`</span><br><span class="line">```</span><br></pre></td></tr></table></figure>
+<pre><code>####################全局配置信息######################## 
+
+   #######参数是进程级的，通常和操作系统（OS）相关######### 
+
+
+   global 
+
+   maxconn 20480                   #默认最大连接数 
+
+   log 127.0.0.1 local3            #[err warning info debug] 
+
+   chroot /var/haproxy             #chroot运行的路径 
+
+   uid 99                          #所属运行的用户uid 
+
+   gid 99                          #所属运行的用户组 
+
+   daemon                          #以后台形式运行haproxy 
+
+   nbproc 1                        #进程数量(可以设置多个进程提高性能) 
+
+   pidfile /var/run/haproxy.pid    #haproxy的pid存放路径,启动进程的用户必须有权限访问此文件 
+
+   ulimit-n 65535                  #ulimit的数量限制
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">#####################默认的全局设置###################### </span><br><span class="line"></span><br><span class="line">       ##这些参数可以被利用配置到frontend，backend，listen组件## </span><br><span class="line">       </span><br><span class="line">       </span><br><span class="line">       defaults </span><br><span class="line"></span><br><span class="line">       log global </span><br><span class="line"></span><br><span class="line">       mode http                       #所处理的类别 (#7层 http;4层tcp  ) </span><br><span class="line"></span><br><span class="line">       maxconn 20480                   #最大连接数 </span><br><span class="line"></span><br><span class="line">       option httplog                  #日志类别http日志格式        </span><br><span class="line">       </span><br><span class="line">       option httpclose                #每次请求完毕后主动关闭http通道 </span><br><span class="line"></span><br><span class="line">       option dontlognull              #不记录健康检查的日志信息 </span><br><span class="line"></span><br><span class="line">       option forwardfor               #如果后端服务器需要获得客户端真实ip需要配置的参数，可以从Http Header中获得客户端ip  </span><br><span class="line"></span><br><span class="line">       option redispatch               #serverId对应的服务器挂掉后,强制定向到其他健康的服务器  </span><br><span class="line"></span><br><span class="line">       option abortonclose             #当服务器负载很高的时候，自动结束掉当前队列处理比较久的连接 </span><br><span class="line"></span><br><span class="line">       stats refresh 30                #统计页面刷新间隔 </span><br><span class="line"></span><br><span class="line">       retries 3                       #3次连接失败就认为服务不可用，也可以通过后面设置 </span><br><span class="line"></span><br><span class="line">       balance roundrobin              #默认的负载均衡的方式,轮询方式 </span><br><span class="line"></span><br><span class="line">       #balance source                  #默认的负载均衡的方式,类似nginx的ip_hash </span><br><span class="line"></span><br><span class="line">       #balance leastconn               #默认的负载均衡的方式,最小连接 </span><br><span class="line"></span><br><span class="line">       contimeout 5000                 #连接超时 </span><br><span class="line"></span><br><span class="line">       clitimeout 50000                #客户端超时 </span><br><span class="line"></span><br><span class="line">       srvtimeout 50000                #服务器超时 </span><br><span class="line"></span><br><span class="line">       timeout check 2000              #心跳检测超时</span><br></pre></td></tr></table></figure>
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">####################监控页面的设置####################### </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">listen admin_status                    #Frontend和Backend的组合体,监控组的名称，按需自定义名称 </span><br><span class="line"></span><br><span class="line">        bind 0.0.0.0:65532             #监听端口 </span><br><span class="line"></span><br><span class="line">        mode http                      #http的7层模式 </span><br><span class="line"></span><br><span class="line">        log 127.0.0.1 local3 err       #错误日志记录 </span><br><span class="line"></span><br><span class="line">        stats refresh 5s               #每隔5秒自动刷新监控页面 </span><br><span class="line"></span><br><span class="line">        stats uri /admin?stats         #监控页面的url </span><br><span class="line"></span><br><span class="line">        stats realm xuequn\ xuequn   #监控页面的提示信息 </span><br><span class="line"></span><br><span class="line">        stats auth admin:admin         #监控页面的用户和密码admin,可以设置多个用户名 </span><br><span class="line"></span><br><span class="line">        stats auth admin1:admin1       #监控页面的用户和密码admin1 </span><br><span class="line"></span><br><span class="line">        stats hide-version             #隐藏统计页面上的HAproxy版本信息  </span><br><span class="line"></span><br><span class="line">        stats admin if TRUE            #手工启用/禁用,后端服务器(haproxy-1.4.9以后版本) </span><br><span class="line"></span><br><span class="line">       errorfile 403 /etc/haproxy/errorfiles/403.http </span><br><span class="line"></span><br><span class="line">       errorfile 500 /etc/haproxy/errorfiles/500.http </span><br><span class="line"></span><br><span class="line">       errorfile 502 /etc/haproxy/errorfiles/502.http </span><br><span class="line"></span><br><span class="line">       errorfile 503 /etc/haproxy/errorfiles/503.http </span><br><span class="line"></span><br><span class="line">       errorfile 504 /etc/haproxy/errorfiles/504.http</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#################HAProxy的日志记录内容设置################### </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">capture request  header Host           len 40 </span><br><span class="line"></span><br><span class="line">       capture request  header Content-Length len 10 </span><br><span class="line"></span><br><span class="line">       capture request  header Referer        len 200 </span><br><span class="line"></span><br><span class="line">       capture response header Server         len 40 </span><br><span class="line"></span><br><span class="line">       capture response header Content-Length len 10 </span><br><span class="line"></span><br><span class="line">       capture response header Cache-Control  len 8</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"> #######################网站监测listen配置##################### </span><br><span class="line"></span><br><span class="line">       ###########此用法主要是监控haproxy后端服务器的监控状态############</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">listen site_status </span><br><span class="line"></span><br><span class="line">       bind 0.0.0.0:1081                    #监听端口 </span><br><span class="line"></span><br><span class="line">       mode http                            #http的7层模式 </span><br><span class="line"></span><br><span class="line">       log 127.0.0.1 local3 err             #[err warning info debug] </span><br><span class="line"></span><br><span class="line">       monitor-uri /site_status             #网站健康检测URL，用来检测HAProxy管理的网站是否可以用，正常返回200，不正常返回503 </span><br><span class="line"></span><br><span class="line">       acl site_dead nbsrv(server_web) lt 2 #定义网站down时的策略当挂在负载均衡上的指定backend的中有效机器数小于1台时返回true </span><br><span class="line"></span><br><span class="line">       acl site_dead nbsrv(server_blog) lt 2 </span><br><span class="line"></span><br><span class="line">       acl site_dead nbsrv(server_bbs)  lt 2  </span><br><span class="line"></span><br><span class="line">       monitor fail if site_dead            #当满足策略的时候返回503，网上文档说的是500，实际测试为503 </span><br><span class="line"></span><br><span class="line">       monitor-net 192.168.16.2/32          #来自192.168.16.2的日志信息不会被记录和转发 </span><br><span class="line"></span><br><span class="line">       monitor-net 192.168.16.3/32</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">########frontend配置############ </span><br><span class="line"></span><br><span class="line">       #####注意，frontend配置里面可以定义多个acl进行匹配操作########</span><br><span class="line">       </span><br><span class="line">       </span><br><span class="line">       frontend http_80_in </span><br><span class="line"></span><br><span class="line">       bind 0.0.0.0:80      #监听端口，即haproxy提供web服务的端口，和lvs的vip端口类似 </span><br><span class="line"></span><br><span class="line">       mode http            #http的7层模式 </span><br><span class="line"></span><br><span class="line">       log global           #应用全局的日志配置 </span><br><span class="line"></span><br><span class="line">       option httplog       #启用http的log </span><br><span class="line"></span><br><span class="line">       option httpclose     #每次请求完毕后主动关闭http通道，HA-Proxy不支持keep-alive模式 </span><br><span class="line"></span><br><span class="line">       option forwardfor    #如果后端服务器需要获得客户端的真实IP需要配置次参数，将可以从Http Header中获得客户端IP</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">########acl策略配置#############</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">acl xuequn_web hdr_reg(host) -i ^(www.xuequn.cn|ww1.xuequn.cn)$    #如果请求的域名满足正则表达式中的2个域名返回true -i是忽略大小写 </span><br><span class="line"></span><br><span class="line">       acl xuequn_blog hdr_dom(host) -i blog.xuequn.cn #如果请求的域名满足www.xuequn.cn返回true -i是忽略大小写 </span><br><span class="line"></span><br><span class="line">       #acl xuequn    hdr(host) -i xuequn.cn    #如果请求的域名满足xuequn.cn返回true -i是忽略大小写 </span><br><span class="line"></span><br><span class="line">       #acl file_req url_sub -i  killall   #在请求url中包含killall=，则此控制策略返回true,否则为false </span><br><span class="line"></span><br><span class="line">       #acl dir_req url_dir -i allow      #在请求url中存在allow作为部分地址路径，则此控制策略返回true,否则返回false </span><br><span class="line"></span><br><span class="line">       #acl missing_cl hdr_cnt(Content-length) eq 0    #当请求的header中Content-length等于0时返回true</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">########acl策略匹配相应############# </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#block if missing_cl     #当请求中header中Content-length等于0阻止请求返回403 </span><br><span class="line"></span><br><span class="line">       #block if !file_req || dir_req       #block表示阻止请求，返回403错误，当前表示如果不满足策略file_req，或者满足策略dir_req，则阻止请求 </span><br><span class="line"></span><br><span class="line">       use_backend  server_web  if xuequn_web    #当满足xuequn_web的策略时使用server_web的backend </span><br><span class="line"></span><br><span class="line">       use_backend  server_blog if xuequn_blog     #当满足xuequn_blog的策略时使用server_blog的backend </span><br><span class="line"></span><br><span class="line">       #redirect prefix http://192.168.16.3 code 301 if xuequn     #当访问xuequn.cn的时候，用http的301挑转到http://192.168.16.3 </span><br><span class="line"></span><br><span class="line">       default_backend server_bbs     #以上都不满足的时候使用默认server_bbs的backend</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">##########backend的设置############## </span><br><span class="line"></span><br><span class="line">#下面我将设置三组服务器 server_web，server_blog，server_bbs</span><br><span class="line"></span><br><span class="line">###########################backend server_web############################# </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">backend server_web </span><br><span class="line"></span><br><span class="line">       mode http            #http的7层模式 </span><br><span class="line"></span><br><span class="line">       balance roundrobin   #负载均衡的方式，roundrobin平均方式 </span><br><span class="line"></span><br><span class="line">       cookie SERVERID      #允许插入serverid到cookie中，serverid后面可以定义 </span><br><span class="line"></span><br><span class="line">       option httpchk GET /index.html #心跳检测的文件 </span><br><span class="line"></span><br><span class="line">       server web1 192.168.16.2:80 cookie web1 check inter 1500 rise 3 fall 3 weight 1  </span><br><span class="line"></span><br><span class="line">       #服务器定义，cookie 1表示serverid为web1，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用， </span><br><span class="line"></span><br><span class="line">       #fall 3是3次失败认为服务器不可用，weight代表权重 </span><br><span class="line"></span><br><span class="line">       server web2 192.168.16.3:80 cookie web2 check inter 1500 rise 3 fall 3 weight 2 </span><br><span class="line"></span><br><span class="line">       #服务器定义，cookie 1表示serverid为web2，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用， </span><br><span class="line"></span><br><span class="line">       #fall 3是3次失败认为服务器不可用，weight代表权重</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">###################################backend server_blog############################################### </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">backend server_blog </span><br><span class="line"></span><br><span class="line">       mode http            #http的7层模式 </span><br><span class="line"></span><br><span class="line">       balance roundrobin   #负载均衡的方式，roundrobin平均方式 </span><br><span class="line"></span><br><span class="line">       cookie SERVERID      #允许插入serverid到cookie中，serverid后面可以定义 </span><br><span class="line"></span><br><span class="line">       option httpchk GET /index.html #心跳检测的文件 </span><br><span class="line"></span><br><span class="line">       server blog1 192.168.16.2:80 cookie blog1 check inter 1500 rise 3 fall 3 weight 1  </span><br><span class="line"></span><br><span class="line">       #服务器定义，cookie 1表示serverid为web1，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重 </span><br><span class="line"></span><br><span class="line">       server blog2 192.168.16.3:80 cookie blog2 check inter 1500 rise 3 fall 3 weight 2 </span><br><span class="line"></span><br><span class="line">        #服务器定义，cookie 1表示serverid为web2，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">###################################backend server_bbs############################################### </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">backend server_bbs </span><br><span class="line"></span><br><span class="line">       mode http            #http的7层模式 </span><br><span class="line"></span><br><span class="line">       balance roundrobin   #负载均衡的方式，roundrobin平均方式 </span><br><span class="line"></span><br><span class="line">       cookie SERVERID      #允许插入serverid到cookie中，serverid后面可以定义 </span><br><span class="line"></span><br><span class="line">       option httpchk GET /index.html #心跳检测的文件 </span><br><span class="line"></span><br><span class="line">       server bbs1 192.168.16.2:80 cookie bbs1 check inter 1500 rise 3 fall 3 weight 1  </span><br><span class="line"></span><br><span class="line">       #服务器定义，cookie 1表示serverid为web1，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重 </span><br><span class="line"></span><br><span class="line">       server bbs2 192.168.16.3:80 cookie bbs2 check inter 1500 rise 3 fall 3 weight 2 </span><br><span class="line"></span><br><span class="line">        #服务器定义，cookie 1表示serverid为web2，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -595,8 +608,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/08/lb/nginx/" rel="next" title="nginx-使用">
-                <i class="fa fa-chevron-left"></i> nginx-使用
+              <a href="/2018/02/28/linux/Linux查看CPU，内存，硬盘/" rel="next" title="linux-系统信息">
+                <i class="fa fa-chevron-left"></i> linux-系统信息
               </a>
             
           </div>
@@ -605,8 +618,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/01/linux/证书/" rel="prev" title="linux-证书生成">
-                linux-证书生成 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/22/k8s/kubectl常用命令/" rel="prev" title="kubectl常用命令">
+                kubectl常用命令 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -776,7 +789,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TODO"><span class="nav-number">1.</span> <span class="nav-text">TODO</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第三方链接"><span class="nav-number">1.1.</span> <span class="nav-text">第三方链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值得一看的代码库"><span class="nav-number">1.2.</span> <span class="nav-text">值得一看的代码库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jdk"><span class="nav-number">1.3.</span> <span class="nav-text">jdk</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Haproxy配置文件说明"><span class="nav-number">1.</span> <span class="nav-text">Haproxy配置文件说明</span></a></li></ol></div>
             
 
           </div>
