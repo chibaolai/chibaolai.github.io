@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Golang NFNF简介NF是一个开发Go应用的框架。 Golang开发环境搭建windows下安装Golangwindows下的安装步骤如下：以go 1.6为例：下载go1.6.windows-amd64.zip,​官方下载地址，​墙内下载将下载的zip文件解压缩到期望安装的目录,这里假设该目录为%INSTALL_HOME%，解压缩完成后为 %INSTALL_HOME%/go配置环境变量GOR">
+<meta name="keywords" content="bolly">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go-Golang NF">
+<meta property="og:url" content="http://chibaolai.github.io/2018/09/30/go/Niox Golang NF/index.html">
+<meta property="og:site_name" content="点点滴滴">
+<meta property="og:description" content="Golang NFNF简介NF是一个开发Go应用的框架。 Golang开发环境搭建windows下安装Golangwindows下的安装步骤如下：以go 1.6为例：下载go1.6.windows-amd64.zip,​官方下载地址，​墙内下载将下载的zip文件解压缩到期望安装的目录,这里假设该目录为%INSTALL_HOME%，解压缩完成后为 %INSTALL_HOME%/go配置环境变量GOR">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-04T03:51:02.720Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="go-Golang NF">
+<meta name="twitter:description" content="Golang NFNF简介NF是一个开发Go应用的框架。 Golang开发环境搭建windows下安装Golangwindows下的安装步骤如下：以go 1.6为例：下载go1.6.windows-amd64.zip,​官方下载地址，​墙内下载将下载的zip文件解压缩到期望安装的目录,这里假设该目录为%INSTALL_HOME%，解压缩完成后为 %INSTALL_HOME%/go配置环境变量GOR">
+
+
+
+
+
+
+  <link rel="canonical" href="http://chibaolai.github.io/2018/09/30/go/Niox Golang NF/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>go-Golang NF | 点点滴滴</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/chibaolai" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">点点滴滴</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Bolly's Blog</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/09/30/go/Niox Golang NF/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bolly">
+      <meta itemprop="description" content="不疯魔，不成佛">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点点滴滴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">go-Golang NF
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-30 16:23:12" itemprop="dateCreated datePublished" datetime="2018-09-30T16:23:12+08:00">2018-09-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-04 11:51:02" itemprop="dateModified" datetime="2019-01-04T11:51:02+08:00">2019-01-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/go/" itemprop="url" rel="index"><span itemprop="name">go</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Golang-NF"><a href="#Golang-NF" class="headerlink" title="Golang NF"></a>Golang NF</h1><h2 id="NF简介"><a href="#NF简介" class="headerlink" title="NF简介"></a>NF简介</h2><p>NF是一个开发Go应用的框架。</p>
+<h2 id="Golang开发环境搭建"><a href="#Golang开发环境搭建" class="headerlink" title="Golang开发环境搭建"></a>Golang开发环境搭建</h2><p>windows下安装Golang<br>windows下的安装步骤如下：<br>以go 1.6为例：<br>下载go1.6.windows-amd64.zip,​<a href="https://golang.org/dl/" target="_blank" rel="noopener">官方下载地址</a>，​<a href="http://pan.baidu.com/s/1hq1mrDM" target="_blank" rel="noopener">墙内下载</a><br>将下载的zip文件解压缩到期望安装的目录,这里假设该目录为%INSTALL_HOME%，解压缩完成后为 %INSTALL_HOME%/go<br>配置环境变量<br>GOROOT=%INSTALL_HOME%/go<br>GOPATH=%GO_WORKING_DIR%<br>将%GOROOT%/bin追加到系统的PATH环境变量下<br>以上配置成功后，在命令行下分别运行go version和go env可以看到具体go版本信息和配置的环境变量信息</p>
+<h2 id="安装git-for-windows"><a href="#安装git-for-windows" class="headerlink" title="安装git-for-windows"></a>安装git-for-windows</h2><p>go get命令会使用到git,需要确保开发机器上的git命令可用。 可以下载安装​git-for-windows。</p>
+<h2 id="Eclipse-IDE-Goclipse"><a href="#Eclipse-IDE-Goclipse" class="headerlink" title="Eclipse IDE + Goclipse"></a>Eclipse IDE + Goclipse</h2><p>Eclipse 4.5 (Mars) or later.<br>Java VM version 8 or later. （Goclipse要求Java8)<br>​Goclipse ​安装指南<br>GDB安装及Goclipse配置</p>
+<p>Goclipse的调试功能需要使用GDB，在Windows下需要安装[mingw-w64 ​<a href="http://mingw-w64.org/doku.php]" target="_blank" rel="noopener">http://mingw-w64.org/doku.php]</a><br>在Eclipse的Preferences下的’C/C++’/‘Debug’/‘GDB’的配置页的gdb debugger中配置gdb可执行文件的具体路径。<br>在Eclipse的Preferences下的’Go’/‘Tool’的配置页中配置和安装gocode和godef</p>
+<h2 id="Glide包管理工具"><a href="#Glide包管理工具" class="headerlink" title="Glide包管理工具"></a>Glide包管理工具</h2><h3 id="Glide-工具简介"><a href="#Glide-工具简介" class="headerlink" title="Glide 工具简介"></a>Glide 工具简介</h3><p>​Glide是golang包管理工具,相当于node的npm, python的pip, .net的NuGet等工具,用于管理golang开发中引用的第三方库.<br>Glide提供简单易用的依赖库管理,简单配置glide.yaml文件后就可以获取github等地host的依赖库.除此之外还支持从本地git库中获取依赖库.方便开发者管理组织代码以及vendor依赖.<br>主要特性</p>
+<ul>
+<li>简单易用的vendor库管理</li>
+<li>支持​versioning package</li>
+<li>支持添加库别名, aliasing package</li>
+<li>支持golang提供的工具</li>
+<li>支持仓库缓存,$GOPATH中仓库的重用</li>
+<li>一定程度上能避免重复引用引用依赖<h3 id="Glide-安装"><a href="#Glide-安装" class="headerlink" title="Glide 安装"></a>Glide 安装</h3>下载release的可执行文件<br>Glide提供可执行文件的直接下载,根据target的运行环境自行选择binary下载, ​点此下载<br>经过测试稳定易用的版本目前为0.8.3, 下载后添加到环境变量PATH中,确保glide命令可以在命令行执行<br>从源码编译安装<br>glide也是用golang开发的，因此使用go get可以从源码编译安装glide的最新版本。编译的可执行文件被install到gopath下。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> get -u github.com/Masterminds/glide</span><br></pre></td></tr></table></figure>
+<h2 id="Glide-使用"><a href="#Glide-使用" class="headerlink" title="Glide 使用"></a>Glide 使用</h2><p>在使用glide命令工具前必须先正确设置GOPATH<br>目录结构:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">- $GOPATH/src/myProject (Your project)</span><br><span class="line">|</span><br><span class="line">|-- glide.yaml</span><br><span class="line">|</span><br><span class="line">|-- glide.lock</span><br><span class="line">|</span><br><span class="line">|-- main.<span class="keyword">go</span> (Your main <span class="keyword">go</span> code can live here)</span><br><span class="line">|</span><br><span class="line">|-- mySubpackage (You can create your own subpackages, too)</span><br><span class="line">|    |</span><br><span class="line">|    |-- foo.<span class="keyword">go</span></span><br><span class="line">|</span><br><span class="line">|-- vendor</span><br><span class="line">     |-- github.com</span><br><span class="line">          |</span><br><span class="line">          |-- Masterminds</span><br><span class="line">                |</span><br><span class="line">                |-- ... etc.</span><br></pre></td></tr></table></figure>
+<p>Glide适用场景下的目录结构如上所示, glide.yaml文件中配置有依赖库的列表, 在命令行中glide.yaml同级目录中执行 glide install 命令, glide会创建vendor目录,并且将所有获取的依赖包放到vendor目录中.<br>引用第三方包时, 和引用go get 取得的依赖时一样.<br>例如:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">glide get github.com/Masterminds/cookoo</span><br><span class="line"><span class="keyword">go</span> get github.com/Masterminds/cookoo</span><br><span class="line">        <span class="comment">// "gopkg.in/mgo.v2/bson"</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"github.com/Masterminds/cookoo"</span></span><br></pre></td></tr></table></figure>
+<p>以上两个命令依赖库的下载位置不同,但是引用时无区别</p>
+<p>PS: Go1.5试用glide需要额外设置环境变量 GO15VENDOREXPERIMENT = 1, Go1.6则不需要设置</p>
+<h3 id="Glide-Get"><a href="#Glide-Get" class="headerlink" title="Glide Get"></a>Glide Get</h3><p>glide get [package name] 能够获取参数中的扩展依赖,放在vendor目录下,并且生成glide.yaml中的对应条目</p>
+<h3 id="Glide-Update"><a href="#Glide-Update" class="headerlink" title="Glide Update"></a>Glide Update</h3><p>glide update (aliased to up) 能够获取并更新glide.yaml中所有条目,并且放在vendor目录下,对于每个item的依赖会进行递归扫描.对于依赖中的其他包管理配置文件Godep, GPM, gb等,glide也会识别并下载更新到vendor目录下. glide.lock 文件中会生成或被更新,包含每个当前的依赖包的版本信息,精确到特定的commit</p>
+<h3 id="Glide-Install"><a href="#Glide-Install" class="headerlink" title="Glide Install"></a>Glide Install</h3><p>glide install 能够获取并更新glide.lock file中的所有条目,由于glide.lock中包含版本信息,能够获取特定版本的依赖包. glide up 命令会重新生成或更新glide.lock文件.</p>
+<h3 id="Glide-novendor"><a href="#Glide-novendor" class="headerlink" title="Glide novendor"></a>Glide novendor</h3><p>glide novendor (aliased to nv) Glide能够很好的和go工具一起使用,例如<br>go test sample:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> test ./...     <span class="comment">// 执行所有当前目录以及子目录下包括vendor目录下的test代码</span></span><br><span class="line"><span class="keyword">go</span> test $(glide novendor) <span class="comment">//执行所有当前目录以及子目录下,不包括vendor目录下的test代码</span></span><br></pre></td></tr></table></figure>
+<h3 id="Glide-Rebuild"><a href="#Glide-Rebuild" class="headerlink" title="Glide Rebuild"></a>Glide Rebuild</h3><p>glide rebuild 重新编译第三方依赖,在gopath下的pkg目录下生成.a文件.<br>例子:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ glide rebuild</span><br><span class="line">[INFO] Building dependencies.</span><br><span class="line">[INFO] Running <span class="keyword">go</span> build github.com/kylelemons/<span class="keyword">go</span>-gypsy/yaml</span><br><span class="line">[INFO] Running <span class="keyword">go</span> build github.com/Masterminds/cookoo/cli</span><br><span class="line">[INFO] Running <span class="keyword">go</span> build github.com/Masterminds/cookoo</span><br></pre></td></tr></table></figure>
+<h3 id="glide-yaml"><a href="#glide-yaml" class="headerlink" title="glide.yaml"></a>glide.yaml</h3><p>例子:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">package:</span> <span class="string">github.com/Masterminds/glide</span></span><br><span class="line"><span class="attr">import:</span></span><br><span class="line"><span class="attr">  - package:</span> <span class="string">github.com/Masterminds/semver</span>               <span class="string">//</span> <span class="string">从github.com</span> </span><br><span class="line"><span class="attr">  - package:</span> <span class="string">github.com/Masterminds/cookoo</span>               <span class="string">//</span> <span class="string">别名</span></span><br><span class="line"><span class="attr">    vcs:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">    version:</span> <span class="string">^1.2.0</span></span><br><span class="line"><span class="attr">    repo:</span> <span class="string">git@192.168.1.101/cookoo.git</span>                   <span class="string">//</span> <span class="string">从远程git仓库下载,</span> <span class="string">也可以是本地仓库</span></span><br></pre></td></tr></table></figure>
+<h2 id="Config-Center-nconf"><a href="#Config-Center-nconf" class="headerlink" title="Config Center(nconf)"></a>Config Center(nconf)</h2><h3 id="nconf简介"><a href="#nconf简介" class="headerlink" title="nconf简介"></a>nconf简介</h3><p>nconf是NF框架基于​etcd的实现的集中配置管理中心(类似于淘宝的diamond和百度的disconf)<br>nconf可以为各种业务组件提供统一的配置管理服务。<br>nconf当前具有如下特点：<br>支持配置的分布式管理和配置发布统一化<br>提供简单的web管理端<br>支持多目录,多配置值监听<br>配置值的加密解密功能<br>nconf.NConf<br>niox/nf/nconf包提供了一个NConf接口，提供访问Config Center的基本功能.<br>该接口定义如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> NConf <span class="keyword">interface</span> &#123;</span><br><span class="line">	Get(key <span class="keyword">string</span>) <span class="keyword">string</span></span><br><span class="line"></span><br><span class="line">	Set(key <span class="keyword">string</span>, value <span class="keyword">string</span>)</span><br><span class="line"></span><br><span class="line">	Delete(key <span class="keyword">string</span>, recursive <span class="keyword">bool</span>)</span><br><span class="line"></span><br><span class="line">	Watch(key <span class="keyword">string</span>, processor <span class="function"><span class="keyword">func</span><span class="params">(NodeMap)</span>)</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">	<span class="title">GetInt</span><span class="params">(key <span class="keyword">string</span>)</span> <span class="title">int</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">	<span class="title">GetNodeMap</span><span class="params">(key <span class="keyword">string</span>)</span> <span class="title">NodeMap</span></span></span><br><span class="line"><span class="function">    </span></span><br><span class="line"><span class="function">        <span class="title">GetNodes</span><span class="params">(key <span class="keyword">string</span>)</span> <span class="title">NNode</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>使用nconf包下的func NewNConf(machines []string, userName, password string) NConf函数可以获取一个NConf接口的实例，全局持有即可，通过上面定义的方法从Config Center获取配置数据。<br>nconf使用示例<br>基于nconf读取配置信息，创建redis基础设施，监控redis配置，发生变化时重新初始化基础资源.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	redis nredis.Redis</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</span><br><span class="line">	mutex.Lock()</span><br><span class="line">	<span class="keyword">defer</span> mutex.Unlock()</span><br><span class="line">	cfgKey := <span class="string">"/res/redis"</span></span><br><span class="line">	<span class="comment">// 从nconf中获取redis相关配置</span></span><br><span class="line">	cfg := ncf.GetNodeMap(cfgKey)</span><br><span class="line">	<span class="comment">// 创建redis基础设施</span></span><br><span class="line">	createRedis(cfg)</span><br><span class="line">	<span class="comment">// 监控redis相关配置,配置变化时重建基础设施</span></span><br><span class="line">	ncf.Watch(cfgKey, createRedis)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">createRedis</span><span class="params">(cfg nconf.NodeMap)</span></span> &#123;</span><br><span class="line">	address := cfg.GetString(<span class="string">"/res/redis/address"</span>)</span><br><span class="line">	password := cfg.GetString(<span class="string">"/res/redis/password"</span>)</span><br><span class="line">	dbIndex := cfg.GetInt(<span class="string">"/res/redis/dbIndex"</span>)</span><br><span class="line"></span><br><span class="line">	redis = nredis.NewRedis(address, password, dbIndex)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="nconf-web管理端"><a href="#nconf-web管理端" class="headerlink" title="nconf web管理端"></a>nconf web管理端</h3><p>使用nconf管理后台可以维护配置中心存放的配置信息。<br><a href="http://192.168.1.101:9091/" target="_blank" rel="noopener">开发环境nconf​管理端地址</a><br>No image “NConfMangementConsole.png” attached to PcOneNf<br>基础设施和资源<br>NF框架提供mysql 使用NF框架提供的特性之前,需要在项目目录中建立infra目录添加初始化代码, 根据需要初始化需要用到的模块,并且要添加导入nconf.ini配置文件到你的项目中,以便NF框架连接到etcd集群<br>使用之前请首先取得glide.yaml, glide.lock文件执行glide install命令以获取第三方依赖</p>
+<p>目录结构:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">- $GOPATH/src/myProject (Your project)</span><br><span class="line">|</span><br><span class="line">|-- glide.yaml  <span class="comment">// "gopkg.in/mgo.v2/bson"</span></span><br><span class="line">|</span><br><span class="line">|-- glide.lock</span><br><span class="line">|</span><br><span class="line">|-- main.<span class="keyword">go</span> (Your main <span class="keyword">go</span> code can live here)</span><br><span class="line">|</span><br><span class="line">|-- nconf.ini    <span class="comment">// 包含etcd配置信息</span></span><br><span class="line">|</span><br><span class="line">|-- infra</span><br><span class="line">|    |</span><br><span class="line">|    |-- res</span><br><span class="line">|         |</span><br><span class="line">|         |-- init.<span class="keyword">go</span></span><br><span class="line">|         |-- nconf.<span class="keyword">go</span>                      <span class="comment">//nconf 配置初始化(mandatory) </span></span><br><span class="line">|         |-- mysql.<span class="keyword">go</span>  </span><br><span class="line">|         |-- 其他模块 </span><br><span class="line">|</span><br><span class="line">|-- vendor</span><br><span class="line">     |-- github.com</span><br><span class="line">          |</span><br><span class="line">          |-- Masterminds</span><br><span class="line">                |</span><br><span class="line">                |-- ... etc.</span><br></pre></td></tr></table></figure>
+<h2 id="nsql"><a href="#nsql" class="headerlink" title="nsql"></a>nsql</h2><h3 id="nsql-示例"><a href="#nsql-示例" class="headerlink" title="nsql 示例"></a>nsql 示例</h3><p>示例数据库mysql</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Hospital <span class="keyword">struct</span> &#123;</span><br><span class="line">	Id       <span class="keyword">int</span>    <span class="string">`db:"ID"`</span></span><br><span class="line">	Name     <span class="keyword">string</span> <span class="string">`db:"NAME"`</span></span><br><span class="line">	CityCode <span class="keyword">string</span> <span class="string">`db:"CITY_CODE"`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Get查询单个"><a href="#Get查询单个" class="headerlink" title="Get查询单个"></a>Get查询单个</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">query := <span class="string">"SELECT ID , NAME , CITY_CODE FROM master_hospital WHERE ID = ?"</span></span><br><span class="line">result := &amp;Hospital&#123;&#125;</span><br><span class="line"><span class="keyword">if</span> !db.Get(result, query, <span class="number">9</span>) &#123;</span><br><span class="line">	result = <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line">fmt.Println(result)</span><br><span class="line">query := <span class="string">"SELECT NAME FROM master_hospital WHERE ID = ?"</span></span><br><span class="line">result := <span class="string">""</span></span><br><span class="line"><span class="keyword">if</span> !db.Get(&amp;result, query, <span class="number">9</span>) &#123;</span><br><span class="line">	fmt.Println(<span class="string">"未获取到"</span>)</span><br><span class="line">&#125;</span><br><span class="line">fmt.Println(result)</span><br></pre></td></tr></table></figure>
+<h3 id="NamedGet查询单个"><a href="#NamedGet查询单个" class="headerlink" title="NamedGet查询单个"></a>NamedGet查询单个</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">query := <span class="string">"SELECT ID , NAME , CITY_CODE FROM master_hospital WHERE ID = :ID"</span></span><br><span class="line">result := &amp;Hospital&#123;&#125;</span><br><span class="line">arg := &amp;Hospital&#123;Id: <span class="number">9</span>&#125;</span><br><span class="line"><span class="keyword">if</span> !db.NamedGet(result, query, arg) &#123;</span><br><span class="line">	result = <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line">fmt.Println(result)</span><br><span class="line">query := <span class="string">"SELECT NAME FROM master_hospital WHERE ID = :ID"</span></span><br><span class="line">result := <span class="string">""</span></span><br><span class="line">arg := &amp;Hospital&#123;Id: <span class="number">19</span>&#125;</span><br><span class="line"><span class="keyword">if</span> !db.NamedGet(&amp;result, query, arg) &#123;</span><br><span class="line">	fmt.Println(<span class="string">"未获取到"</span>)</span><br><span class="line">&#125;</span><br><span class="line">fmt.Println(result)</span><br></pre></td></tr></table></figure>
+<h3 id="Select查询多个"><a href="#Select查询多个" class="headerlink" title="Select查询多个"></a>Select查询多个</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">query := &quot;SELECT ID , NAME , CITY_CODE FROM master_hospital WHERE ID &gt; ? AND ID &lt; ?&quot;</span><br><span class="line">result := []*Hospital&#123;&#125;</span><br><span class="line">db.Select(&amp;result, query, 2, 10)</span><br><span class="line">fmt.Println(result)</span><br><span class="line">query := &quot;SELECT ID  FROM master_hospital WHERE ID &gt; ? AND ID &lt; ?&quot;</span><br><span class="line">result := []int&#123;&#125;</span><br><span class="line">db.Select(&amp;result, query, 2, 10)</span><br><span class="line">fmt.Println(result)</span><br></pre></td></tr></table></figure>
+<h3 id="NamedSelect查询多个"><a href="#NamedSelect查询多个" class="headerlink" title="NamedSelect查询多个"></a>NamedSelect查询多个</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">query := <span class="string">"SELECT ID , NAME , CITY_CODE FROM master_hospital WHERE ID &lt; :ID"</span></span><br><span class="line">result := []*Hospital&#123;&#125;</span><br><span class="line">arg := &amp;Hospital&#123;Id: <span class="number">10</span>&#125;</span><br><span class="line">db.NamedSelect(&amp;result, query, arg)</span><br><span class="line">fmt.Println(result)</span><br><span class="line">query := <span class="string">"SELECT ID FROM master_hospital WHERE ID &lt; :ID"</span></span><br><span class="line">result := []<span class="keyword">int</span>&#123;&#125;</span><br><span class="line">arg := &amp;Hospital&#123;Id: <span class="number">10</span>&#125;</span><br><span class="line">db.NamedSelect(&amp;result, query, arg)</span><br><span class="line">fmt.Println(result)</span><br></pre></td></tr></table></figure>
+<h3 id="Exec和NamedExec"><a href="#Exec和NamedExec" class="headerlink" title="Exec和NamedExec"></a>Exec和NamedExec</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">query := <span class="string">"UPDATE master_hospital SET NAME= ? WHERE ID = ?"</span></span><br><span class="line">result := db.Exec(query, <span class="string">"虚拟医院"</span>, <span class="number">9</span>)</span><br><span class="line">fmt.Println(result.RowsAffected())</span><br><span class="line">query := <span class="string">"UPDATE master_hospital SET NAME= :NAME WHERE ID = :ID"</span></span><br><span class="line">hosp := &amp;Hospital&#123;Id: <span class="number">9</span>, Name: <span class="string">"虚拟医院"</span>&#125;</span><br><span class="line">result := db.NamedExec(query, hosp)</span><br><span class="line">fmt.Println(result.RowsAffected())</span><br></pre></td></tr></table></figure>
+<h3 id="Begin和Tx"><a href="#Begin和Tx" class="headerlink" title="Begin和Tx"></a>Begin和Tx</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tx := db.Begin()</span><br><span class="line">query := <span class="string">"UPDATE master_hospital SET NAME= :NAME WHERE ID = :ID"</span></span><br><span class="line">hosp := &amp;Hospital&#123;Id: <span class="number">9</span>, Name: <span class="string">"虚拟医院1"</span>&#125;</span><br><span class="line">result := tx.NamedExec(query, hosp)</span><br><span class="line">fmt.Println(result.RowsAffected())</span><br><span class="line">tx.Commit()</span><br></pre></td></tr></table></figure>
+<h3 id="Prepare和PrepareNamed"><a href="#Prepare和PrepareNamed" class="headerlink" title="Prepare和PrepareNamed"></a>Prepare和PrepareNamed</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">query := <span class="string">"UPDATE master_hospital SET NAME= :NAME WHERE ID = :ID"</span></span><br><span class="line">stmt := db.PrepareNamed(query)</span><br><span class="line"></span><br><span class="line">hosp1 := &amp;Hospital&#123;Id: <span class="number">9</span>, Name: <span class="string">"虚拟医院 v2.0+"</span>&#125;</span><br><span class="line">hosp2 := &amp;Hospital&#123;Id: <span class="number">3</span>, Name: <span class="string">"安徽省省直机关医院"</span>&#125;</span><br><span class="line"></span><br><span class="line">result1 := stmt.NamedExec(hosp1)</span><br><span class="line">result2 := stmt.NamedExec(hosp2)</span><br><span class="line">fmt.Println(result1.RowsAffected(), result2.RowsAffected())</span><br></pre></td></tr></table></figure>
+<h2 id="数据访问访问对象示例"><a href="#数据访问访问对象示例" class="headerlink" title="数据访问访问对象示例"></a>数据访问访问对象示例</h2><p>目录结构:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">- $GOPATH/src/myProject (Your project)</span><br><span class="line">|</span><br><span class="line">|-- glide.yaml</span><br><span class="line">|</span><br><span class="line">|-- glide.lock</span><br><span class="line">|</span><br><span class="line">|-- main.<span class="keyword">go</span> (Your main <span class="keyword">go</span> code can live here)</span><br><span class="line">|</span><br><span class="line">|-- nconf.ini    <span class="comment">// 包含etcd配置信息</span></span><br><span class="line">|</span><br><span class="line">|-- infra</span><br><span class="line">|    |</span><br><span class="line">|    |-- res</span><br><span class="line">|    |    |</span><br><span class="line">|    |    |-- init.<span class="keyword">go</span></span><br><span class="line">|    |    |-- nconf.<span class="keyword">go</span>                      <span class="comment">//nconf 配置初始化(mandatory) </span></span><br><span class="line">|    |    |-- mysql.<span class="keyword">go</span>  </span><br><span class="line">|    |</span><br><span class="line">|    |-- data                               <span class="comment">//包含dao 文件</span></span><br><span class="line">|    |    |</span><br><span class="line">|    |    |-- config_hospital_cloud_dao.<span class="keyword">go</span>  <span class="comment">// </span></span><br><span class="line">|    |</span><br><span class="line">|    |-- model                              <span class="comment">//包含数据实体</span></span><br><span class="line">|         |</span><br><span class="line">|         |-- config_hospital_cloud.<span class="keyword">go</span>      <span class="comment">// </span></span><br><span class="line">|</span><br><span class="line">|-- vendor</span><br><span class="line">     |-- github.com</span><br><span class="line">          |</span><br><span class="line">          |-- Masterminds</span><br><span class="line">                |</span><br><span class="line">                |-- ... etc.</span><br></pre></td></tr></table></figure>
+<p>目录结构如上所示</p>
+<h3 id="初始化NF框架中mysql模块nsql"><a href="#初始化NF框架中mysql模块nsql" class="headerlink" title="初始化NF框架中mysql模块nsql"></a>初始化NF框架中mysql模块nsql</h3><p>infra/res/mysql.go:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">        _ <span class="string">"github.com/go-sql-driver/mysql"</span></span><br><span class="line">        <span class="string">"niox/nf/nconf"</span></span><br><span class="line">        <span class="string">"niox/nf/nsql"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">        db nsql.DB</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">initDB</span><span class="params">()</span></span> &#123;</span><br><span class="line">        mutex.Lock()</span><br><span class="line">        <span class="keyword">defer</span> mutex.Unlock()                  </span><br><span class="line"></span><br><span class="line">        cfgKey := <span class="string">"/res/mysql"</span>                  <span class="comment">// 指定etcd中对应的key</span></span><br><span class="line">        cfg = ncf.GetNodeMap(<span class="string">"/res/mysql"</span>)      <span class="comment">// 从etcd中取出mysql连接字符串</span></span><br><span class="line">        createDB(cfg)                           <span class="comment">// 建立DB连接池</span></span><br><span class="line">        ncf.Watch(cfgKey, createDB)             <span class="comment">// 监听指定etcd key下的变化,如果存在变化,自动使用新配置重新初始化db连接池</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">createDB</span><span class="params">(cfg nconf.NodeMap)</span></span> &#123;</span><br><span class="line">        <span class="comment">// [username[:password]@][protocol[(address)]]/dbname[?param1=value1&amp;...&amp;paramN=valueN]</span></span><br><span class="line">        dsn := cfg.GetString(<span class="string">"/res/mysql/dsn"</span>)</span><br><span class="line">        db = nsql.NewDB(<span class="string">"mysql"</span>, dsn)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">GetDB</span><span class="params">()</span> <span class="title">nsql</span>.<span class="title">DB</span></span> &#123;</span><br><span class="line">        <span class="keyword">return</span> db</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Close</span><span class="params">()</span></span> &#123;</span><br><span class="line">        db.Close()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>infra/res/init.go:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Logger seelog.LoggerInterface</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//首先初始化nconf</span></span><br><span class="line">    initNConf()</span><br><span class="line">    </span><br><span class="line">    initDB()        <span class="comment">// 调用同为res包下的mysql.go的initDB方法,初始化mysql模块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="定义Dao以及model实体"><a href="#定义Dao以及model实体" class="headerlink" title="定义Dao以及model实体"></a>定义Dao以及model实体</h3><p>infra/data/config_hospital_cloud_dao.go:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> data</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">        <span class="string">"niox/infra/model"</span></span><br><span class="line">        <span class="string">"niox/infra/res"</span></span><br><span class="line">        <span class="string">"niox/nf/nsql"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ConfigHospitalCloudDao <span class="keyword">interface</span> &#123;</span><br><span class="line">        <span class="comment">// 根据医院id获取 医院PC2配置信息</span></span><br><span class="line">        GetByHospId(hospId <span class="keyword">int</span>) *model.ConfigHospitalCloud</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewConfigHospitalCloudDao</span><span class="params">()</span> <span class="title">ConfigHospitalCloudDao</span></span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &amp;configHospitalCloudDaoImpl&#123;DB: res.GetDB()&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> configHospitalCloudDaoImpl <span class="keyword">struct</span> &#123;</span><br><span class="line">        nsql.DB</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据医院id获取 医院PC2配置信息</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(dao *configHospitalCloudDaoImpl)</span> <span class="title">GetByHospId</span><span class="params">(hospId <span class="keyword">int</span>)</span> *<span class="title">model</span>.<span class="title">ConfigHospitalCloud</span></span> &#123;</span><br><span class="line">        sql := <span class="string">`SELECT</span></span><br><span class="line"><span class="string">          chc.ID,</span></span><br><span class="line"><span class="string">          chc.HOSPITAL_ID,</span></span><br><span class="line"><span class="string">          chc.VERSION_ID,</span></span><br><span class="line"><span class="string">          chc.IP,</span></span><br><span class="line"><span class="string">          chc.PORT,</span></span><br><span class="line"><span class="string">          chc.TIMEOUT,</span></span><br><span class="line"><span class="string">          chc.PROTOCOL,</span></span><br><span class="line"><span class="string">          chc.DEFAULT_PROTOCOL,</span></span><br><span class="line"><span class="string">          chc.OUTING_IP,</span></span><br><span class="line"><span class="string">          chc.TRANSPORT_TYPE,</span></span><br><span class="line"><span class="string">          chc.API_KEY,</span></span><br><span class="line"><span class="string">          chc.ENABLE</span></span><br><span class="line"><span class="string">    FROM config_hospital_cloud chc</span></span><br><span class="line"><span class="string">    WHERE HOSPITAL_ID = ?`</span></span><br><span class="line">        cfgHc := &amp;model.ConfigHospitalCloud&#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> dao.DB.Get(cfgHc, sql, hospId) &#123;</span><br><span class="line">                <span class="keyword">return</span> cfgHc</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>infra/data/config_hospital_cloud_dao.go:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> model</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">        <span class="string">"niox/nf/util/lang"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 首先查看niox/nf/util/lang 包中封装的数据库类型定义, 理解lang.Int等类型为golang基础类型的可空封装</span></span><br><span class="line"><span class="keyword">type</span> ConfigHospitalCloud <span class="keyword">struct</span> &#123;</span><br><span class="line">        Id              lang.Int    <span class="string">`db:"ID" json:"id"`</span></span><br><span class="line">        HospitalId      lang.Int    <span class="string">`db:"HOSPITAL_ID" json:"hospitalId"`</span></span><br><span class="line">        VersionId       lang.Int    <span class="string">`db:"VERSION_ID" json:"versionId"`</span></span><br><span class="line">        Ip              lang.String <span class="string">`db:"IP" json:"ip"`</span></span><br><span class="line">        Port            lang.Int    <span class="string">`db:"PORT" json:"port"`</span></span><br><span class="line">        Timeout         lang.Int    <span class="string">`db:"TIMEOUT" json:"timeout"`</span></span><br><span class="line">        Protocol        lang.String <span class="string">`db:"PROTOCOL" json:"protocol"`</span></span><br><span class="line">        DefaultProtocol lang.Int    <span class="string">`db:"DEFAULT_PROTOCOL" json:"defaultProtocol"`</span></span><br><span class="line">        OutingIp        lang.String <span class="string">`db:"OUTING_IP" json:"outingIp"`</span></span><br><span class="line">        TransportType   lang.Int    <span class="string">`db:"TRANSPORT_TYPE" json:"transportType"`</span></span><br><span class="line">        ApiKey          lang.String <span class="string">`db:"API_KEY" json:"apiKey"`</span></span><br><span class="line">        Enable          lang.Int    <span class="string">`db:"ENABLE" json:"enable"`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用Dao以及model访问数据库"><a href="#使用Dao以及model访问数据库" class="headerlink" title="使用Dao以及model访问数据库"></a>使用Dao以及model访问数据库</h3><p>main.go:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">        <span class="string">"encoding/json"</span></span><br><span class="line">        <span class="string">"fmt"</span></span><br><span class="line">        <span class="string">"niox/infra/data"</span></span><br><span class="line">        <span class="string">"niox/infra/model"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">        dao := data.NewConfigHospitalCloudDao()</span><br><span class="line">        result := dao.GetByHospId(<span class="number">1</span>)</span><br><span class="line">        fmt.Println(result)</span><br><span class="line">        bt, _ := json.Marshal(result)</span><br><span class="line">        fmt.Println(<span class="keyword">string</span>(bt))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="nmgo"><a href="#nmgo" class="headerlink" title="nmgo"></a>nmgo</h2><h3 id="nmgo-示例"><a href="#nmgo-示例" class="headerlink" title="nmgo 示例"></a>nmgo 示例</h3><h4 id="示例mongo实体"><a href="#示例mongo实体" class="headerlink" title="示例mongo实体"></a>示例mongo实体</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Person <span class="keyword">struct</span> &#123;</span><br><span class="line">        Name <span class="keyword">string</span></span><br><span class="line">        Age  <span class="keyword">int</span></span><br><span class="line">        ID   bson.ObjectId <span class="string">`bson:"_id,omitempty"`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="示例Insert"><a href="#示例Insert" class="headerlink" title="示例Insert"></a>示例Insert</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.GetMongo().Insert(<span class="string">"CollectionName"</span>, Person&#123;ID: NewObjectId(), Name: <span class="string">"foo"</span>, Age: <span class="number">10</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="示例Update"><a href="#示例Update" class="headerlink" title="示例Update"></a>示例Update</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.GetMongo().Update(<span class="string">"CollectionName"</span>, M&#123;<span class="string">"name"</span>: <span class="string">"foo"</span>&#125;, M&#123;<span class="string">"$inc"</span>: M&#123;<span class="string">"age"</span>: <span class="number">1</span>&#125;&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="示例UpdateAll"><a href="#示例UpdateAll" class="headerlink" title="示例UpdateAll"></a>示例UpdateAll</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.GetMongo().UpdateAll(<span class="string">"CollectionName"</span>, M&#123;<span class="string">"name"</span>: <span class="string">"foo"</span>&#125;, M&#123;<span class="string">"$inc"</span>: M&#123;<span class="string">"age"</span>: <span class="number">1</span>&#125;&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="示例Upsert"><a href="#示例Upsert" class="headerlink" title="示例Upsert"></a>示例Upsert</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.GetMongo().Upsert(<span class="string">"CollectionName"</span>, M&#123;<span class="string">"id"</span>: id&#125;, Person&#123;ID: id, Name: <span class="string">"foo"</span>, Age: <span class="number">10</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="示例Find"><a href="#示例Find" class="headerlink" title="示例Find"></a>示例Find</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">res.GetMongo().Find(<span class="string">"CollectionName"</span>, M&#123;<span class="string">"name"</span>: <span class="string">"foo"</span>&#125;, <span class="function"><span class="keyword">func</span><span class="params">(query *Query)</span></span> &#123;</span><br><span class="line">        query.All(&amp;res)</span><br><span class="line">        <span class="comment">// query.Skip(10).Limit(10).All(&amp;res)  // pipe</span></span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="NMgo-API"><a href="#NMgo-API" class="headerlink" title="NMgo API:"></a>NMgo API:</h2><h3 id="Mongo-interface"><a href="#Mongo-interface" class="headerlink" title="Mongo interface"></a>Mongo interface</h3><h4 id="Insert-collection-string-value-…interface"><a href="#Insert-collection-string-value-…interface" class="headerlink" title="Insert(collection string, value …interface{})　"></a>Insert(collection string, value …interface{})　</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">collection 传入插入的集合, value 传入需要插入的数据结构,可以为多个</span><br><span class="line">Update(collection string, selector, value interface&#123;&#125;) </span><br><span class="line">collection 传入集合名字, selector 传入过滤selector, value 传入update结构 Update仅仅更新一条数据,如果需要更新所有符合条件的数据请用UpdateAll</span><br><span class="line">UpdateAll?(collection string, selector, value interface&#123;&#125;) *ChangeInfo? </span><br><span class="line">collection 传入集合名字, selector 传入过滤selector, value 传入update结构, 返回 ChangeInfo? 结构指针</span><br><span class="line">Upsert(collection string, selector, value interface&#123;&#125;) *ChangeInfo? </span><br><span class="line">collection 传入集合名字, selector 传入过滤selector, value 传入结构数据, 返回ChangeInfo 结构指针</span><br><span class="line">Find(collection string, selector M, fn func(query Query)) </span><br><span class="line">collection 传入集合名字, selector 传入过滤selector, 传入handler function, 在返回query中,使用query提供接口自定义parse数据</span><br><span class="line">Remove(collection string, selector M) </span><br><span class="line">collection 传入集合名字, selector 传入过滤selector 删除操作</span><br><span class="line">Query interface</span><br></pre></td></tr></table></figure>
+<h4 id="Batch-n-int-Query"><a href="#Batch-n-int-Query" class="headerlink" title="Batch(n int) Query"></a>Batch(n int) Query</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Batch Size 在mongo数据库中定义, 默认batch size (100 docs 4MB)</span><br><span class="line">Prefetch(p float64) Query </span><br><span class="line">Prefetch 如果iter中待处理的doc数量为 P * batch size, 则开始获取下一个batch的数据, 默认值为0.25. 例如 query.Batch(200).Prefetch(0.25) batch size 设置为200, prefetch 会在iter中剩余50个待处理的doc时,预先获取下一个batch</span><br><span class="line">Skip(n int) Query </span><br><span class="line">Skip 跳过前n条数据</span><br><span class="line">Limit(n int) Query </span><br><span class="line">Limit 获取n条数据</span><br><span class="line">Select(selector interface&#123;&#125;) Query </span><br><span class="line">selector 传入结构化过滤selector</span><br><span class="line">Sort(fields ...string) Query </span><br><span class="line">fields 传入field名字, 按传入fields排序, 如果需要反序,在field名字前加减号. .Sort(&quot;firstname&quot;, &quot;-lastname&quot;)</span><br><span class="line">One(result interface&#123;&#125;) bool </span><br><span class="line">result 传入结构指针, 从query中取出一个doc, 赋值到result中</span><br><span class="line">All(result interface&#123;&#125;) </span><br><span class="line">result 传入切片, 从query中取出所有doc, 赋值到result</span><br><span class="line">Count() int </span><br><span class="line">返回query中doc数量</span><br><span class="line">Distinct(key string, result interface&#123;&#125;) </span><br><span class="line">key 传入需要去重的key, result 传入切片, unmarshal当前query按照传入key去重后的结果到result切片里</span><br><span class="line">MapReduce?(job *MapReduce?, result interface&#123;&#125;) *MapReduceInfo? </span><br><span class="line">MapReduce? 在当前query上执行MapReduce</span><br></pre></td></tr></table></figure>
+<p>目录结构:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">- $GOPATH/src/msyProject (Your project)</span><br><span class="line">|</span><br><span class="line">|-- glide.yaml</span><br><span class="line">|</span><br><span class="line">|-- glide.lock</span><br><span class="line">|</span><br><span class="line">|-- main.<span class="keyword">go</span> (Your main <span class="keyword">go</span> code can live here)</span><br><span class="line">|</span><br><span class="line">|-- nconf.ini    <span class="comment">// 包含etcd配置信息</span></span><br><span class="line">|</span><br><span class="line">|-- infra</span><br><span class="line">|    |</span><br><span class="line">|    |-- res</span><br><span class="line">|    |    |</span><br><span class="line">|    |    |-- init.<span class="keyword">go</span></span><br><span class="line">|    |    |-- nconf.<span class="keyword">go</span>                      <span class="comment">//nconf 配置初始化(mandatory) </span></span><br><span class="line">|    |    |-- mongo.<span class="keyword">go</span>  </span><br><span class="line">|    |</span><br><span class="line">|    |-- model                              <span class="comment">//包含数据实体</span></span><br><span class="line">|         |</span><br><span class="line">|         |-- </span><br><span class="line">|</span><br><span class="line">|-- vendor</span><br><span class="line">     |-- github.com</span><br><span class="line">          |</span><br><span class="line">          |-- Masterminds</span><br><span class="line">                |</span><br><span class="line">                |-- ... etc.</span><br></pre></td></tr></table></figure>
+<p>目录结构如上所示</p>
+<h2 id="初始化NF框架中mongo模块"><a href="#初始化NF框架中mongo模块" class="headerlink" title="初始化NF框架中mongo模块"></a>初始化NF框架中mongo模块</h2><p>infra/res/mongo.go:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">        <span class="string">"niox/nf/nconf"</span></span><br><span class="line">        <span class="string">"niox/nf/nmgo"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">        mongo nmgo.Mongo</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">initMongo</span><span class="params">()</span></span> &#123;</span><br><span class="line">        mutex.Lock()</span><br><span class="line">        <span class="keyword">defer</span> mutex.Unlock()</span><br><span class="line"></span><br><span class="line">        cfgKey := <span class="string">"/res/mongo"</span></span><br><span class="line">        cfg := ncf.GetNodeMap(cfgKey)</span><br><span class="line">        createMongo(cfg)</span><br><span class="line">        ncf.Watch(cfgKey, createMongo)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">createMongo</span><span class="params">(cfg nconf.NodeMap)</span></span> &#123;</span><br><span class="line">        <span class="comment">// mongo地址,例如mongodb://username:password@hostname:port/databasename</span></span><br><span class="line">        url := cfg.GetString(<span class="string">"/res/mongo/url"</span>)</span><br><span class="line"></span><br><span class="line">        mongo = nmgo.NewMongo(url)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">GetMongo</span><span class="params">()</span> <span class="title">nmgo</span>.<span class="title">Mongo</span></span> &#123;</span><br><span class="line">        <span class="keyword">return</span> mongo</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>main.go:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Person <span class="keyword">struct</span> &#123;</span><br><span class="line">        Name <span class="keyword">string</span></span><br><span class="line">        Age  <span class="keyword">int</span></span><br><span class="line">        ID   bson.ObjectId <span class="string">`bson:"_id,omitempty"`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">        res.GetMongo().Insert(dummyCol, Person&#123;ID: NewObjectId(), Name: <span class="string">"foo"</span>, Age: <span class="number">10</span>&#125;)</span><br><span class="line">        res.GetMongo().Update(dummyCol, M&#123;<span class="string">"name"</span>: <span class="string">"foo"</span>&#125;, M&#123;<span class="string">"$inc"</span>: M&#123;<span class="string">"age"</span>: <span class="number">1</span>&#125;&#125;)</span><br><span class="line">        res.GetMongo().UpdateAll(dummyCol, M&#123;<span class="string">"name"</span>: <span class="string">"foo"</span>&#125;, M&#123;<span class="string">"$inc"</span>: M&#123;<span class="string">"age"</span>: <span class="number">1</span>&#125;&#125;)</span><br><span class="line">        res.GetMongo().Upsert(dummyCol, M&#123;<span class="string">"id"</span>: id&#125;, Person&#123;ID: id, Name: <span class="string">"foo"</span>, Age: <span class="number">10</span>&#125;)</span><br><span class="line">        res.GetMongo().Find(dummyCol, M&#123;<span class="string">"name"</span>: <span class="string">"foo"</span>&#125;, <span class="function"><span class="keyword">func</span><span class="params">(query *Query)</span></span> &#123;</span><br><span class="line">             query.All(&amp;res)</span><br><span class="line">        &#125;)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="nredis"><a href="#nredis" class="headerlink" title="nredis"></a>nredis</h2><p>niox/nf/nredis包提供了一个Redis接口，提供了访问redis数据库的基本功能.</p>
+<h3 id="nredis-Redis"><a href="#nredis-Redis" class="headerlink" title="nredis.Redis"></a>nredis.Redis</h3><p>一个Redis接口的实例对应一个redis库。</p>
+<p>在程序中使用nredis包的NewRedis(redisServer, redisPassword string, dbIndex int) Redis函数获取一个Redis接口的实例,在资源层全局持有即可。</p>
+<p>Redis接口如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Redis <span class="keyword">interface</span> &#123;</span><br><span class="line">	GetString(key <span class="keyword">string</span>) (<span class="keyword">string</span>, <span class="keyword">bool</span>)</span><br><span class="line"></span><br><span class="line">	SetString(key, value <span class="keyword">string</span>, ttl ...<span class="keyword">int64</span>)</span><br><span class="line"></span><br><span class="line">	GetObject(key <span class="keyword">string</span>, value <span class="keyword">interface</span>&#123;&#125;) <span class="keyword">bool</span></span><br><span class="line"></span><br><span class="line">	SetObject(key <span class="keyword">string</span>, value <span class="keyword">interface</span>&#123;&#125;, ttl ...<span class="keyword">int64</span>)</span><br><span class="line"></span><br><span class="line">	GetStringMap(key <span class="keyword">string</span>) <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span></span><br><span class="line"></span><br><span class="line">	SetStringMap(key <span class="keyword">string</span>, fields <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>)</span><br><span class="line"></span><br><span class="line">	Delete(key <span class="keyword">string</span>)</span><br><span class="line"></span><br><span class="line">	Deletes(keys ...<span class="keyword">string</span>)</span><br><span class="line"></span><br><span class="line">	GetConn() Conn</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Redis的接口的GetXXX,SetXXX,Delete方法的使用方式十分明显，这里不再展开.</p>
+<h3 id="nredis-Conn"><a href="#nredis-Conn" class="headerlink" title="nredis.Conn"></a>nredis.Conn</h3><p>使用Redis接口的GetConn方法GetConn() Conn可以取得一个连接.注意使用Conn，需要使用defer调用Conn的Close方法</p>
+<p>Conn接口中的方法不是并发调用安全的。</p>
+<p>使用Conn的Do方法Do(cmd string, args …interface{}) *reply,可以直接执行​redis命令用来实现更加复杂的功能。例如:</p>
+<p>事务</p>
+<p>Redis的事务提供了一种“将多个命令打包， 然后一次性、按顺序地执行”的机制， 并且事务在执行的期间不会主动中断 —— 服务器在执行完事务中的所有命令之后， 才会继续处理其他客户端的其他命令。</p>
+<p>一个事务从开始到结束经过以下三个阶段：</p>
+<h4 id="开始事务"><a href="#开始事务" class="headerlink" title="开始事务"></a>开始事务</h4><h4 id="命令入队"><a href="#命令入队" class="headerlink" title="命令入队"></a>命令入队</h4><h4 id="执行事务"><a href="#执行事务" class="headerlink" title="执行事务"></a>执行事务</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">redis := res.GetRedis()</span><br><span class="line">conn := redis.GetConn()</span><br><span class="line"><span class="keyword">defer</span> conn.Close()</span><br><span class="line">conn.Do(<span class="string">"MULTI"</span>)</span><br><span class="line">conn.Do(<span class="string">"INCR"</span>, <span class="string">"foo"</span>)</span><br><span class="line">conn.Do(<span class="string">"INCR"</span>, <span class="string">"bar"</span>)</span><br><span class="line">result, err := conn.Do(<span class="string">"EXEC"</span>).Ints()</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">         ...</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="发布订阅pub-sub"><a href="#发布订阅pub-sub" class="headerlink" title="发布订阅pub/sub"></a>发布订阅pub/sub</h4><h5 id="sub"><a href="#sub" class="headerlink" title="sub:"></a>sub:</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">redis := res.GetRedis()</span><br><span class="line">conn := redis.GetConn()</span><br><span class="line"><span class="keyword">defer</span> conn.Close()</span><br><span class="line">conn.Send(<span class="string">"SUBSCRIBE"</span>, <span class="string">"/chat"</span>)</span><br><span class="line">conn.Flush()</span><br><span class="line"><span class="keyword">for</span> &#123;</span><br><span class="line">	reply := conn.Receive()</span><br><span class="line">	<span class="keyword">var</span> kind <span class="keyword">string</span></span><br><span class="line">	<span class="keyword">var</span> ch <span class="keyword">string</span></span><br><span class="line">	reply = reply.Scan(&amp;kind, &amp;ch)</span><br><span class="line">	<span class="keyword">switch</span> kind &#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="string">"subscribe"</span>:</span><br><span class="line">		fmt.Println(<span class="string">"订阅:"</span>, ch)</span><br><span class="line">	<span class="keyword">case</span> <span class="string">"message"</span>:</span><br><span class="line">		<span class="keyword">var</span> msg <span class="keyword">string</span></span><br><span class="line">		reply = reply.Scan(&amp;msg)</span><br><span class="line">		fmt.Println(<span class="string">"收到消息:"</span>, msg, reply.Error())</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		fmt.Println(kind)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="pub"><a href="#pub" class="headerlink" title="pub:"></a>pub:</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">redis := res.GetRedis()</span><br><span class="line">conn := redis.GetConn()</span><br><span class="line"><span class="keyword">defer</span> conn.Close()</span><br><span class="line">count, err := conn.Do(<span class="string">"PUBLISH"</span>, <span class="string">"/chat"</span>, <span class="string">"hello world"</span>).Int()</span><br><span class="line">fmt.Println(count, err)</span><br></pre></td></tr></table></figure>
+<h2 id="nes"><a href="#nes" class="headerlink" title="nes"></a>nes</h2><p>NES API:</p>
+<h3 id="ES-interface"><a href="#ES-interface" class="headerlink" title="ES interface"></a>ES interface</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Search(esindex string, estype string, esargs map[string]interface&#123;&#125;, esquery interface&#123;&#125;) SearchResult? </span><br><span class="line">esindex 传入index名字, estype 传入type, esargs 传入参数, esquery 传入esquery</span><br><span class="line">Index(esindex string, estype string, esidcolumn string, esargs map[string]interface&#123;&#125;, esdata interface&#123;&#125;) BaseResponse? </span><br><span class="line">esindex 传入index名字, estype 传入type, esidcolumn 使用数据中某一列当做ID, 传入列名, esargs 传入参数, esdata 传入结构化数据</span><br><span class="line">IndexWithID(esindex string, estype string, esid string, esargs map[string]interface&#123;&#125;, esdata interface&#123;&#125;) BaseResponse? </span><br><span class="line">esindex 传入index名字, estype 传入type, esid 传入id, esargs 传入参数, esdata 传入结构化数据</span><br><span class="line">Update(esindex string, estype string, esid string, esargs map[string]interface&#123;&#125;, esdata interface&#123;&#125;) BaseResponse? </span><br><span class="line">esindex 传入index名字, estype 传入type, esid 传入id, esargs 传入参数, esdata 传入结构化数据</span><br><span class="line">Delete(esindex string, estype string, esid string, esargs map[string]interface&#123;&#125;) BaseResponse? </span><br><span class="line">esindex 传入index名字, estype 传入type, esid 传入id, esargs 传入参数</span><br><span class="line">BulkIndex?(esindex string, estype string, esidcolumn string, parent string, ttl string, esdata interface&#123;&#125;) bool </span><br><span class="line">esindex 传入index名字, estype 传入type, esidcolumn 使用数据中某一列当做ID, 传入列名, esargs 传入参数, esdata 传入结构化数据切片</span><br></pre></td></tr></table></figure>
+<p>使用示例</p>
+<p>目录结构:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">- $GOPATH/src/msyProject (Your project)</span><br><span class="line">|</span><br><span class="line">|-- glide.yaml</span><br><span class="line">|</span><br><span class="line">|-- glide.lock</span><br><span class="line">|</span><br><span class="line">|-- main.<span class="keyword">go</span> (Your main <span class="keyword">go</span> code can live here)</span><br><span class="line">|</span><br><span class="line">|-- nconf.ini    <span class="comment">// 包含etcd配置信息</span></span><br><span class="line">|</span><br><span class="line">|-- infra</span><br><span class="line">|    |</span><br><span class="line">|    |-- res</span><br><span class="line">|    |    |</span><br><span class="line">|    |    |-- init.<span class="keyword">go</span></span><br><span class="line">|    |    |-- nconf.<span class="keyword">go</span>                      <span class="comment">//nconf 配置初始化(mandatory) </span></span><br><span class="line">|    |    |-- es.<span class="keyword">go</span>  </span><br><span class="line">|    |</span><br><span class="line">|    |-- model                              <span class="comment">//包含数据实体</span></span><br><span class="line">|         |</span><br><span class="line">|         |-- </span><br><span class="line">|</span><br><span class="line">|-- vendor</span><br><span class="line">     |-- github.com</span><br><span class="line">          |</span><br><span class="line">          |-- Masterminds</span><br><span class="line">                |</span><br><span class="line">                |-- ... etc.</span><br></pre></td></tr></table></figure>
+<p>初始化NF框架中ES模块</p>
+<p>infra/res/es.go:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">        <span class="string">"niox/nf/nconf"</span></span><br><span class="line">        <span class="string">"niox/nf/nes"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">        es nes.ES</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">initES</span><span class="params">()</span></span> &#123;</span><br><span class="line">        mutex.Lock()</span><br><span class="line">        <span class="keyword">defer</span> mutex.Unlock()</span><br><span class="line"></span><br><span class="line">        cfgKey := <span class="string">"/res/es"</span></span><br><span class="line">        cfg := ncf.GetNodeMap(cfgKey)</span><br><span class="line">        createES(cfg)</span><br><span class="line">        ncf.Watch(cfgKey, createES)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">createES</span><span class="params">(cfg nconf.NodeMap)</span></span> &#123;</span><br><span class="line">        es = nes.NewES(cfg.GetString(<span class="string">"/res/es/address"</span>), cfg.GetString(<span class="string">"/res/es/username"</span>), cfg.GetString(<span class="string">"/res/es/password"</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">GetES</span><span class="params">()</span> <span class="title">nes</span>.<span class="title">ES</span></span> &#123;</span><br><span class="line">        <span class="keyword">return</span> es</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>main.go:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">    query :=<span class="string">`&#123;</span></span><br><span class="line"><span class="string">    "query" : &#123;</span></span><br><span class="line"><span class="string">        "term" : &#123; "id" : 9 &#125;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;`</span></span><br><span class="line">    <span class="comment">// hospconfig 为带有json标签的结构体定义</span></span><br><span class="line">    result := hospConfig&#123;&#125;</span><br><span class="line">    resp := res,.Search(<span class="string">"gd"</span>, <span class="string">"hosp"</span>, <span class="literal">nil</span>, query)</span><br><span class="line">    </span><br><span class="line">    json.Unmarshal(*resp.Hits[<span class="number">0</span>].Source, &amp;result)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 添加新doc到index gd, type haha, 并且用Name 列当做ID</span></span><br><span class="line">    m := MyUser&#123;Name:<span class="string">"alex"</span>, Age: <span class="number">10</span>&#125;</span><br><span class="line">    resp := es.Index(<span class="string">"gd"</span>, <span class="string">"haha"</span>, <span class="string">"Name"</span>, <span class="literal">nil</span>, m)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 以切片的方式添加新docs</span></span><br><span class="line">    data := []MyUser&#123;MyUser&#123;Name:<span class="string">"alex1"</span>, Age: <span class="number">1</span>&#125;, MyUser&#123;Name:<span class="string">"alex2"</span>, Age:<span class="number">2</span>&#125;&#125;    </span><br><span class="line">    </span><br><span class="line">    ok := es.BulkIndex(<span class="string">"gd"</span>, <span class="string">"haha"</span>, <span class="string">"Name"</span>, <span class="string">""</span>, <span class="string">""</span>, data)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 删除index下的type</span></span><br><span class="line">    es.Delete(<span class="string">"gd"</span>, <span class="string">"haha"</span>, <span class="string">""</span>, <span class="literal">nil</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Niox-Api2-Go"><a href="#Niox-Api2-Go" class="headerlink" title="Niox Api2 Go"></a>Niox Api2 Go</h2><p>niox/service/api2包是Niox PC2 Api2 Client在Golang下的实现.</p>
+<h3 id="idl"><a href="#idl" class="headerlink" title="idl"></a>idl</h3><p>niox/service/api2/idl下放置api2的idl文件,在windows执行该目录下的gen.bat基于idl生成生成go代码. 生成代码的目录结构如下,其结构和api2 idl定义的结构一致。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">niox/service/api2/tf</span><br><span class="line"> -- basedata</span><br><span class="line">    -- xx.<span class="keyword">go</span></span><br><span class="line"> -- enums</span><br><span class="line">    -- xx.<span class="keyword">go</span></span><br><span class="line"> -- request</span><br><span class="line">    -- xx.<span class="keyword">go</span></span><br><span class="line"> -- response</span><br><span class="line">    -- xx.<span class="keyword">go</span></span><br><span class="line"> -- service</span><br><span class="line">    -- xx.<span class="keyword">go</span></span><br></pre></td></tr></table></figure>
+<h3 id="api2-interface-and-proxy"><a href="#api2-interface-and-proxy" class="headerlink" title="api2 interface and proxy"></a>api2 interface and proxy</h3><p>生成的go代码中，在niox/service/api2/service包下包含api2各个service接口。如：SelfCheckService?, MasterDataService等等.</p>
+<p>为便于使用，重新在niox/service/api2中定义这些接口，并以proxy的方式实现，结合PC1中存放的各个医院的PC2配置信息，实现按不同医院id获取具体的api2 service。</p>
+<p>api2包提供了baseService接口和baseServiceProxy结构，基于这两个类型可以方便的完成api2各个service接口的定义和proxy实现。</p>
+<p>以SelfCheckService为例：</p>
+<p>在api2包下创建selfcheckservice_proxy.go文件.<br>在其中编译selfCheckService接口，内部组合(嵌套)baseService接口，同时重定义HeartBeat方法。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> selfCheckService <span class="keyword">interface</span> &#123;</span><br><span class="line">	baseService</span><br><span class="line">	HeartBeat(heartBeatRequest *request.HeartBeatRequest) *basedata.Result_</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编写selfCheckServiceProxy结构，内部组合baseServiceProxy结构和基于idl生成的service.SelfCheckService结构。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> selfCheckServiceProxy <span class="keyword">struct</span> &#123;</span><br><span class="line">	baseServiceProxy</span><br><span class="line">	service.SelfCheckService</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为selfCheckServiceProxy添加HeartBeat方法使其实现selfCheckService 接口</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(srv *selfCheckServiceProxy)</span> <span class="title">HeartBeat</span><span class="params">(heartBeatRequest *request.HeartBeatRequest)</span> *<span class="title">basedata</span>.<span class="title">Result_</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> srv.ifAutoClose()</span><br><span class="line">	<span class="comment">//设置认证信息</span></span><br><span class="line">	heartBeatRequest.Security = srv.createSecurity()</span><br><span class="line">	<span class="comment">//记录请求日志</span></span><br><span class="line">	srv.logRequest(heartBeatRequest.Security, heartBeatRequest)</span><br><span class="line">	<span class="comment">//调用api2</span></span><br><span class="line">	resp, err := srv.SelfCheckService.HeartBeat(heartBeatRequest)</span><br><span class="line">	<span class="comment">//记录响应日志</span></span><br><span class="line">	srv.logResponse(heartBeatRequest.Security, resp, err)</span><br><span class="line">	panicErr(err)</span><br><span class="line">	<span class="keyword">return</span> resp</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在api2.go中编写根据医院id创建selfCheckService 接口实例的两个New函数</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewSelfCheckService</span><span class="params">(hospId <span class="keyword">int</span>)</span> <span class="title">selfCheckService</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> NewSelfCheckServiceAutoClose(hospId, <span class="literal">true</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewSelfCheckServiceAutoClose</span><span class="params">(hospId <span class="keyword">int</span>, autoClose <span class="keyword">bool</span>)</span> <span class="title">selfCheckService</span></span> &#123;</span><br><span class="line">	baseProxy := createBaseServiceProxy(<span class="string">"SelfCheckService"</span>, hospId, autoClose)</span><br><span class="line">	srv := service.NewSelfCheckServiceClientProtocol(baseProxy.transport, baseProxy.protocol, baseProxy.protocol)</span><br><span class="line">	<span class="keyword">return</span> &amp;selfCheckServiceProxy&#123;baseServiceProxy: baseProxy, SelfCheckService: srv&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用方式，在业务组件中使用api2.NewSelfCheckService(hospId)获取selfCheckService实例，调用对应的方法即可。</p>
+<p>另外api2包还暴露了api2.GetHospConfig(hospId int)用来返回指定医院PC2的配置信息.</p>
+<h2 id="Seelog"><a href="#Seelog" class="headerlink" title="Seelog"></a>Seelog</h2><p>Seelog是适用于golang的logging框架,提供灵活易学的日志分发,过滤,组织格式化等功能. Seelog用golang实现</p>
+<p>特性</p>
+<p>XML可配置<br>修改配置文件后,可支持不用重启APP立即生效配置<br>支持多项目, 多方法使用不同配置文件<br>灵活可配置的message格式<br>支持同时输出到多个stream<br>支持console, file, buffered, rolling, smtp 等等writer<br>…<br>使用示例</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> log <span class="string">"github.com/cihub/seelog"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">defer</span> log.Flush()</span><br><span class="line">    log.Info(<span class="string">"Hello from Seelog!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>XML配置文件示例</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;seelog&gt;</span><br><span class="line">    &lt;outputs formatid=<span class="string">"common"</span>&gt;</span><br><span class="line">        &lt;filter levels=<span class="string">"critical"</span>&gt;</span><br><span class="line">            &lt;rollingfile <span class="keyword">type</span>=<span class="string">"date"</span> filename=<span class="string">"logs/goapp-critical.log"</span> datepattern=<span class="string">"02.01.2006"</span>/&gt;</span><br><span class="line">        &lt;/filter&gt;</span><br><span class="line">	&lt;filter levels=<span class="string">"info"</span>&gt;</span><br><span class="line">            &lt;rollingfile <span class="keyword">type</span>=<span class="string">"date"</span> filename=<span class="string">"logs/goapp-info.log"</span> datepattern=<span class="string">"02.01.2006"</span>/&gt;</span><br><span class="line">        &lt;/filter&gt;</span><br><span class="line">    &lt;/outputs&gt;</span><br><span class="line">    &lt;formats&gt;</span><br><span class="line">        &lt;format id=<span class="string">"common"</span> format=<span class="string">"%Date/%Time [%LEV] %FullPath %Func %Line %Msg%n"</span> /&gt;</span><br><span class="line">    &lt;/formats&gt;</span><br><span class="line">&lt;/seelog&gt;</span><br></pre></td></tr></table></figure>
+<p><format id="common" format="%Date/%Time [%LEV] %FullPath? %Func %Line %Msg%n"><br>%Msg 为消息主体</format></p>
+<p><rollingfile type="date" filename="logs/goapp-critical.log" datepattern="02.01.2006"><br>根据日期rolling分文件日志</rollingfile></p>
+<p><filter levels="info"><br>根据级别过滤日志内容</filter></p>
+<h2 id="应用构建"><a href="#应用构建" class="headerlink" title="应用构建"></a>应用构建</h2><p>直接编译成指定平台上的可执行文件.</p>
+<h3 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h3><p>命令行进入golang代码的main包所在目录, 修改环境变量</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GOARCH = <span class="string">"amd64"</span></span><br><span class="line">GOOS = <span class="string">"linux"</span></span><br></pre></td></tr></table></figure>
+<p>执行go install 命令即可生成可执行文件.</p>
+<h3 id="使用glide-plugin机制构建"><a href="#使用glide-plugin机制构建" class="headerlink" title="使用glide plugin机制构建"></a>使用glide plugin机制构建</h3><p>windows下编写批处理文件glide-bt.bat示例如下.直接执行此文件或使用glide bt命令进行构建。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line"></span><br><span class="line">cd /d %~dp0/</span><br><span class="line"></span><br><span class="line">cd /d ../..</span><br><span class="line">echo SET GOPATH=%cd%</span><br><span class="line">SET GOPATH=%cd%</span><br><span class="line"></span><br><span class="line">cd /d %~dp0/</span><br><span class="line"></span><br><span class="line">echo SET GOOS=linux</span><br><span class="line">SET GOOS=linux</span><br><span class="line"></span><br><span class="line">echo SET GOARCH=amd64</span><br><span class="line">SET GOARCH=amd64</span><br><span class="line"></span><br><span class="line">cd /d %~dp0/app/api1</span><br><span class="line">echo build api1</span><br><span class="line">call <span class="keyword">go</span> install</span><br></pre></td></tr></table></figure>
+<h2 id="Profiling"><a href="#Profiling" class="headerlink" title="Profiling"></a>Profiling</h2><h3 id="Web应用的profiling"><a href="#Web应用的profiling" class="headerlink" title="Web应用的profiling"></a>Web应用的profiling</h3><p>引用net/http/profile包即可添加路由到/debug/pprof/… 路径下<br>访问示例<br>​<a href="http://localhost:XXXX/debug/pprof/" target="_blank" rel="noopener">http://localhost:XXXX/debug/pprof/</a></p>
+<p>代码示例:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用原生golang http包添加以下引用即可</span></span><br><span class="line">_ <span class="string">"net/http/pprof"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用martini框架,需要手动注册以下路由</span></span><br><span class="line">m.Group(<span class="string">"/debug/pprof"</span>, <span class="function"><span class="keyword">func</span><span class="params">(r martini.Router)</span></span> &#123;</span><br><span class="line">    r.Any(<span class="string">"/"</span>, pprof.Index)</span><br><span class="line">    r.Any(<span class="string">"/cmdline"</span>, pprof.Cmdline)</span><br><span class="line">    r.Any(<span class="string">"/profile"</span>, pprof.Profile)</span><br><span class="line">    r.Any(<span class="string">"/symbol"</span>, pprof.Symbol)</span><br><span class="line">    r.Any(<span class="string">"/block"</span>, pprof.Handler(<span class="string">"block"</span>).ServeHTTP)</span><br><span class="line">    r.Any(<span class="string">"/heap"</span>, pprof.Handler(<span class="string">"heap"</span>).ServeHTTP)</span><br><span class="line">    r.Any(<span class="string">"/goroutine"</span>, pprof.Handler(<span class="string">"goroutine"</span>).ServeHTTP)</span><br><span class="line">    r.Any(<span class="string">"/threadcreate"</span>, pprof.Handler(<span class="string">"threadcreate"</span>).ServeHTTP)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="非Web应用的profiling"><a href="#非Web应用的profiling" class="headerlink" title="非Web应用的profiling"></a>非Web应用的profiling</h3><p>可以引用runtime/pprof 包来监控信息,也可以引用net/http/pprof包,在goroutine中分配端口启动web服务即可</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/22/k8s/kubectl常用命令/" rel="next" title="kubectl常用命令">
+                <i class="fa fa-chevron-left"></i> kubectl常用命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/11/k8s/k8s集群部署/" rel="prev" title="k8s集群安装">
+                k8s集群安装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">bolly</p>
+              <p class="site-description motion-element" itemprop="description">不疯魔，不成佛</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/chibaolai" title="GitHub &rarr; https://github.com/chibaolai" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:chibaolai@tom.com" title="E-Mail &rarr; mailto:chibaolai@tom.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Golang-NF"><span class="nav-number">1.</span> <span class="nav-text">Golang NF</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NF简介"><span class="nav-number">1.1.</span> <span class="nav-text">NF简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Golang开发环境搭建"><span class="nav-number">1.2.</span> <span class="nav-text">Golang开发环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装git-for-windows"><span class="nav-number">1.3.</span> <span class="nav-text">安装git-for-windows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eclipse-IDE-Goclipse"><span class="nav-number">1.4.</span> <span class="nav-text">Eclipse IDE + Goclipse</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Glide包管理工具"><span class="nav-number">1.5.</span> <span class="nav-text">Glide包管理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Glide-工具简介"><span class="nav-number">1.5.1.</span> <span class="nav-text">Glide 工具简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Glide-安装"><span class="nav-number">1.5.2.</span> <span class="nav-text">Glide 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Glide-使用"><span class="nav-number">1.6.</span> <span class="nav-text">Glide 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Glide-Get"><span class="nav-number">1.6.1.</span> <span class="nav-text">Glide Get</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Glide-Update"><span class="nav-number">1.6.2.</span> <span class="nav-text">Glide Update</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Glide-Install"><span class="nav-number">1.6.3.</span> <span class="nav-text">Glide Install</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Glide-novendor"><span class="nav-number">1.6.4.</span> <span class="nav-text">Glide novendor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Glide-Rebuild"><span class="nav-number">1.6.5.</span> <span class="nav-text">Glide Rebuild</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#glide-yaml"><span class="nav-number">1.6.6.</span> <span class="nav-text">glide.yaml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Config-Center-nconf"><span class="nav-number">1.7.</span> <span class="nav-text">Config Center(nconf)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nconf简介"><span class="nav-number">1.7.1.</span> <span class="nav-text">nconf简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nconf-web管理端"><span class="nav-number">1.7.2.</span> <span class="nav-text">nconf web管理端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nsql"><span class="nav-number">1.8.</span> <span class="nav-text">nsql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nsql-示例"><span class="nav-number">1.8.1.</span> <span class="nav-text">nsql 示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Get查询单个"><span class="nav-number">1.8.2.</span> <span class="nav-text">Get查询单个</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NamedGet查询单个"><span class="nav-number">1.8.3.</span> <span class="nav-text">NamedGet查询单个</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Select查询多个"><span class="nav-number">1.8.4.</span> <span class="nav-text">Select查询多个</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NamedSelect查询多个"><span class="nav-number">1.8.5.</span> <span class="nav-text">NamedSelect查询多个</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exec和NamedExec"><span class="nav-number">1.8.6.</span> <span class="nav-text">Exec和NamedExec</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Begin和Tx"><span class="nav-number">1.8.7.</span> <span class="nav-text">Begin和Tx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prepare和PrepareNamed"><span class="nav-number">1.8.8.</span> <span class="nav-text">Prepare和PrepareNamed</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据访问访问对象示例"><span class="nav-number">1.9.</span> <span class="nav-text">数据访问访问对象示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化NF框架中mysql模块nsql"><span class="nav-number">1.9.1.</span> <span class="nav-text">初始化NF框架中mysql模块nsql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义Dao以及model实体"><span class="nav-number">1.9.2.</span> <span class="nav-text">定义Dao以及model实体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Dao以及model访问数据库"><span class="nav-number">1.9.3.</span> <span class="nav-text">使用Dao以及model访问数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nmgo"><span class="nav-number">1.10.</span> <span class="nav-text">nmgo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nmgo-示例"><span class="nav-number">1.10.1.</span> <span class="nav-text">nmgo 示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#示例mongo实体"><span class="nav-number">1.10.1.1.</span> <span class="nav-text">示例mongo实体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#示例Insert"><span class="nav-number">1.10.1.2.</span> <span class="nav-text">示例Insert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#示例Update"><span class="nav-number">1.10.1.3.</span> <span class="nav-text">示例Update</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#示例UpdateAll"><span class="nav-number">1.10.1.4.</span> <span class="nav-text">示例UpdateAll</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#示例Upsert"><span class="nav-number">1.10.1.5.</span> <span class="nav-text">示例Upsert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#示例Find"><span class="nav-number">1.10.1.6.</span> <span class="nav-text">示例Find</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NMgo-API"><span class="nav-number">1.11.</span> <span class="nav-text">NMgo API:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mongo-interface"><span class="nav-number">1.11.1.</span> <span class="nav-text">Mongo interface</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Insert-collection-string-value-…interface"><span class="nav-number">1.11.1.1.</span> <span class="nav-text">Insert(collection string, value …interface{})　</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Batch-n-int-Query"><span class="nav-number">1.11.1.2.</span> <span class="nav-text">Batch(n int) Query</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化NF框架中mongo模块"><span class="nav-number">1.12.</span> <span class="nav-text">初始化NF框架中mongo模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nredis"><span class="nav-number">1.13.</span> <span class="nav-text">nredis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nredis-Redis"><span class="nav-number">1.13.1.</span> <span class="nav-text">nredis.Redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nredis-Conn"><span class="nav-number">1.13.2.</span> <span class="nav-text">nredis.Conn</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#开始事务"><span class="nav-number">1.13.2.1.</span> <span class="nav-text">开始事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令入队"><span class="nav-number">1.13.2.2.</span> <span class="nav-text">命令入队</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行事务"><span class="nav-number">1.13.2.3.</span> <span class="nav-text">执行事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布订阅pub-sub"><span class="nav-number">1.13.2.4.</span> <span class="nav-text">发布订阅pub/sub</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#sub"><span class="nav-number">1.13.2.4.1.</span> <span class="nav-text">sub:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pub"><span class="nav-number">1.13.2.4.2.</span> <span class="nav-text">pub:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nes"><span class="nav-number">1.14.</span> <span class="nav-text">nes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ES-interface"><span class="nav-number">1.14.1.</span> <span class="nav-text">ES interface</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Niox-Api2-Go"><span class="nav-number">1.15.</span> <span class="nav-text">Niox Api2 Go</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#idl"><span class="nav-number">1.15.1.</span> <span class="nav-text">idl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#api2-interface-and-proxy"><span class="nav-number">1.15.2.</span> <span class="nav-text">api2 interface and proxy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Seelog"><span class="nav-number">1.16.</span> <span class="nav-text">Seelog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用构建"><span class="nav-number">1.17.</span> <span class="nav-text">应用构建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#交叉编译"><span class="nav-number">1.17.1.</span> <span class="nav-text">交叉编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用glide-plugin机制构建"><span class="nav-number">1.17.2.</span> <span class="nav-text">使用glide plugin机制构建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Profiling"><span class="nav-number">1.18.</span> <span class="nav-text">Profiling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Web应用的profiling"><span class="nav-number">1.18.1.</span> <span class="nav-text">Web应用的profiling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非Web应用的profiling"><span class="nav-number">1.18.2.</span> <span class="nav-text">非Web应用的profiling</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">bolly</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
