@@ -1966,6 +1966,183 @@
 
   
 
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/11/29/spring/spring boot-启动/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bolly">
+      <meta itemprop="description" content="不疯魔，不成佛">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点点滴滴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/29/spring/spring boot-启动/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-29 12:53:54" itemprop="dateCreated datePublished" datetime="2018-11-29T12:53:54+08:00">2018-11-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-04 14:55:51" itemprop="dateModified" datetime="2019-01-04T14:55:51+08:00">2019-01-04</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="spring-boot-启动"><a href="#spring-boot-启动" class="headerlink" title="spring boot-启动"></a>spring boot-启动</h1><h2 id="启动原理"><a href="#启动原理" class="headerlink" title="启动原理"></a>启动原理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">* SpringBootApplication</span><br><span class="line">*     0. ComponetScan</span><br><span class="line">*        EnableAutoConfiguration</span><br><span class="line">*           AutoConfigurationPackage</span><br><span class="line">*           Import(AutoConfigurationImportSelector.class)-&gt;spring.factores</span><br><span class="line">*               Conifuration</span><br><span class="line">*               ConditionalOnClass</span><br><span class="line">*               ConditionalOnProperty</span><br><span class="line">* run</span><br><span class="line">*     1. new SpringApplication</span><br><span class="line">*         create ApplicationContext</span><br><span class="line">*         SpringFactoriesLoader load ApplicationContextInitializer</span><br><span class="line">*         SpringFactoriesLoader load ApplicationListener</span><br><span class="line">*         main</span><br><span class="line">*     2. for **ApplicationRunListener.started()**</span><br><span class="line">*     3. init Environment</span><br><span class="line">*     4. **ApplicationRunListener.environmentPrepared()**</span><br><span class="line">*     5. sout banner</span><br><span class="line">*     6. ApplicationContextClass.setEnviroment(env) (ShutdownHook BeanNameGenerator ResourceLoader)</span><br><span class="line">*     7. SpringFactoriesLoader ApplicationContextInitializer.initialize()</span><br><span class="line">*     8. **ApplicationRunListener.contextPrepared()**</span><br><span class="line">*     9. 0-&gt;ApplicationContext</span><br><span class="line">*     10. **ApplicationRunListener.contextLoaded()**</span><br><span class="line">*     11. ApplicationContext.refresh()</span><br><span class="line">*     12. CommandLineRunner</span><br><span class="line">*     13. **ApplicationRunListener.finished()**</span><br></pre></td></tr></table></figure>
+<ol>
+<li>扫描所有configuration类和spring.factores中定义的初始化类</li>
+<li>创建applicationContext，springFactoriesLoader load Initializer 和 applicationLister</li>
+<li>applicationRunLister -&gt; started</li>
+<li>初始化 环境变量</li>
+<li>applicationRunLister -&gt; environmentPrepared</li>
+<li>设置环境变量到applicationContext</li>
+</ol>
+<h2 id="spring-boot-war"><a href="#spring-boot-war" class="headerlink" title="spring boot war"></a>spring boot war</h2><h3 id="build-gradle"><a href="#build-gradle" class="headerlink" title="build.gradle"></a>build.gradle</h3><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'war'</span></span><br><span class="line"><span class="keyword">compile</span>(<span class="string">"org.springframework.boot:spring-boot-starter-web:$&#123;springBootVersion&#125;"</span>) &#123;</span><br><span class="line">            <span class="keyword">exclude</span> module:<span class="string">"spring-boot-starter-tomcat"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">compile</span>(<span class="string">"javax.servlet:javax.servlet-api:3.1.0"</span>)</span><br><span class="line"><span class="keyword">compile</span>(<span class="string">"org.apache.tomcat:tomcat-servlet-api:8.0.36"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Application-java"><a href="#Application-java" class="headerlink" title="Application.java"></a>Application.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> <span class="keyword">extends</span> <span class="title">SpringBootServletInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(Application.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 *重写configure</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> builder</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> SpringApplicationBuilder <span class="title">configure</span><span class="params">(SpringApplicationBuilder builder)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> builder.sources(Application.class);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="SpringMVC处理流程"><a href="#SpringMVC处理流程" class="headerlink" title="SpringMVC处理流程"></a>SpringMVC处理流程</h2><ul>
+<li>用户发送请求至前端控制器DispatcherServlet。</li>
+<li>DispatcherServlet收到请求调用HandlerMapping处理器映射器。</li>
+<li>处理器映射器找到具体的处理器(可以根据xml配置、注解进行查找)，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet。</li>
+<li>DispatcherServlet调用HandlerAdapter处理器适配器。</li>
+<li>HandlerAdapter经过适配调用具体的处理器(Controller，也叫后端控制器)。</li>
+<li>Controller执行完成返回ModelAndView。</li>
+<li>HandlerAdapter将controller执行结果ModelAndView返回给DispatcherServlet。</li>
+<li>DispatcherServlet将ModelAndView传给ViewReslover视图解析器。</li>
+<li>ViewReslover解析后返回具体View。</li>
+<li>DispatcherServlet根据View进行渲染视图（即将模型数据填充至视图中）。</li>
+<li>DispatcherServlet响应用户。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
   <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -2159,196 +2336,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/11/16/other/面试题-持续更新/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bolly">
-      <meta itemprop="description" content="不疯魔，不成佛">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="点点滴滴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/16/other/面试题-持续更新/" class="post-title-link" itemprop="url">面试题-持续更新</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-16 15:09:27" itemprop="dateCreated datePublished" datetime="2018-11-16T15:09:27+08:00">2018-11-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-04 11:02:57" itemprop="dateModified" datetime="2019-01-04T11:02:57+08:00">2019-01-04</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/other/" itemprop="url" rel="index"><span itemprop="name">other</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="面试题-持续更新"><a href="#面试题-持续更新" class="headerlink" title="面试题-持续更新"></a>面试题-持续更新</h1><h2 id="一、Java基础"><a href="#一、Java基础" class="headerlink" title="一、Java基础"></a>一、Java基础</h2><p>Collections.sort()方法<br>写一个类，继承AtomicLong，再写一个setIfGreater方法，如果新值比旧值大就替换，要求无锁并线程安全。<br>实现一个LinkedMultiValueMap类，一个key对应多个value（value可以存储List<v>），需要实现add方法，set方法，get方法，put方法等。要求无锁并线程安全。<br>举例说明Spring框架的异步servlet。<br>Java阻塞队列ArrayBlockingQueue和LinkedBlockingQueue实现原理分析</v></p>
-<h2 id="二、Java多线程"><a href="#二、Java多线程" class="headerlink" title="二、Java多线程"></a>二、Java多线程</h2><p>线程池的原理，为什么要创建线程池？创建线程池的方式；<br>线程的生命周期，什么时候会出现僵死进程；<br>说说线程安全问题，什么实现线程安全，如何实现线程安全；<br>创建线程池有哪几个核心参数？ 如何合理配置线程池的大小？<br>volatile、ThreadLocal的使用场景和原理；<br>ThreadLocal什么时候会出现OOM的情况？为什么？<br>synchronized、volatile区别、synchronized锁粒度、模拟死锁场景、原子性与可见性；</p>
-<h2 id="三、JVM相关"><a href="#三、JVM相关" class="headerlink" title="三、JVM相关"></a>三、JVM相关</h2><p>JVM内存模型，GC机制和原理；<br>GC分哪两种，Minor GC 和Full GC有什么区别？什么时候会触发Full GC？分别采用什么算法？<br>JVM里的有几种classloader，为什么会有多种？<br>什么是双亲委派机制？介绍一些运作过程，双亲委派模型的好处；<br>什么情况下我们需要破坏双亲委派模型；<br>常见的JVM调优方法有哪些？可以具体到调整哪个参数，调成什么值？<br>JVM虚拟机内存划分、类加载器、垃圾收集算法、垃圾收集器、class文件结构是如何解析的；<br>java 查看GC日志，如何计算 allocation rate 和 promotion rate </p>
-<h2 id="四、Java扩展篇"><a href="#四、Java扩展篇" class="headerlink" title="四、Java扩展篇"></a>四、Java扩展篇</h2><p>红黑树的实现原理和应用场景；<br>NIO是什么？适用于何种场景？<br>Java9比Java8改进了什么；<br>HashMap内部的数据结构是什么？底层是怎么实现的？（还可能会延伸考察ConcurrentHashMap与HashMap、HashTable等，考察对技术细节的深入了解程度）；<br>说说反射的用途及实现，反射是不是很慢，我们在项目中是否要避免使用反射；<br>说说自定义注解的场景及实现；<br>List 和 Map 区别，Arraylist 与 LinkedList 区别，ArrayList 与 Vector 区别；</p>
-<h2 id="五、Spring相关"><a href="#五、Spring相关" class="headerlink" title="五、Spring相关"></a>五、Spring相关</h2><p>Spring AOP的实现原理和场景？<br>Spring bean的作用域和生命周期；<br>Spring Boot比Spring做了哪些改进？ Spring 5比Spring4做了哪些改进；<br>如何自定义一个Spring Boot Starter？<br>Spring IOC是什么？优点是什么？<br>SpringMVC、动态代理、反射、AOP原理、事务隔离级别；</p>
-<h2 id="六、中间件篇"><a href="#六、中间件篇" class="headerlink" title="六、中间件篇"></a>六、中间件篇</h2><p>Dubbo完整的一次调用链路介绍；<br>Dubbo支持几种负载均衡策略？<br>Dubbo Provider服务提供者要控制执行并发请求上限，具体怎么做？<br>Dubbo启动的时候支持几种配置方式？<br>了解几种消息中间件产品？各产品的优缺点介绍；<br>消息中间件如何保证消息的一致性和如何进行消息的重试机制？<br>Spring Cloud熔断机制介绍；<br>Spring Cloud对比下Dubbo，什么场景下该使用Spring Cloud？</p>
-<h2 id="七、数据库篇"><a href="#七、数据库篇" class="headerlink" title="七、数据库篇"></a>七、数据库篇</h2><p>锁机制介绍：行锁、表锁、排他锁、共享锁；<br>乐观锁的业务场景及实现方式；<br>事务介绍，分布式事物的理解，常见的解决方案有哪些，什么事两阶段提交、三阶段提交；<br>MySQL记录binlog的方式主要包括三种模式？每种模式的优缺点是什么？<br>MySQL锁，悲观锁、乐观锁、排它锁、共享锁、表级锁、行级锁；<br>分布式事务的原理2阶段提交，同步异步阻塞非阻塞；<br>数据库事务隔离级别，MySQL默认的隔离级别、Spring如何实现事务、JDBC如何实现事务、嵌套事务实现、分布式事务实现；<br>SQL的整个解析、执行过程原理、SQL行转列；<br>mysql语句优化</p>
-<h2 id="八、Redis"><a href="#八、Redis" class="headerlink" title="八、Redis"></a>八、Redis</h2><p>Redis为什么这么快？redis采用多线程会有哪些问题？<br>Redis支持哪几种数据结构；<br>Redis跳跃表的问题；<br>Redis单进程单线程的Redis如何能够高并发?<br>Redis如何使用Redis实现分布式锁？<br>Redis分布式锁操作的原子性，Redis内部是如何实现的？</p>
-<h2 id="九、监控"><a href="#九、监控" class="headerlink" title="九、监控"></a>九、监控</h2><h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><p>CPU负载：监控CPU一段时间内负载平均值<br>CPU数量：监控CPU在线或者最大数量<br>CPU利用率：监控一段时间内CPU的idle，nice，user<br>CPU信息：监测CPU相关信息，如频率</p>
-<h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><p>内存总大小<br>内存使用量<br>剩余内存<br>内存缓存</p>
-<h3 id="swap"><a href="#swap" class="headerlink" title="swap"></a>swap</h3><p>从设备到内存统计<br>从内存到设备统计<br>交换空间大小</p>
-<h3 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h3><p>磁盘读取统计信息<br>磁盘写入统计<br>磁盘空间</p>
-<h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>进程CPU利用率百分比<br>用户进程使用内存<br>进程数量</p>
-<h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><p>网络接口列表<br>网卡流入量统计<br>网卡流出量统计</p>
-<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>TCP状态</p>
-<h2 id="十、数据结构与算法"><a href="#十、数据结构与算法" class="headerlink" title="十、数据结构与算法"></a>十、数据结构与算法</h2><p>二叉树<br>红黑树</p>
-<h2 id="十一、架构"><a href="#十一、架构" class="headerlink" title="十一、架构"></a>十一、架构</h2><p>反向代理方面，nginx的基本配置，比如如何通过lua语言设置规则，如何设置session粘滞。如果可以，再看些nginx的底层，比如协议，集群设置，失效转移等。</p>
-<p>远程调用dubbo方面，可以看下dubbo和zookeeper整合的知识点，再深一步，了解下dubbo底层的传输协议和序列化方式。</p>
-<p>消息队列方面，可以看下kafka或任意一种组件的使用方式，简单点可以看下配置，工作组的设置，再深入点，可以看下Kafka集群，持久化的方式，以及发送消息是用长连接还是短拦截。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2396,7 +2383,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
