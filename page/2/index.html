@@ -1515,6 +1515,187 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/05/04/linux/文件权限/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bolly">
+      <meta itemprop="description" content="不疯魔，不成佛">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点点滴滴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/05/04/linux/文件权限/" class="post-title-link" itemprop="url">linux-文件权限</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-04 17:47:05" itemprop="dateCreated datePublished" datetime="2018-05-04T17:47:05+08:00">2018-05-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-15 16:57:47" itemprop="dateModified" datetime="2019-01-15T16:57:47+08:00">2019-01-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">444 r--r--r--</span><br><span class="line">600 rw-------</span><br><span class="line">644 rw-r--r--</span><br><span class="line">666 rw-rw-rw-</span><br><span class="line">700 rwx------</span><br><span class="line">744 rwxr--r--</span><br><span class="line">755 rwxr-xr-x</span><br><span class="line">777 rwxrwxrwx</span><br><span class="line"></span><br><span class="line">* 1-3位数字代表文件所有者的权限，</span><br><span class="line">* 4-6位数字代表同组用户的权限，</span><br><span class="line">* 7-9数字代表其他用户的权限。</span><br><span class="line">* 读取的权限等于4，用r表示；</span><br><span class="line">* 写入的权限等于2，用w表示；</span><br><span class="line">* 执行的权限等于1，用x表示；</span><br><span class="line">* 0（没有权限）；</span><br><span class="line">* 4（读取权限）；</span><br><span class="line">* 5（4+1 | 读取+执行）；</span><br><span class="line">* 6（4+2 | 读取+写入）；</span><br><span class="line">* 7（4+2+1 | 读取+写入+执行）</span><br><span class="line">* 以755为例：</span><br><span class="line">* 1-3位7等于4+2+1，rwx，所有者具有读取、写入、执行权限；</span><br><span class="line">* 4-6位5等于4+1+0，r-x，同组用户具有读取、执行权限但没有写入权限；</span><br><span class="line">* 7-9位5，同上，也是r-x，其他用户具有读取、执行权限但没有写入权限。</span><br></pre></td></tr></table></figure>
+<h2 id="将用户添加到组的指令"><a href="#将用户添加到组的指令" class="headerlink" title="将用户添加到组的指令"></a>将用户添加到组的指令</h2><h3 id="增加一个新用户到附加用户组"><a href="#增加一个新用户到附加用户组" class="headerlink" title="增加一个新用户到附加用户组"></a>增加一个新用户到附加用户组</h3><p><code>useradd -G admins,ftp,www,developers cnzhx</code></p>
+<h3 id="增加一个新用户到主要用户组"><a href="#增加一个新用户到主要用户组" class="headerlink" title="增加一个新用户到主要用户组"></a>增加一个新用户到主要用户组</h3><p><code>useradd -g developers cnzhx</code></p>
+<h3 id="将一个已有用户增加到一个已有用户组中"><a href="#将一个已有用户增加到一个已有用户组中" class="headerlink" title="将一个已有用户增加到一个已有用户组中"></a>将一个已有用户增加到一个已有用户组中</h3><p><code>usermod -a -G apache cnzhx</code></p>
+<h3 id="如果要同时将-cnzhx-的主要用户组改为-apache，则直接使用-g-选项："><a href="#如果要同时将-cnzhx-的主要用户组改为-apache，则直接使用-g-选项：" class="headerlink" title="如果要同时将 cnzhx 的主要用户组改为 apache，则直接使用 -g 选项："></a>如果要同时将 cnzhx 的主要用户组改为 apache，则直接使用 -g 选项：</h3><p> <code>usermod -g apache cnzhx</code></p>
+<h3 id="如果要将一个用户从某个组中删除"><a href="#如果要将一个用户从某个组中删除" class="headerlink" title="如果要将一个用户从某个组中删除"></a>如果要将一个用户从某个组中删除</h3><p><code>gpasswd -d user group</code><br><a href="https://www.cnblogs.com/jxhd1/p/6528574.html" target="_blank" rel="noopener">参照文献</a></p>
+<h2 id="文件已被删除，但是引用该文件的进程仍然活动"><a href="#文件已被删除，但是引用该文件的进程仍然活动" class="headerlink" title="文件已被删除，但是引用该文件的进程仍然活动"></a>文件已被删除，但是引用该文件的进程仍然活动</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof | grep deleted</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -h --max-depth=1 /</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown -R </span><br><span class="line">mkdir -p</span><br></pre></td></tr></table></figure>
+<h2 id="This-account-is-currently-not-available"><a href="#This-account-is-currently-not-available" class="headerlink" title="This account is currently not available"></a>This account is currently not available</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd | grep apache</span><br><span class="line">发现它的shell是“/sbin /nologin”，需要将起改成“/bin/bash”</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/02/28/linux/Linux查看CPU，内存，硬盘/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2269,211 +2450,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2017/08/10/live/父亲去已婚女儿的家中，被眼前的景象震惊了……/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bolly">
-      <meta itemprop="description" content="不疯魔，不成佛">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="点点滴滴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/08/10/live/父亲去已婚女儿的家中，被眼前的景象震惊了……/" class="post-title-link" itemprop="url">小故事-父亲去已婚女儿的家中</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-08-10 22:13:36" itemprop="dateCreated datePublished" datetime="2017-08-10T22:13:36+08:00">2017-08-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-03 16:11:46" itemprop="dateModified" datetime="2019-01-03T16:11:46+08:00">2019-01-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/live/" itemprop="url" rel="index"><span itemprop="name">live</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="父亲去已婚女儿的家中，被眼前的景象震惊了……"><a href="#父亲去已婚女儿的家中，被眼前的景象震惊了……" class="headerlink" title="父亲去已婚女儿的家中，被眼前的景象震惊了……"></a>父亲去已婚女儿的家中，被眼前的景象震惊了……</h1><p>当一个父亲，把女儿的手递到另一个男人的手里，他渴望和期待的是女儿能过上幸福的日子。然而，有一天，他到女儿家去看她，突然发现女儿过的生活，并不是自己想象的那样。</p>
-<p>▼女儿几乎从一瞬间，从一个文静优雅的姑娘，变成了一个身兼保姆、妈妈、员工、妻子、女儿的多重身份的女汉子。</p>
-<p>▼父亲觉得有些痛心，因为那个号称是孩子父亲的人，并没有帮到女儿，反而还要女儿像宠爱一个大孩子一样伺候他。</p>
-<p>▼看着女儿要一边打电话一边打开煤气灶做饭，还要打开电脑去看工作进度，更要收拾熊孩子落在地上的玩具，父亲心底说不出的心酸，他有些怀疑，自己是否帮她选错了。</p>
-<p>▼一边是女婿的气定神闲看电视喝咖啡玩电脑，一边是女儿忙得的焦头烂额，老爸心里真是五味杂陈。</p>
-<p>▼女儿的电话一直没来得及放下，还要操心熊孩子，给熊孩子脱下脏了的衣服。</p>
-<p>▼女儿又穿梭于洗衣房跟厨房之间，她根本闲不下来，可是那个孩子的爸爸呢？</p>
-<p>▼女儿的电脑开着，但是手里还抱着一堆盘子，准备开饭。这是女儿的日常，她已经习惯，可是父亲心底却满满是泪。他开始后悔，后悔自己这些年做过的榜样。</p>
-<p>▼他还是忍住眼泪离开，跟女儿道别的时候，无比柔情蜜意。</p>
-<p>▼当父亲离开，女儿终于发现父亲留下了一封信，打开之后，看的热泪盈眶。</p>
-<p>▼作为父亲，他觉得自己这么多年，愧对自己的妻子，因为，自己跟女儿的老公一样，视若无睹妻子的付出。而作为父亲，他又不愿意自己的女儿也重走自己妻子的老路，这么多年，活成女汉子。</p>
-<p>▼所以，他告诉女儿，这个家，是两个人的家，需要孩子的父亲一起付出，这才是完整的家。</p>
-<p>▼当然，他更多的是对自己做了一个坏榜样而感到内疚，是自己这么多年来对妻子的忽略和理所当然，他如今想做的就是，从点滴做起，在这个家里，体贴妻子，当一个让妻子心底温暖起来的好丈夫，也给女儿做一个好榜样。</p>
-<p>是啊，这虽然是一条广告片，可是却赚了许多人的热泪，之所以感动，是因为，这个父亲他意识到了现代家庭里父亲已经不再是那个只需要赚钱养家就可以在沙发上一趟看电视的父亲，父亲这个角色，赋予了更多的意义：</p>
-<p>因为如果你不好好当个父亲<br>你的女儿<br>可能将来就会成为你妻子那样的女汉子<br>因为父亲的形象潜意识成为女儿选择丈夫的标准<br>因为你现在的家<br>就是你孩子以后的原生家庭<br>你的样子<br>就是你女儿将来老公的样子！</p>
-<p>女儿婚礼，爸爸说：“我的小棉袄被人穿走了。</p>
-<p>这是一段爸爸对女儿真情的告白……</p>
-<p>你小时候，不敢抱你怕胡渣弄疼你</p>
-<p>你长大了……<br>只愿和妈妈交心，我只能在一边呵护你；</p>
-<p>你成年了，我天天盼你电话，只为换一份舒心。</p>
-<p>弹指间……<br>你就要和身边这个小子走了，但我还没来得及说句爱你。</p>
-<p>只希望他会比我还疼你。</p>
-<p>但女儿，我只想你知道。<br>我依然会用余下的人生去守护你。</p>
-<p>我一直想要一个儿子而不是一个女儿，其实并不是因为我不喜欢你,而是因为过去的20多年我都不愿意去想象你离开我的这一天，这天我将失去我的一切，但这一天还是来了。</p>
-<p>出嫁前，硬汉一样的爸爸哽噎的说，“以后就剩老两口了，一点也不热闹了”。<br>第一次，看到爸爸流泪，到了自己才发现，父亲在女儿出嫁那天，是这样的心情。</p>
-<p>父亲，面对女儿出嫁的那一刻，也许是这多年来最凌乱的一种感情了。</p>
-<p>很多时候，我们总以为自己有的是机会，孰料其实人生是减法，见一面少一面。在有限的人生里，请一定记得对他好。</p>
-<p>多少年后你还会记得在那个甜蜜，喜悦，幸福，各种情绪交织的早晨，爸爸充满着复杂的情绪为女儿的婚礼忙忙碌碌着，生怕对那一场婚礼细节考虑得有任何不周全。</p>
-<p>小时候因为摔跤哭了，父亲会用宽大得手掌擦去女儿得眼泪。此刻，女儿又一次哭了，而父亲嘴角得微笑是他全部得语言。</p>
-<p>你能看到照片中父亲得失落。父爱如此深沉，无言。</p>
-<p>女儿出嫁时父亲对她说：女儿，你们之间的矛盾和不高兴的事不要给我讲，因为你终会原谅他，但我不会。</p>
-<p>拥抱再紧，也总是要松开。这个世界上，只有一种爱是为了放手。</p>
-<p>如果可以，请把我留在童年里，留在青春里，留在最美好得时光里。</p>
-<p>因为哪里，有父亲最亲密无间得爱。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2521,7 +2497,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
