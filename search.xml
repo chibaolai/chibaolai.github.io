@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Mysql-变更datadir]]></title>
     <url>%2F2019%2F03%2F19%2Fmysql%2FMysql%E5%8F%98%E6%9B%B4datadir%2F</url>
-    <content type="text"><![CDATA[变更datadir需求客户分配的虚机磁盘空间不足，又需要每天备份mysql数据 方案申请一块存储，/dev/sdb1```1234## 解决办法默认安装的datadir是/var/lib/mysql,更换至/data目录下* 建立/data目录 mkdir /data1* 停掉MySQL进程 mysqladmin -u root -p shutdown1* 把/var/lib/mysql整个目录移到/data mv /var/lib/mysql /data12* 编辑/etc/my.cnf datadir=/data/mysql/lib/mysqlsocket=/data/mysql/lib/mysql/mysql.sock12* mysql.sock软链接，很重要： ln -s /data/mysql/mysql.sock /var/lib/mysql/mysql.sock12* 启动mysqld systemctl restart mysqld`]]></content>
+    <content type="text"><![CDATA[变更datadir需求客户分配的虚机磁盘空间不足，又需要每天备份mysql数据 方案申请一块存储12345678910111213fdisk /dev/sdbn #新建分区1 #分区号pw #保存t #更改文件系统类型1 #选择第一个分区L ＃选择要更改的文件系统编码，可以按L来查看相关编码信息。82 #查找到linux swap的编码为82pw #保存mkfs -t ext3 /dev/sdb1mount /dev/sdb1 /data 解决办法默认安装的datadir是/var/lib/mysql,更换至/data目录下 建立/data目录 1mkdir /data 停掉MySQL进程 1mysqladmin -u root -p shutdown 把/var/lib/mysql整个目录移到/data 1mv /var/lib/mysql /data 编辑/etc/my.cnf 12datadir=/data/mysql/lib/mysqlsocket=/data/mysql/lib/mysql/mysql.sock mysql.sock软链接，很重要： 1ln -s /data/mysql/mysql.sock /var/lib/mysql/mysql.sock 启动mysqld 1systemctl restart mysqld]]></content>
       <categories>
         <category>mysql</category>
       </categories>

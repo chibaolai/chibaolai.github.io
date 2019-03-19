@@ -104,18 +104,18 @@
 
 
 
-  <meta name="description" content="变更datadir需求客户分配的虚机磁盘空间不足，又需要每天备份mysql数据 方案申请一块存储，/dev/sdb1```1234## 解决办法默认安装的datadir是/var/lib/mysql,更换至/data目录下* 建立/data目录 mkdir /data1* 停掉MySQL进程 mysqladmin -u root -p shutdown1* 把/var/lib/mysql整个目录移">
+  <meta name="description" content="变更datadir需求客户分配的虚机磁盘空间不足，又需要每天备份mysql数据 方案申请一块存储12345678910111213fdisk /dev/sdbn #新建分区1 #分区号pw  #保存t  #更改文件系统类型1 #选择第一个分区L ＃选择要更改的文件系统编码，可以按L来查看相关编码信息。82    #查找到linux swap的编码为82pw  #保存mkfs -t ext3 /de">
 <meta name="keywords" content="bolly">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql-变更datadir">
 <meta property="og:url" content="http://chibaolai.github.io/2019/03/19/mysql/Mysql变更datadir/index.html">
 <meta property="og:site_name" content="点点滴滴">
-<meta property="og:description" content="变更datadir需求客户分配的虚机磁盘空间不足，又需要每天备份mysql数据 方案申请一块存储，/dev/sdb1```1234## 解决办法默认安装的datadir是/var/lib/mysql,更换至/data目录下* 建立/data目录 mkdir /data1* 停掉MySQL进程 mysqladmin -u root -p shutdown1* 把/var/lib/mysql整个目录移">
+<meta property="og:description" content="变更datadir需求客户分配的虚机磁盘空间不足，又需要每天备份mysql数据 方案申请一块存储12345678910111213fdisk /dev/sdbn #新建分区1 #分区号pw  #保存t  #更改文件系统类型1 #选择第一个分区L ＃选择要更改的文件系统编码，可以按L来查看相关编码信息。82    #查找到linux swap的编码为82pw  #保存mkfs -t ext3 /de">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-19T08:09:00.852Z">
+<meta property="og:updated_time" content="2019-03-19T08:13:34.102Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql-变更datadir">
-<meta name="twitter:description" content="变更datadir需求客户分配的虚机磁盘空间不足，又需要每天备份mysql数据 方案申请一块存储，/dev/sdb1```1234## 解决办法默认安装的datadir是/var/lib/mysql,更换至/data目录下* 建立/data目录 mkdir /data1* 停掉MySQL进程 mysqladmin -u root -p shutdown1* 把/var/lib/mysql整个目录移">
+<meta name="twitter:description" content="变更datadir需求客户分配的虚机磁盘空间不足，又需要每天备份mysql数据 方案申请一块存储12345678910111213fdisk /dev/sdbn #新建分区1 #分区号pw  #保存t  #更改文件系统类型1 #选择第一个分区L ＃选择要更改的文件系统编码，可以按L来查看相关编码信息。82    #查找到linux swap的编码为82pw  #保存mkfs -t ext3 /de">
 
 
 
@@ -475,7 +475,7 @@
                 
               
 
-              <time title="创建时间：2019-03-19 15:20:20 / 修改时间：16:09:00" itemprop="dateCreated datePublished" datetime="2019-03-19T15:20:20+08:00">2019-03-19</time>
+              <time title="创建时间：2019-03-19 15:20:20 / 修改时间：16:13:34" itemprop="dateCreated datePublished" datetime="2019-03-19T15:20:20+08:00">2019-03-19</time>
             
 
             
@@ -532,13 +532,31 @@
 
       
         <h1 id="变更datadir"><a href="#变更datadir" class="headerlink" title="变更datadir"></a>变更datadir</h1><h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>客户分配的虚机磁盘空间不足，又需要每天备份mysql数据</p>
-<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><p>申请一块存储，<figure class="highlight plain"><figcaption><span>/dev/sdb1</span><a href="/data">```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">## 解决办法</span><br><span class="line">默认安装的datadir是/var/lib/mysql,更换至/data目录下</span><br><span class="line"></span><br><span class="line">* 建立/data目录</span><br></pre></td></tr></table></figure></p>
-<p>mkdir /data<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* 停掉MySQL进程</span><br></pre></td></tr></table></figure></p>
-<p>mysqladmin -u root -p shutdown<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* 把/var/lib/mysql整个目录移到/data</span><br></pre></td></tr></table></figure></p>
-<p>mv /var/lib/mysql /data<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* 编辑/etc/my.cnf</span><br></pre></td></tr></table></figure></p>
-<p>datadir=/data/mysql/lib/mysql<br>socket=/data/mysql/lib/mysql/mysql.sock<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* mysql.sock软链接，很重要：</span><br></pre></td></tr></table></figure></p>
-<p>ln -s /data/mysql/mysql.sock /var/lib/mysql/mysql.sock<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* 启动mysqld</span><br></pre></td></tr></table></figure></p>
-<p>systemctl restart mysqld<br><code>`</code></p>
+<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><p>申请一块存储<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/sdb</span><br><span class="line">n #新建分区</span><br><span class="line">1 #分区号</span><br><span class="line">p</span><br><span class="line">w  #保存</span><br><span class="line">t  #更改文件系统类型</span><br><span class="line">1 #选择第一个分区</span><br><span class="line">L ＃选择要更改的文件系统编码，可以按L来查看相关编码信息。</span><br><span class="line">82    #查找到linux swap的编码为82</span><br><span class="line">p</span><br><span class="line">w  #保存</span><br><span class="line">mkfs -t ext3 /dev/sdb1</span><br><span class="line">mount /dev/sdb1 /data</span><br></pre></td></tr></table></figure></p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>默认安装的datadir是/var/lib/mysql,更换至/data目录下</p>
+<ul>
+<li>建立/data目录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /data</span><br></pre></td></tr></table></figure>
+<ul>
+<li>停掉MySQL进程</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u root -p shutdown</span><br></pre></td></tr></table></figure>
+<ul>
+<li>把/var/lib/mysql整个目录移到/data</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /var/lib/mysql /data</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>编辑/etc/my.cnf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">datadir=/data/mysql/lib/mysql</span><br><span class="line">socket=/data/mysql/lib/mysql/mysql.sock</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>mysql.sock软链接，很重要：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /data/mysql/mysql.sock /var/lib/mysql/mysql.sock</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动mysqld</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart mysqld</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -746,7 +764,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#变更datadir"><span class="nav-number">1.</span> <span class="nav-text">变更datadir</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求"><span class="nav-number">1.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方案"><span class="nav-number">1.2.</span> <span class="nav-text">方案</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#变更datadir"><span class="nav-number">1.</span> <span class="nav-text">变更datadir</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求"><span class="nav-number">1.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方案"><span class="nav-number">1.2.</span> <span class="nav-text">方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决办法"><span class="nav-number">1.3.</span> <span class="nav-text">解决办法</span></a></li></ol></li></ol></div>
             
 
           </div>
