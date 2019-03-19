@@ -432,6 +432,209 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/11/20/JVM/JVM调优/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bolly">
+      <meta itemprop="description" content="不疯魔，不成佛">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点点滴滴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/20/JVM/JVM调优/" class="post-title-link" itemprop="url">java-JVM调优</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-20 09:17:13" itemprop="dateCreated datePublished" datetime="2018-11-20T09:17:13+08:00">2018-11-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-04 15:36:33" itemprop="dateModified" datetime="2019-01-04T15:36:33+08:00">2019-01-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="JVM调优"><a href="#JVM调优" class="headerlink" title="JVM调优"></a>JVM调优</h1><h2 id="基础知识："><a href="#基础知识：" class="headerlink" title="基础知识："></a>基础知识：</h2><ol>
+<li>基本数据类型，堆对象的引用，程序存储在栈中，方法以先进后出进栈，栈的起点是main方法<br>一个线程对应一个栈空间，栈是运行单元，<strong>栈调优参数：-Xss</strong>，StackOverFlowError是栈中死循环无法返回递归。</li>
+<li>对象存储在堆中，堆是存储单元。<strong>堆调优参数：-Xms</strong></li>
+</ol>
+<h2 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a>垃圾回收算法</h2><ol>
+<li>引用计数：增加一个对象引用，计数加1，减少一个对象引用，计数减1，计数为0 回收，问题：循环引用无法回收</li>
+<li>标记-清除：第一阶段从根节点开始标记对象引用，第二阶段未标记的对象清除。问题：空间碎片</li>
+<li>复制：两块内存，复制正在使用对象到另外一块内存空间。问题：两倍空间</li>
+<li>标记-整理：第一阶段从根节点开始标记对象引用，第二阶段未标记的对象清除同时整理存活对象到清除的对象空间上</li>
+</ol>
+<h2 id="分代回收"><a href="#分代回收" class="headerlink" title="分代回收"></a>分代回收</h2><p>不同对象有不同的生命周期（人也如此），session，socket等需要长周期，String 这种不变类需要短周期</p>
+<ol>
+<li>分代：</li>
+</ol>
+<ul>
+<li>年轻代（Eden，survivor），有意思的命名！Eden：伊甸园，亚当夏娃居住地。survivor：幸存者</li>
+<li>年老代，</li>
+<li>持久代（方法区），java.lang.OutOfMemoryError: PermGen space，<strong>调优参数：-XX:MaxPermSize</strong>。<br>调优经验：<br>问题描述：thrift定义了大量big class，尽管以及做了生产环境1024M的调优，但依旧出现PerGen space错误。<br>解决办法：升级到jdk8。<br>原理：因为jdk8已经元空间代替持久代，metaspace占用本地内存，不占用虚拟机内存。</li>
+</ul>
+<ol start="2">
+<li>GC类型</li>
+</ol>
+<ul>
+<li>scavenge（搜索） GC：主要作用于年轻代，高频清理Eden，采用并行收集器，<strong>调优参数：XX:+UseParallelGC</strong></li>
+<li>full GC</li>
+</ul>
+<h2 id="配置参数"><a href="#配置参数" class="headerlink" title="配置参数"></a>配置参数</h2><ul>
+<li>-Xmx：JVM最大可用内存</li>
+<li>-Xms：JVM初始内存，设置与-Xmx相同，以避免每次垃圾回收完成后JVM重新分配内存</li>
+<li>-Xmn：年轻代内存</li>
+<li>-Xss：</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/11/16/other/面试题-持续更新/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2139,7 +2342,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-04 11:32:40" itemprop="dateModified" datetime="2019-01-04T11:32:40+08:00">2019-01-04</time>
+                <time title="修改时间：2019-02-15 12:17:32" itemprop="dateModified" datetime="2019-02-15T12:17:32+08:00">2019-02-15</time>
               
             
           </span>
@@ -2214,201 +2417,7 @@
 <p>《如何变得有思想》</p>
 <p>jdk里的util包，把这些类。<br>这些类弄明白了，你可以上升一个台阶。<br>还有平时你工作中用到什么类，就看什么类就ok了。<br>可叹的是，有些人写了五六年代码，连String这个类的源码都没看过，还老是对我说未来很迷茫，不知道怎么提升好，其实我想说，这样不迷茫才怪。<br>juc 包里的aqs框架<br>Okhttp：android开发最受欢迎的http客户端，支持http2，websocket等最新协议。总体采用责任链模式，架构简单且扩展性强，看完几个主要的拦截器相当于把http协议重新学习了一遍。<br>jdk8下的ConcurrentHashMap：Doug Lea 大神的大作，实现上非常精巧，采用cas操作就实现了无锁HashMap，仅仅在Hash冲突插入的情况下锁住一个hash桶，并发度比jdk7版的高出不少。<br>spring-mvc：MVC模式的最佳实践，玩设计模式的癫狂之作，扩展性极强最优雅的网络请求库，一个Java文件：kevinsawicki/http-request</p>
 <p><a href="https://pay.weixin.qq.com/wiki/doc/api/H5.php?chapter=23_2&amp;index=1" target="_blank" rel="noopener">网络设置指引：</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2017/09/08/lb/nginx/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bolly">
-      <meta itemprop="description" content="不疯魔，不成佛">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="点点滴滴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/09/08/lb/nginx/" class="post-title-link" itemprop="url">nginx-使用</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-09-08 09:09:33" itemprop="dateCreated datePublished" datetime="2017-09-08T09:09:33+08:00">2017-09-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-03 17:16:55" itemprop="dateModified" datetime="2019-01-03T17:16:55+08:00">2019-01-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/lb/" itemprop="url" rel="index"><span itemprop="name">lb</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h1><p>master进程会接收来自外界发来的信号，再根据信号做不同的事情。所以我们要控制nginx，只需要通过kill向master进程发送信号就行了。比如kill -HUP pid，则是告诉nginx，从容地重启nginx</p>
-<h2 id="第三方参照"><a href="#第三方参照" class="headerlink" title="第三方参照"></a>第三方参照</h2><p><a href="https://www.cnblogs.com/codingcloud/p/5095066.html" target="_blank" rel="noopener">nginx优雅启动关闭</a><br><a href="https://www.cnblogs.com/netsa/p/6383094.html" target="_blank" rel="noopener">nginx 正则</a><br><a href="http://www.spring4all.com/article/1291" target="_blank" rel="noopener">从一份配置清单详解Nginx服务器配置</a></p>
-<h2 id="nginx-header中带下划线不转换"><a href="#nginx-header中带下划线不转换" class="headerlink" title="nginx header中带下划线不转换"></a>nginx header中带下划线不转换</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">underscores_in_headers on;</span><br></pre></td></tr></table></figure>
-<h2 id="root与alias区别"><a href="#root与alias区别" class="headerlink" title="root与alias区别"></a>root与alias区别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location ~ ^/weblogs/ &#123;</span><br><span class="line">		root /data/weblogs/www.ttlsa.com;</span><br><span class="line">		autoindex on;</span><br><span class="line">		auth_basic            &quot;Restricted&quot;;</span><br><span class="line">		auth_basic_user_file  passwd/weblogs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果一个请求的URI是/weblogs/httplogs/<a href="http://www.ttlsa.com-access.log时" target="_blank" rel="noopener">www.ttlsa.com-access.log时</a>.<br>web服务器将会返回服务器上的/data/weblogs/<a href="http://www.ttlsa.com/weblogs/httplogs/www.ttlsa.com-access.log的文件" target="_blank" rel="noopener">www.ttlsa.com/weblogs/httplogs/www.ttlsa.com-access.log的文件</a></p>
-<p><strong>root会根据完整的URI请求来映射，也就是/path/uri。</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location ^~ /binapp/ &#123;  </span><br><span class="line">		limit_conn limit 4;</span><br><span class="line">		limit_rate 200k;</span><br><span class="line">		internal;  </span><br><span class="line">		alias /data/statics/bin/apps/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>alias会把location后面配置的路径丢弃掉.<br>如果一个请求的URI是/binapp/a.ttlsa.com/favicon时，web服务器将会返回服务器上的/data/statics/bin/apps/a.ttlsa.com/favicon.jg</p>
-<ol>
-<li>使用alias时，目录名后面一定要加”/“。</li>
-<li>alias可以指定任何名称。</li>
-<li>alias在使用正则匹配时，必须捕捉要匹配的内容并在指定的内容处使用。</li>
-<li>alias只能位于location块中。</li>
-</ol>
-<h2 id="logrotate切割nginx日志"><a href="#logrotate切割nginx日志" class="headerlink" title="logrotate切割nginx日志"></a>logrotate切割nginx日志</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>使用系统自带的logrorate来切个nginx日志，位于/usr/sbin/logrotate<br>假设服务器上有两个网站的nginx配置分别如下:</p>
-<p>去除其它配置信息，只保留了日志相关<br>A网站<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">access_log  /data/logs/a.com/access.log;</span><br><span class="line">error_log   /data/logs/a.com/error.log;</span><br></pre></td></tr></table></figure></p>
-<p>B网站<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">access_log  /data/logs/b.com/access.log;</span><br><span class="line">error_log   /data/logs/b.com/error.log;</span><br></pre></td></tr></table></figure></p>
-<p>在/etc/logrotate.d/下创建一个配置文件 nginx, 内容如下:</p>
-<h3 id="这里可以添加你想切个的目录，也可以直接使用正则表达式"><a href="#这里可以添加你想切个的目录，也可以直接使用正则表达式" class="headerlink" title="这里可以添加你想切个的目录，也可以直接使用正则表达式"></a>这里可以添加你想切个的目录，也可以直接使用正则表达式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/data/logs/a.com/*.log</span><br><span class="line">/data/logs/b.com/*.log</span><br><span class="line">&#123;</span><br><span class="line">    daily</span><br><span class="line">    rotate 30</span><br><span class="line">    missingok</span><br><span class="line">    dateext</span><br><span class="line">    compress</span><br><span class="line">    delaycompress</span><br><span class="line">    notifempty</span><br><span class="line">    sharedscripts</span><br><span class="line">    postrotate</span><br><span class="line">        if [ -f /usr/local/nginx/nginx.pid ]; then</span><br><span class="line">            kill -USR1 `cat /usr/local/nginx/nginx.pid`</span><br><span class="line">        fi</span><br><span class="line">    endscript</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>需要注意的是你们的nginx.pid位置，不一定是在/usr/local/nginx/nginx.pid<br>配置说明</p>
-<h3 id="配置-说明"><a href="#配置-说明" class="headerlink" title="配置    说明"></a>配置    说明</h3><p>daily    指定转储周期为每天<br>weekly    指定转储周期为每周<br>monthly    指定转储周期为每月<br>rotate    转储次数，超过将会删除最老的那一个<br>missingok    忽略错误，如“日志文件无法找到”的错误提示<br>dateext    切换后的日志文件会附加上一个短横线和YYYYMMDD格式的日期<br>compress    通过gzip 压缩转储旧的日志<br>delaycompress    当前转储的日志文件到下一次转储时才压缩<br>notifempty    如果日志文件为空，不执行切割<br>sharedscripts    只为整个日志组运行一次的脚本<br>prerotate/endscript    在转储以前需要执行的命令可以放入这个对，这两个关键字必须单独成行<br>postrotate/endscript    在转储以后需要执行的命令可以放入这个对，这两个关键字必须单独成行</p>
-<h3 id="3-测试"><a href="#3-测试" class="headerlink" title="3 测试"></a>3 测试</h3><p>执行以下命令进行测试<br>logrotate -vf /etc/logrotate.d/nginx<br>1<br>然后到相应的日志目录下查看 （/data/logs/a.com/, /data/logs/b.com/）<br>应该会有类似以下的文件:<br>access.log<br>access.log-20170626<br>error.log<br>error.log-20170626</p>
-<h3 id="4-添加定时任务"><a href="#4-添加定时任务" class="headerlink" title="4 添加定时任务"></a>4 添加定时任务</h3><p>每日0点执行脚本</p>
-<p>在终端运行 crontab -e<br>插入以下语句<br>0 0 <em> </em> * /usr/sbin/logrotate -vf /etc/logrotate.d/nginx</p>
+<p>诗中有画，画中有诗</p>
 
           
         
@@ -2497,7 +2506,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

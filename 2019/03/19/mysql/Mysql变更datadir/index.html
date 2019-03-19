@@ -104,25 +104,25 @@
 
 
 
-  <meta name="description" content="不疯魔，不成佛">
+  <meta name="description" content="变更datadir需求客户分配的虚机磁盘空间不足，又需要每天备份mysql数据 方案申请一块存储，/dev/sdb1```1234## 解决办法默认安装的datadir是/var/lib/mysql,更换至/data目录下* 建立/data目录 mkdir /data1* 停掉MySQL进程 mysqladmin -u root -p shutdown1* 把/var/lib/mysql整个目录移">
 <meta name="keywords" content="bolly">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://chibaolai.github.io/about/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="点点滴滴">
+<meta property="og:url" content="http://chibaolai.github.io/2019/03/19/mysql/Mysql变更datadir/index.html">
 <meta property="og:site_name" content="点点滴滴">
-<meta property="og:description" content="不疯魔，不成佛">
+<meta property="og:description" content="变更datadir需求客户分配的虚机磁盘空间不足，又需要每天备份mysql数据 方案申请一块存储，/dev/sdb1```1234## 解决办法默认安装的datadir是/var/lib/mysql,更换至/data目录下* 建立/data目录 mkdir /data1* 停掉MySQL进程 mysqladmin -u root -p shutdown1* 把/var/lib/mysql整个目录移">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-26T07:26:52.153Z">
+<meta property="og:updated_time" content="2019-03-19T07:44:18.668Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="不疯魔，不成佛">
+<meta name="twitter:title" content="点点滴滴">
+<meta name="twitter:description" content="变更datadir需求客户分配的虚机磁盘空间不足，又需要每天备份mysql数据 方案申请一块存储，/dev/sdb1```1234## 解决办法默认安装的datadir是/var/lib/mysql,更换至/data目录下* 建立/data目录 mkdir /data1* 停掉MySQL进程 mysqladmin -u root -p shutdown1* 把/var/lib/mysql整个目录移">
 
 
 
 
 
 
-  <link rel="canonical" href="http://chibaolai.github.io/about/">
+  <link rel="canonical" href="http://chibaolai.github.io/2019/03/19/mysql/Mysql变更datadir/">
 
 
 
@@ -132,7 +132,7 @@
   };
 </script>
 
-  <title>about | 点点滴滴</title>
+  <title> | 点点滴滴</title>
   
 
 
@@ -239,7 +239,7 @@
         
         
           
-          <li class="menu-item menu-item-about menu-item-active">
+          <li class="menu-item menu-item-about">
 
     
     
@@ -412,82 +412,169 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2019/03/19/mysql/Mysql变更datadir/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bolly">
+      <meta itemprop="description" content="不疯魔，不成佛">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点点滴滴">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">about
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-19 15:20:20 / 修改时间：15:44:18" itemprop="dateCreated datePublished" datetime="2019-03-19T15:20:20+08:00">2019-03-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
           
-        
-      </div>
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="变更datadir"><a href="#变更datadir" class="headerlink" title="变更datadir"></a>变更datadir</h1><h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>客户分配的虚机磁盘空间不足，又需要每天备份mysql数据</p>
+<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><p>申请一块存储，<figure class="highlight plain"><figcaption><span>/dev/sdb1</span><a href="/data">```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">## 解决办法</span><br><span class="line">默认安装的datadir是/var/lib/mysql,更换至/data目录下</span><br><span class="line"></span><br><span class="line">* 建立/data目录</span><br></pre></td></tr></table></figure></p>
+<p>mkdir /data<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* 停掉MySQL进程</span><br></pre></td></tr></table></figure></p>
+<p>mysqladmin -u root -p shutdown<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* 把/var/lib/mysql整个目录移到/data</span><br></pre></td></tr></table></figure></p>
+<p>mv /var/lib/mysql /data<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* 编辑/etc/my.cnf</span><br></pre></td></tr></table></figure></p>
+<p>datadir=/data/mysql/lib/mysql<br>socket=/data/mysql/lib/mysql/mysql.sock<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* mysql.sock软链接，很重要：</span><br></pre></td></tr></table></figure></p>
+<p>ln -s /data/mysql/mysql.sock /var/lib/mysql/mysql.sock<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* 启动mysqld</span><br></pre></td></tr></table></figure></p>
+<p>systemctl restart mysqld<br><code>`</code></p>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/03/mysql/Mysql-使用/" rel="next" title="Mysql-使用">
+                <i class="fa fa-chevron-left"></i> Mysql-使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
@@ -517,8 +604,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -621,6 +717,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#变更datadir"><span class="nav-number">1.</span> <span class="nav-text">变更datadir</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求"><span class="nav-number">1.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方案"><span class="nav-number">1.2.</span> <span class="nav-text">方案</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
