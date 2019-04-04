@@ -432,6 +432,223 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2019/04/03/JVM/jvm命令使用/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bolly">
+      <meta itemprop="description" content="不疯魔，不成佛">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点点滴滴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/03/JVM/jvm命令使用/" class="post-title-link" itemprop="url">java-jvm工具使用</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-03 19:45:57" itemprop="dateCreated datePublished" datetime="2019-04-03T19:45:57+08:00">2019-04-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-04 21:27:02" itemprop="dateModified" datetime="2019-04-04T21:27:02+08:00">2019-04-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="jvm工具使用"><a href="#jvm工具使用" class="headerlink" title="jvm工具使用"></a>jvm工具使用</h1><h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>jconsole、VisualVM，Memory Analyzer</p>
+<h2 id="jps-JVM-Process-Status-Tool"><a href="#jps-JVM-Process-Status-Tool" class="headerlink" title="jps(JVM Process Status Tool)"></a>jps(JVM Process Status Tool)</h2><p>显示指定系统内所有的HotSpot虚拟机进程。</p>
+<h3 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">jps [options] [hostid]</span><br><span class="line"></span><br><span class="line">option参数</span><br><span class="line">-l : 输出主类全名或jar路径</span><br><span class="line">-q : 只输出LVMID</span><br><span class="line">-m : 输出JVM启动时传递给main()的参数</span><br><span class="line">-v : 输出JVM启动时显示指定的JVM参数</span><br></pre></td></tr></table></figure>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jps -l -m</span><br><span class="line"></span><br><span class="line">24490 org.tanukisoftware.wrapper.WrapperSimpleApp com.niox.api1.Application</span><br><span class="line">28650 org.tanukisoftware.wrapper.WrapperSimpleApp com.neusoft.niox.insurance.Application</span><br></pre></td></tr></table></figure>
+<h2 id="jstat-JVM-statistics-Monitoring"><a href="#jstat-JVM-statistics-Monitoring" class="headerlink" title="jstat(JVM statistics Monitoring)"></a>jstat(JVM statistics Monitoring)</h2><p>用于监视虚拟机运行时状态信息的命令，它可以显示出虚拟机进程中的类装载、内存、垃圾收集、JIT编译等运行数据。</p>
+<h3 id="命令格式-1"><a href="#命令格式-1" class="headerlink" title="命令格式"></a>命令格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jstat [option] LVMID [interval] [count]</span><br><span class="line"></span><br><span class="line">[option] : 操作参数</span><br><span class="line">LVMID : 本地虚拟机进程ID</span><br><span class="line">[interval] : 连续输出的时间间隔</span><br><span class="line">[count] : 连续输出的次数</span><br></pre></td></tr></table></figure>
+<h4 id="option-参数"><a href="#option-参数" class="headerlink" title="option 参数"></a>option 参数</h4><h4 id="class"><a href="#class" class="headerlink" title="class"></a>class</h4><p>监视类装载、卸载数量、总空间以及耗费的时间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">jstat -class 24490</span><br><span class="line"></span><br><span class="line">Loaded  Bytes  Unloaded  Bytes     Time</span><br><span class="line">23409 46593.4     2591  3803.8     103.09</span><br><span class="line"></span><br><span class="line">Loaded : 加载class的数量</span><br><span class="line">Bytes : class字节大小</span><br><span class="line">Unloaded : 未加载class的数量</span><br><span class="line">Bytes : 未加载class的字节大小</span><br><span class="line">Time : 加载时间</span><br></pre></td></tr></table></figure>
+<h4 id="compiler"><a href="#compiler" class="headerlink" title="compiler"></a>compiler</h4><p>输出JIT编译过的方法数量耗时等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">jstat -compiler 24490</span><br><span class="line"></span><br><span class="line">Compiled Failed Invalid   Time   FailedType FailedMethod</span><br><span class="line">58328      1       0   512.46          1 com/mysql/jdbc/AbandonedConnectionCleanupThread run</span><br><span class="line">   </span><br><span class="line">Compiled : 编译数量</span><br><span class="line">Failed : 编译失败数量</span><br><span class="line">Invalid : 无效数量</span><br><span class="line">Time : 编译耗时</span><br><span class="line">FailedType : 失败类型</span><br><span class="line">FailedMethod : 失败方法的全限定名</span><br></pre></td></tr></table></figure>
+<h4 id="gc"><a href="#gc" class="headerlink" title="gc"></a>gc</h4><p>垃圾回收堆</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">jstat -gc 24490 2000 20</span><br><span class="line"></span><br><span class="line">每隔2000ms,一共输出20次</span><br><span class="line"></span><br><span class="line">S0C    S1C    S0U    S1U      EC       EU        OC         OU       MC     MU    CCSC   CCSU   YGC     YGCT    FGC    FGCT     GCT</span><br><span class="line">25088.0 38400.0 22870.0  0.0   1005056.0 1004247.2 2796544.0   729732.4  156288.0 150975.8 14720.0 13628.1  84480 2185.401  713   186.144 2371.545</span><br><span class="line"></span><br><span class="line">C即Capacity 总容量，U即Used 已使用的容量</span><br><span class="line"></span><br><span class="line">S0C : survivor0区的总容量</span><br><span class="line">S1C : survivor1区的总容量</span><br><span class="line">S0U : survivor0区已使用的容量</span><br><span class="line">S1C : survivor1区已使用的容量</span><br><span class="line">EC : Eden区的总容量</span><br><span class="line">EU : Eden区已使用的容量</span><br><span class="line">OC : Old区的总容量</span><br><span class="line">OU : Old区已使用的容量</span><br><span class="line">PC 当前perm的容量 (KB)</span><br><span class="line">PU perm的使用 (KB)</span><br><span class="line">YGC : 新生代垃圾回收次数</span><br><span class="line">YGCT : 新生代垃圾回收时间</span><br><span class="line">FGC : 老年代垃圾回收次数</span><br><span class="line">FGCT : 老年代垃圾回收时间</span><br><span class="line">GCT : 垃圾回收总消耗时间</span><br></pre></td></tr></table></figure>
+<h4 id="gccapacity"><a href="#gccapacity" class="headerlink" title="gccapacity"></a>gccapacity</h4><p>同-gc,多输出 最大、最小空间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">jstat -gccapacity 24490</span><br><span class="line"></span><br><span class="line">NGCMN    NGCMX     NGC     S0C   S1C       EC      OGCMN      OGCMX       OGC         OC       MCMN     MCMX      MC     CCSMN    CCSMX     CCSC    YGC    FGC</span><br><span class="line">698880.0 1397760.0 744960.0 32768.0 12288.0 679424.0  1398272.0  2796544.0  2796544.0  2796544.0      0.0 1191936.0 156288.0      0.0 1048576.0  14720.0  85341   724</span><br><span class="line"></span><br><span class="line">NGCMN : 新生代占用的最小空间</span><br><span class="line">NGCMX : 新生代占用的最大空间</span><br><span class="line">OGCMN : 老年代占用的最小空间</span><br><span class="line">OGCMX : 老年代占用的最大空间</span><br><span class="line">OGC：当前年老代的容量 (KB)</span><br><span class="line">OC：当前年老代的空间 (KB)</span><br><span class="line">PGCMN : perm占用的最小空间</span><br><span class="line">PGCMX : perm占用的最大空间</span><br></pre></td></tr></table></figure>
+<h4 id="gcutil"><a href="#gcutil" class="headerlink" title="gcutil"></a>gcutil</h4><p>同-gc,已使用空间占总空间的百分比</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jstat -gcutil 24490</span><br><span class="line"></span><br><span class="line">S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT</span><br><span class="line">0.00  35.19  98.73   4.09  96.48  92.38  85349 2212.640   724  188.670 2401.310</span><br></pre></td></tr></table></figure>
+<h4 id="gccause"><a href="#gccause" class="headerlink" title="gccause"></a>gccause</h4><p>同-gcutil,附加最近两次垃圾回收事件的原因</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">jstat -gccause 24490</span><br><span class="line"></span><br><span class="line">S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT    LGCC                 GCC</span><br><span class="line">0.00  69.77  17.00   4.12  96.48  92.38  85353 2212.683   724  188.670 2401.353 Allocation Failure   No GC</span><br><span class="line"></span><br><span class="line">LGCC：最近垃圾回收的原因</span><br><span class="line">GCC：当前垃圾回收的原因</span><br></pre></td></tr></table></figure>
+<h4 id="gcnew"><a href="#gcnew" class="headerlink" title="gcnew"></a>gcnew</h4><p>新生代</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">jstat -gcnew 24490</span><br><span class="line"></span><br><span class="line">S0C    S1C    S0U    S1U   TT MTT  DSS      EC       EU     YGC     YGCT</span><br><span class="line">21504.0 22016.0    0.0 11076.4 15  15 21504.0 654848.0   8451.7  85357 2212.730</span><br><span class="line"></span><br><span class="line">TT：Tenuring threshold(提升阈值)</span><br><span class="line">MTT：最大的tenuring threshold</span><br><span class="line">DSS：survivor区域大小 (KB)</span><br></pre></td></tr></table></figure>
+<h4 id="gcnewcapacity"><a href="#gcnewcapacity" class="headerlink" title="gcnewcapacity"></a>gcnewcapacity</h4><p>新生代与其相应的内存空间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">jstat -gcnewcapacity 24490</span><br><span class="line"></span><br><span class="line">NGCMN      NGCMX       NGC      S0CMX     S0C     S1CMX     S1C       ECMX        EC      YGC   FGC</span><br><span class="line">698880.0  1397760.0   698880.0 465920.0  19968.0 465920.0  19456.0  1396736.0   659456.0 85362   724</span><br><span class="line"></span><br><span class="line">NGC:当前年轻代的容量 (KB)</span><br><span class="line">S0CMX:最大的S0空间 (KB)</span><br><span class="line">S0C:当前S0空间 (KB)</span><br><span class="line">ECMX:最大eden空间 (KB)</span><br><span class="line">EC:当前eden空间 (KB)</span><br></pre></td></tr></table></figure>
+<h4 id="gcold"><a href="#gcold" class="headerlink" title="gcold"></a>gcold</h4><p>年老代和永生代</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jstat -gcold 24490</span><br><span class="line"></span><br><span class="line">MC       MU      CCSC     CCSU       OC          OU       YGC    FGC    FGCT     GCT</span><br><span class="line">156288.0 150796.2  14720.0  13599.5   2796544.0    118877.9  85364   724  188.670 2401.479</span><br></pre></td></tr></table></figure>
+<h4 id="gcoldcapacity"><a href="#gcoldcapacity" class="headerlink" title="gcoldcapacity"></a>gcoldcapacity</h4><p>年老代</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jstat -gcoldcapacity 24490</span><br><span class="line"></span><br><span class="line">OGCMN       OGCMX        OGC         OC       YGC   FGC    FGCT     GCT</span><br><span class="line">1398272.0   2796544.0   2796544.0   2796544.0 85372   724  188.670 2401.569</span><br></pre></td></tr></table></figure>
+<h4 id="gcpermcapacity"><a href="#gcpermcapacity" class="headerlink" title="gcpermcapacity"></a>gcpermcapacity</h4><p>永生代</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="printcompilation"><a href="#printcompilation" class="headerlink" title="printcompilation"></a>printcompilation</h4><p>HotSpot编译方法统计<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">jstat -printcompilation 24490</span><br><span class="line"></span><br><span class="line">Compiled  Size  Type Method</span><br><span class="line">58349     36    1 com/sun/proxy/$Proxy84 getByHospId</span><br><span class="line"></span><br><span class="line">Compiled：被执行的编译任务的数量</span><br><span class="line">Size：方法字节码的字节数</span><br><span class="line">Type：编译类型</span><br><span class="line">Method：编译方法的类名和方法名。类名使用&quot;/&quot; 代替 &quot;.&quot; 作为空间分隔符. 方法名是给出类的方法名. 格式是一致于HotSpot - XX:+PrintComplation 选项</span><br></pre></td></tr></table></figure></p>
+<h2 id="jmap-JVM-Memory-Map"><a href="#jmap-JVM-Memory-Map" class="headerlink" title="jmap(JVM Memory Map)"></a>jmap(JVM Memory Map)</h2><p>用于生成heap dump文件，如果不使用这个命令，还阔以使用-XX:+HeapDumpOnOutOfMemoryError参数来让虚拟机出现OOM的时候·自动生成dump文件。<br>jmap不仅能生成dump文件，还阔以查询finalize执行队列、Java堆和永久代的详细信息，如当前使用率、当前使用的是哪种收集器等。</p>
+<h3 id="命令格式-2"><a href="#命令格式-2" class="headerlink" title="命令格式"></a>命令格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">jmap [option] LVMID</span><br><span class="line"></span><br><span class="line">option参数</span><br><span class="line">dump : 生成堆转储快照</span><br><span class="line">finalizerinfo : 显示在F-Queue队列等待Finalizer线程执行finalizer方法的对象</span><br><span class="line">heap : 显示Java堆详细信息</span><br><span class="line">histo : 显示堆中对象的统计信息</span><br><span class="line">permstat : to print permanent generation statistics</span><br><span class="line">F : 当-dump没有响应时，强制生成dump快照</span><br></pre></td></tr></table></figure>
+<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><h4 id="dump"><a href="#dump" class="headerlink" title="dump"></a>dump</h4><p>dump堆到文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jmap -dump:live,format=b,file=dump.hprof 41318</span><br><span class="line">dump堆到文件,format指定输出格式，live指明是活着的对象,file指定文件名,dump.hprof这个后缀是为了后续可以直接用MAT(Memory Anlysis Tool)打开</span><br><span class="line"></span><br><span class="line">Dumping heap to /home/rop/dump.hprof ...</span><br><span class="line">Heap dump file created</span><br></pre></td></tr></table></figure></p>
+<h4 id="finalizerinfo"><a href="#finalizerinfo" class="headerlink" title="finalizerinfo"></a>finalizerinfo</h4><p>打印等待回收对象的信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="heap"><a href="#heap" class="headerlink" title="heap"></a>heap</h4><p>打印heap的概要信息，GC使用的算法，heap的配置及wise heap的使用情况,可以用此来判断内存目前的使用情况以及垃圾回收情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">jmap -heap 41318</span><br><span class="line"></span><br><span class="line">Heap Configuration:</span><br><span class="line">   MinHeapFreeRatio         = 0 //对应jvm启动参数-XX:MinHeapFreeRatio设置JVM堆最小空闲比率(default 40)</span><br><span class="line">   MaxHeapFreeRatio         = 100 //对应jvm启动参数 -XX:MaxHeapFreeRatio设置JVM堆最大空闲比率(default 70)</span><br><span class="line">   MaxHeapSize              = 4162846720 (3970.0MB) //对应jvm启动参数-XX:MaxHeapSize=设置JVM堆的最大大小</span><br><span class="line">   NewSize                  = 87031808 (83.0MB) //对应jvm启动参数-XX:NewSize=设置JVM堆的‘新生代’的默认大小</span><br><span class="line">   MaxNewSize               = 1387266048 (1323.0MB) //对应jvm启动参数-XX:MaxNewSize=设置JVM堆的‘新生代’的最大大小</span><br><span class="line">   OldSize                  = 175112192 (167.0MB) //对应jvm启动参数-XX:OldSize=&lt;value&gt;:设置JVM堆的‘老生代’的大小</span><br><span class="line">   NewRatio                 = 2 //对应jvm启动参数-XX:NewRatio=:‘新生代’和‘老生代’的大小比率</span><br><span class="line">   SurvivorRatio            = 8 //对应jvm启动参数-XX:SurvivorRatio=设置年轻代中Eden区与Survivor区的大小比值</span><br><span class="line">   MetaspaceSize            = 21807104 (20.796875MB)  //对应jvm启动参数-XX:PermSize=&lt;value&gt;:设置JVM堆的‘永生代’的初始大小</span><br><span class="line">   CompressedClassSpaceSize = 1073741824 (1024.0MB)</span><br><span class="line">   MaxMetaspaceSize         = 17592186044415 MB //对应jvm启动参数-XX:MaxPermSize=&lt;value&gt;:设置JVM堆的‘永生代’的最大大小</span><br><span class="line">   G1HeapRegionSize         = 0 (0.0MB)</span><br></pre></td></tr></table></figure>
+<h4 id="histo"><a href="#histo" class="headerlink" title="histo"></a>histo</h4><p>打印堆的对象统计，包括对象数、内存大小等等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">jmap -histo:live 41318 | more</span><br><span class="line"></span><br><span class="line">num     #instances         #bytes  class name</span><br><span class="line">----------------------------------------------</span><br><span class="line">   1:        118530       20122376  [C</span><br><span class="line">   2:          9024       16104440  [B</span><br><span class="line">   3:        115438        2770512  java.lang.String</span><br><span class="line">   4:         27854        2544768  [Ljava.lang.Object;</span><br><span class="line">   5:         26906        2367728  java.lang.reflect.Method</span><br><span class="line">   6:         72294        2313408  java.util.concurrent.ConcurrentHashMap$Node</span><br><span class="line">   7:         12133        1352488  java.lang.Class</span><br><span class="line">   8:          8018        1206040  [I</span><br><span class="line">   9:         42542        1021008  org.springframework.core.MethodClassKey</span><br><span class="line">  10:         22623         723936  java.util.HashMap$Node</span><br><span class="line">  11:           404         682448  [Ljava.util.concurrent.ConcurrentHashMap$Node;</span><br><span class="line">  12:         26539         636936  java.util.ArrayList</span><br><span class="line">  13:         15220         608800  java.util.LinkedHashMap$Entry</span><br><span class="line">  14:          7602         603472  [Ljava.util.HashMap$Node;</span><br><span class="line">  15:         10244         573664  java.util.LinkedHashMap</span><br><span class="line">  16:         10405         499440  org.apache.tomcat.util.buf.ByteChunk</span><br><span class="line">  17:          8600         412800  org.apache.tomcat.util.buf.CharChunk</span><br><span class="line">  18:         24683         394928  java.lang.Object</span><br><span class="line">  19:         24199         387184  org.apache.ibatis.scripting.xmltag</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">B  byte</span><br><span class="line">C  char</span><br><span class="line">D  double</span><br><span class="line">F  float</span><br><span class="line">I  int</span><br><span class="line">J  long</span><br><span class="line">Z  boolean</span><br><span class="line">[  数组，如[I表示int[]</span><br><span class="line">[L+类名 其他对象</span><br></pre></td></tr></table></figure>
+<h4 id="clstats"><a href="#clstats" class="headerlink" title="clstats"></a>clstats</h4><h2 id="jhat-JVM-Heap-Analysis-Tool"><a href="#jhat-JVM-Heap-Analysis-Tool" class="headerlink" title="jhat(JVM Heap Analysis Tool)"></a>jhat(JVM Heap Analysis Tool)</h2><p>与jmap搭配使用，用来分析jmap生成的dump，jhat内置了一个微型的HTTP/HTML服务器，生成dump的分析结果后，可以在浏览器中查看。在此要注意，一般不会直接在服务器上进行分析，因为jhat是一个耗时并且耗费硬件资源的过程，一般把服务器生成的dump文件复制到本地或其他机器上进行分析</p>
+<h3 id="命令格式-3"><a href="#命令格式-3" class="headerlink" title="命令格式"></a>命令格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">jhat [dumpfile]</span><br><span class="line"></span><br><span class="line">-stack false|true</span><br><span class="line">关闭对象分配调用栈跟踪(tracking object allocation call stack)。 如果分配位置信息在堆转储中不可用. 则必须将此标志设置为 false. 默认值为 true.&gt;</span><br><span class="line">-refs false|true</span><br><span class="line">关闭对象引用跟踪(tracking of references to objects)。 默认值为 true. 默认情况下, 返回的指针是指向其他特定对象的对象,如反向链接或输入引用(referrers or incoming references), 会统计/计算堆中的所有对象。&gt;</span><br><span class="line">-port port-number</span><br><span class="line">设置 jhat HTTP server 的端口号. 默认值 7000.&gt;</span><br><span class="line">-exclude exclude-file</span><br><span class="line">指定对象查询时需要排除的数据成员列表文件(a file that lists data members that should be excluded from the reachable objects query)。 例如, 如果文件列列出了 java.lang.String.value , 那么当从某个特定对象 Object o 计算可达的对象列表时, 引用路径涉及 java.lang.String.value 的都会被排除。&gt;</span><br><span class="line">-baseline exclude-file</span><br><span class="line">指定一个基准堆转储(baseline heap dump)。 在两个 heap dumps 中有相同 object ID 的对象会被标记为不是新的(marked as not being new). 其他对象被标记为新的(new). 在比较两个不同的堆转储时很有用.&gt;</span><br><span class="line">-debug int</span><br><span class="line">设置 debug 级别. 0 表示不输出调试信息。 值越大则表示输出更详细的 debug 信息.&gt;</span><br><span class="line">-version</span><br><span class="line">启动后只显示版本信息就退出&gt;</span><br><span class="line">-J&lt; flag &gt;</span><br><span class="line">因为 jhat 命令实际上会启动一个JVM来执行, 通过 -J 可以在启动JVM时传入一些启动参数. 例如, -J-Xmx512m 则指定运行 jhat 的Java虚拟机使用的最大堆内存为 512 MB. 如果需要使用多个JVM启动参数,则传入多个 -Jxxxxxx.</span><br></pre></td></tr></table></figure>
+<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">jhat -J-Xmx512m dump.hprof</span><br><span class="line"></span><br><span class="line">中间的-J-Xmx512m是在dump快照很大的情况下分配512M内存去启动HTTP服务器，运行完之后就可在浏览器打开Http://localhost:7000进行快照分析</span><br><span class="line"></span><br><span class="line">堆快照分析主要在最后面的Heap Histogram里，里面根据class列出了dump的时候所有存活对象。</span><br><span class="line"></span><br><span class="line">分析同样一个dump快照，MAT需要的额外内存比jhat要小的多的多，所以建议使用MAT来进行分析，当然也看个人偏好</span><br></pre></td></tr></table></figure>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>打开浏览器Http://localhost:7000，该页面提供了几个查询功能可供使用</p>
+<h2 id="jstack"><a href="#jstack" class="headerlink" title="jstack"></a>jstack</h2><p>jstack用于生成java虚拟机当前时刻的线程快照。线程快照是当前java虚拟机内每一条线程正在执行的方法堆栈的集合，生成线程快照的主要目的是定位线程出现长时间停顿的原因，如线程间死锁、死循环、请求外部资源导致的长时间等待等。 线程出现停顿的时候通过jstack来查看各个线程的调用堆栈，就可以知道没有响应的线程到底在后台做什么事情，或者等待什么资源。 如果java程序崩溃生成core文件，jstack工具可以用来获得core文件的java stack和native stack的信息，从而可以轻松地知道java程序是如何崩溃和在程序何处发生问题。另外，jstack工具还可以附属到正在运行的java程序中，看到当时运行的java程序的java stack和native stack的信息, 如果现在运行的java程序呈现hung的状态，jstack是非常有用的。</p>
+<h3 id="命令格式-4"><a href="#命令格式-4" class="headerlink" title="命令格式"></a>命令格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jstack [option] LVMID</span><br><span class="line"></span><br><span class="line">-F : 当正常输出请求不被响应时，强制输出线程堆栈</span><br><span class="line">-l : 除堆栈外，显示关于锁的附加信息</span><br><span class="line">-m : 如果调用到本地方法的话，可以显示C/C++的堆栈</span><br></pre></td></tr></table></figure>
+<h3 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h3><h2 id="jinfo-JVM-Configuration-info"><a href="#jinfo-JVM-Configuration-info" class="headerlink" title="jinfo(JVM Configuration info)"></a>jinfo(JVM Configuration info)</h2><p>实时查看和调整虚拟机运行参数。<br>之前的jps -v口令只能查看到显示指定的参数，如果想要查看未被显示指定的参数的值就要使用jinfo口令</p>
+<h3 id="命令格式-5"><a href="#命令格式-5" class="headerlink" title="命令格式"></a>命令格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jinfo [option] [args] LVMID</span><br><span class="line"></span><br><span class="line">-flag : 输出指定args参数的值</span><br><span class="line">-flags : 不需要args参数，输出所有JVM参数的值</span><br><span class="line">-sysprops : 输出系统属性，等同于System.getProperties()</span><br></pre></td></tr></table></figure>
+<h3 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2019/03/19/mysql/Mysql变更datadir/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -477,7 +694,7 @@
                 
               
 
-              <time title="创建时间：2019-03-19 15:20:20 / 修改时间：16:13:34" itemprop="dateCreated datePublished" datetime="2019-03-19T15:20:20+08:00">2019-03-19</time>
+              <time title="创建时间：2019-03-19 15:20:20 / 修改时间：23:18:36" itemprop="dateCreated datePublished" datetime="2019-03-19T15:20:20+08:00">2019-03-19</time>
             
 
             
@@ -552,7 +769,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /var/lib/mysql /data</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>编辑/etc/my.cnf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">datadir=/data/mysql/lib/mysql</span><br><span class="line">socket=/data/mysql/lib/mysql/mysql.sock</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">datadir=/data/mysql</span><br><span class="line">socket=/data/mysql/mysql.sock</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>mysql.sock软链接，很重要：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /data/mysql/mysql.sock /var/lib/mysql/mysql.sock</span><br></pre></td></tr></table></figure>
@@ -561,6 +778,150 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart mysqld</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2019/03/14/mysql/linux 命令终端提示符显示-bash-4.2#解决方法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bolly">
+      <meta itemprop="description" content="不疯魔，不成佛">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点点滴滴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/14/mysql/linux 命令终端提示符显示-bash-4.2#解决方法/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-14 16:44:55 / 修改时间：16:46:45" itemprop="dateCreated datePublished" datetime="2019-03-14T16:44:55+08:00">2019-03-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="linux-命令终端提示符显示-bash-4-2-解决方法"><a href="#linux-命令终端提示符显示-bash-4-2-解决方法" class="headerlink" title="linux 命令终端提示符显示-bash-4.2#解决方法"></a>linux 命令终端提示符显示-bash-4.2#解决方法</h1><h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><p>SSH登录终端提示符显示的是-bash-4.2</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>配置文件丢失，丢失文件如下：<br>1、.bash_profile<br>2、.bashrc </p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/skel/.bashrc ~</span><br><span class="line">cp /etc/skel/.bash_profile ~</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1956,391 +2317,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/12/12/tool/Homebrew/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bolly">
-      <meta itemprop="description" content="不疯魔，不成佛">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="点点滴滴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/12/tool/Homebrew/" class="post-title-link" itemprop="url">tool-brew</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-12 11:27:18" itemprop="dateCreated datePublished" datetime="2018-12-12T11:27:18+08:00">2018-12-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-03 17:21:16" itemprop="dateModified" datetime="2019-01-03T17:21:16+08:00">2019-01-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/mac/" itemprop="url" rel="index"><span itemprop="name">mac</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h1><h2 id="安装-Tomcat"><a href="#安装-Tomcat" class="headerlink" title="安装 Tomcat"></a>安装 Tomcat</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install tomcat</span><br></pre></td></tr></table></figure>
-<p>安装的是最新版的版本</p>
-<h2 id="卸载-Tomcat"><a href="#卸载-Tomcat" class="headerlink" title="卸载 Tomcat"></a>卸载 Tomcat</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew uninstall tomcat</span><br></pre></td></tr></table></figure>
-<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew upgrade tomcat</span><br></pre></td></tr></table></figure>
-<p>更新不会删除原来的，相当于重新安装一个最新版，也就是说配置不能共用</p>
-<h2 id="切换版本"><a href="#切换版本" class="headerlink" title="切换版本"></a>切换版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew switch tomcat 8.5.4</span><br></pre></td></tr></table></figure>
-<p>升级会出现几个不同版本的 Tomcat 同时存在，切换到指定的版本就很有必要了<br>卸载</p>
-<h2 id="卸载全部旧版本"><a href="#卸载全部旧版本" class="headerlink" title="卸载全部旧版本"></a>卸载全部旧版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cleanup tomcat</span><br></pre></td></tr></table></figure>
-<h2 id="卸载当前版本"><a href="#卸载当前版本" class="headerlink" title="卸载当前版本"></a>卸载当前版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew remove tomcat</span><br></pre></td></tr></table></figure>
-<h2 id="卸载全部版本"><a href="#卸载全部版本" class="headerlink" title="卸载全部版本"></a>卸载全部版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew uninstall --force tomcat</span><br></pre></td></tr></table></figure>
-<h2 id="卸载指定版本"><a href="#卸载指定版本" class="headerlink" title="卸载指定版本"></a>卸载指定版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew switch tomcat 8.5.4</span><br><span class="line">brew remove tomcat</span><br></pre></td></tr></table></figure>
-<h2 id="查看已安装的-Tomcat-的版本和最新的版本信息"><a href="#查看已安装的-Tomcat-的版本和最新的版本信息" class="headerlink" title="查看已安装的 Tomcat 的版本和最新的版本信息"></a>查看已安装的 Tomcat 的版本和最新的版本信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew info tomcat</span><br></pre></td></tr></table></figure>
-<h2 id="查看可安装的-Tomcat-的所有版本"><a href="#查看可安装的-Tomcat-的所有版本" class="headerlink" title="查看可安装的 Tomcat 的所有版本"></a>查看可安装的 Tomcat 的所有版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew search tomcat</span><br></pre></td></tr></table></figure>
-<p>输出:<br>homebrew/versions/tomcat6<br>homebrew/versions/tomcat7<br>tomcat<br>tomcat-native</p>
-<h2 id="安装指定版本的-Tomcat，例如-tomcat6"><a href="#安装指定版本的-Tomcat，例如-tomcat6" class="headerlink" title="安装指定版本的 Tomcat，例如 tomcat6"></a>安装指定版本的 Tomcat，例如 tomcat6</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install homebrew/versions/tomcat6</span><br></pre></td></tr></table></figure>
-<h2 id="列出已经安装的软件"><a href="#列出已经安装的软件" class="headerlink" title="列出已经安装的软件"></a>列出已经安装的软件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew list</span><br></pre></td></tr></table></figure>
-<h2 id="查看-brew-的帮助"><a href="#查看-brew-的帮助" class="headerlink" title="查看 brew 的帮助"></a>查看 brew 的帮助</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man brew</span><br></pre></td></tr></table></figure>
-<h2 id="列出所有安装的软件里可以升级的"><a href="#列出所有安装的软件里可以升级的" class="headerlink" title="列出所有安装的软件里可以升级的"></a>列出所有安装的软件里可以升级的</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew outdated</span><br></pre></td></tr></table></figure>
-<h2 id="清理不需要的版本极其安装包缓存"><a href="#清理不需要的版本极其安装包缓存" class="headerlink" title="清理不需要的版本极其安装包缓存"></a>清理不需要的版本极其安装包缓存</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cleanup</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/11/29/spring/spring boot-启动/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bolly">
-      <meta itemprop="description" content="不疯魔，不成佛">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="点点滴滴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/29/spring/spring boot-启动/" class="post-title-link" itemprop="url">spring boot-启动</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-29 12:53:54" itemprop="dateCreated datePublished" datetime="2018-11-29T12:53:54+08:00">2018-11-29</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-04 15:34:05" itemprop="dateModified" datetime="2019-01-04T15:34:05+08:00">2019-01-04</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="spring-boot-启动"><a href="#spring-boot-启动" class="headerlink" title="spring boot-启动"></a>spring boot-启动</h1><h2 id="启动原理"><a href="#启动原理" class="headerlink" title="启动原理"></a>启动原理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">* SpringBootApplication</span><br><span class="line">*     0. ComponetScan</span><br><span class="line">*        EnableAutoConfiguration</span><br><span class="line">*           AutoConfigurationPackage</span><br><span class="line">*           Import(AutoConfigurationImportSelector.class)-&gt;spring.factores</span><br><span class="line">*               Conifuration</span><br><span class="line">*               ConditionalOnClass</span><br><span class="line">*               ConditionalOnProperty</span><br><span class="line">* run</span><br><span class="line">*     1. new SpringApplication</span><br><span class="line">*         create ApplicationContext</span><br><span class="line">*         SpringFactoriesLoader load ApplicationContextInitializer</span><br><span class="line">*         SpringFactoriesLoader load ApplicationListener</span><br><span class="line">*         main</span><br><span class="line">*     2. for **ApplicationRunListener.started()**</span><br><span class="line">*     3. init Environment</span><br><span class="line">*     4. **ApplicationRunListener.environmentPrepared()**</span><br><span class="line">*     5. sout banner</span><br><span class="line">*     6. ApplicationContextClass.setEnviroment(env) (ShutdownHook BeanNameGenerator ResourceLoader)</span><br><span class="line">*     7. SpringFactoriesLoader ApplicationContextInitializer.initialize()</span><br><span class="line">*     8. **ApplicationRunListener.contextPrepared()**</span><br><span class="line">*     9. 0-&gt;ApplicationContext</span><br><span class="line">*     10. **ApplicationRunListener.contextLoaded()**</span><br><span class="line">*     11. ApplicationContext.refresh()</span><br><span class="line">*     12. CommandLineRunner</span><br><span class="line">*     13. **ApplicationRunListener.finished()**</span><br></pre></td></tr></table></figure>
-<ol>
-<li>扫描所有configuration类和spring.factores中定义的初始化类</li>
-<li>创建applicationContext，springFactoriesLoader load Initializer 和 applicationLister</li>
-<li>applicationRunLister -&gt; started</li>
-<li>初始化 环境变量</li>
-<li>applicationRunLister -&gt; environmentPrepared</li>
-<li>设置环境变量到applicationContext</li>
-</ol>
-<h2 id="spring-boot-war"><a href="#spring-boot-war" class="headerlink" title="spring boot war"></a>spring boot war</h2><h3 id="build-gradle"><a href="#build-gradle" class="headerlink" title="build.gradle"></a>build.gradle</h3><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'war'</span></span><br><span class="line"><span class="keyword">compile</span>(<span class="string">"org.springframework.boot:spring-boot-starter-web:$&#123;springBootVersion&#125;"</span>) &#123;</span><br><span class="line">            <span class="keyword">exclude</span> module:<span class="string">"spring-boot-starter-tomcat"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">compile</span>(<span class="string">"javax.servlet:javax.servlet-api:3.1.0"</span>)</span><br><span class="line"><span class="keyword">compile</span>(<span class="string">"org.apache.tomcat:tomcat-servlet-api:8.0.36"</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="Application-java"><a href="#Application-java" class="headerlink" title="Application.java"></a>Application.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> <span class="keyword">extends</span> <span class="title">SpringBootServletInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(Application.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 *重写configure</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> builder</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> SpringApplicationBuilder <span class="title">configure</span><span class="params">(SpringApplicationBuilder builder)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> builder.sources(Application.class);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="SpringMVC处理流程"><a href="#SpringMVC处理流程" class="headerlink" title="SpringMVC处理流程"></a>SpringMVC处理流程</h2><ul>
-<li>用户发送请求至前端控制器DispatcherServlet。</li>
-<li>DispatcherServlet收到请求调用HandlerMapping处理器映射器。</li>
-<li>处理器映射器找到具体的处理器(可以根据xml配置、注解进行查找)，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet。</li>
-<li>DispatcherServlet调用HandlerAdapter处理器适配器。</li>
-<li>HandlerAdapter经过适配调用具体的处理器(Controller，也叫后端控制器)。</li>
-<li>Controller执行完成返回ModelAndView。</li>
-<li>HandlerAdapter将controller执行结果ModelAndView返回给DispatcherServlet。</li>
-<li>DispatcherServlet将ModelAndView传给ViewReslover视图解析器。</li>
-<li>ViewReslover解析后返回具体View。</li>
-<li>DispatcherServlet根据View进行渲染视图（即将模型数据填充至视图中）。</li>
-<li>DispatcherServlet响应用户。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2388,7 +2364,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

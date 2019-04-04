@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="点点滴滴">
 <meta property="og:description" content="变更datadir需求客户分配的虚机磁盘空间不足，又需要每天备份mysql数据 方案申请一块存储12345678910111213fdisk /dev/sdbn #新建分区1 #分区号pw  #保存t  #更改文件系统类型1 #选择第一个分区L ＃选择要更改的文件系统编码，可以按L来查看相关编码信息。82    #查找到linux swap的编码为82pw  #保存mkfs -t ext3 /de">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-19T08:13:34.102Z">
+<meta property="og:updated_time" content="2019-03-19T15:18:36.226Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql-变更datadir">
 <meta name="twitter:description" content="变更datadir需求客户分配的虚机磁盘空间不足，又需要每天备份mysql数据 方案申请一块存储12345678910111213fdisk /dev/sdbn #新建分区1 #分区号pw  #保存t  #更改文件系统类型1 #选择第一个分区L ＃选择要更改的文件系统编码，可以按L来查看相关编码信息。82    #查找到linux swap的编码为82pw  #保存mkfs -t ext3 /de">
@@ -475,7 +475,7 @@
                 
               
 
-              <time title="创建时间：2019-03-19 15:20:20 / 修改时间：16:13:34" itemprop="dateCreated datePublished" datetime="2019-03-19T15:20:20+08:00">2019-03-19</time>
+              <time title="创建时间：2019-03-19 15:20:20 / 修改时间：23:18:36" itemprop="dateCreated datePublished" datetime="2019-03-19T15:20:20+08:00">2019-03-19</time>
             
 
             
@@ -548,7 +548,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /var/lib/mysql /data</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>编辑/etc/my.cnf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">datadir=/data/mysql/lib/mysql</span><br><span class="line">socket=/data/mysql/lib/mysql/mysql.sock</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">datadir=/data/mysql</span><br><span class="line">socket=/data/mysql/mysql.sock</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>mysql.sock软链接，很重要：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /data/mysql/mysql.sock /var/lib/mysql/mysql.sock</span><br></pre></td></tr></table></figure>
@@ -587,8 +587,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/03/mysql/Mysql-使用/" rel="next" title="Mysql-使用">
-                <i class="fa fa-chevron-left"></i> Mysql-使用
+              <a href="/2019/03/14/mysql/linux 命令终端提示符显示-bash-4.2#解决方法/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -596,6 +596,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/03/JVM/jvm命令使用/" rel="prev" title="java-jvm工具使用">
+                java-jvm工具使用 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -665,7 +669,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

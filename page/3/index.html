@@ -432,6 +432,388 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2018/01/01/linux/证书/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bolly">
+      <meta itemprop="description" content="不疯魔，不成佛">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点点滴滴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/01/01/linux/证书/" class="post-title-link" itemprop="url">linux-证书生成</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-01-01 15:29:12" itemprop="dateCreated datePublished" datetime="2018-01-01T15:29:12+08:00">2018-01-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-04 11:42:19" itemprop="dateModified" datetime="2019-01-04T11:42:19+08:00">2019-01-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h1><h2 id="通过keytool生成证书"><a href="#通过keytool生成证书" class="headerlink" title="通过keytool生成证书"></a>通过keytool生成证书</h2><h3 id="生成私钥"><a href="#生成私钥" class="headerlink" title="生成私钥"></a>生成私钥</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkeypair -alias certificatekey -keyalg RSA -validity 1095 -keystore elho_keystore.jks</span><br></pre></td></tr></table></figure>
+<p>keystore:xxxxxx<br>CN=elho, OU=neusoft, O=niox, L=dalian, ST=liaoning, C=cn</p>
+<h3 id="导出公钥证书"><a href="#导出公钥证书" class="headerlink" title="导出公钥证书"></a>导出公钥证书</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -export -alias certificatekey -keystore elho_keystore.jks -rfc -file elho_cert.cer -storetype BKS</span><br></pre></td></tr></table></figure>
+<h3 id="公钥导入并生成truststore"><a href="#公钥导入并生成truststore" class="headerlink" title="公钥导入并生成truststore:"></a>公钥导入并生成truststore:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -import -alias certificatekey -file elho_cert.cer -keystore elho_truststore.jks</span><br></pre></td></tr></table></figure>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -list -v -keystore elho_keystore.jks</span><br></pre></td></tr></table></figure>
+<h3 id="安卓BKS证书"><a href="#安卓BKS证书" class="headerlink" title="安卓BKS证书"></a>安卓BKS证书</h3><ol>
+<li><p>JKS转PKCS12</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -importkeystore -srckeystore elho_keystore.jks -destkeystore elho_keystore.p12 -srcstoretype jks -deststoretype pkcs12</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>PKCS12转PEM(生成的pem中包含了私钥和证书)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs12 -nodes -in elho_keystore.p12 -out elho_keystore.pem</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CER转成BKS</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -importcert -v -trustcacerts -file truststore.cer -alias certificatekey -keystore truststore4android.bks -provider org.bouncycastle.jce.provider.BouncyCastleProvider -providerpath ./bcprov-jdk15on-1.47.jar -storetype BKS -storepass AntE2a%GH_4G</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="免费官方证书"><a href="#免费官方证书" class="headerlink" title="免费官方证书"></a>免费官方证书</h2><p><a href="https://letsencrypt.org" target="_blank" rel="noopener">Encrypt</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2017/11/20/other/TODO备忘录/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bolly">
+      <meta itemprop="description" content="不疯魔，不成佛">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点点滴滴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/20/other/TODO备忘录/" class="post-title-link" itemprop="url">TODO-持续更新</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-20 13:30:20" itemprop="dateCreated datePublished" datetime="2017-11-20T13:30:20+08:00">2017-11-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-15 12:17:32" itemprop="dateModified" datetime="2019-02-15T12:17:32+08:00">2019-02-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/other/" itemprop="url" rel="index"><span itemprop="name">other</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h1><h2 id="第三方链接"><a href="#第三方链接" class="headerlink" title="第三方链接"></a>第三方链接</h2><p><a href="https://github.com/stanzhai/be-a-professional-programmer" target="_blank" rel="noopener">工具</a><br><a href="https://github.com/vhf/free-programming-books/blob/master/free-programming-books-zh.md" target="_blank" rel="noopener">书</a><br><a href="http://www.jdon.com/dl/best/springsource.html" target="_blank" rel="noopener">Spring各种源码项目下载</a><br><a href="http://blog.csdn.net/u014084065/article/details/53814943" target="_blank" rel="noopener">使用locust做服务器压力测试</a><br><a href="https://yq.aliyun.com/articles/92899" target="_blank" rel="noopener">spring 熔断器</a><br><a href="https://www.cnblogs.com/caolei1108/p/6169950.html" target="_blank" rel="noopener">Spring RestTemplate详解</a><br><a href="http://www.cnblogs.com/larryzeal/p/7430148.html" target="_blank" rel="noopener">spring web源码思路</a><br><a href="https://gitee.com/damivip/spring-remoting-annotation" target="_blank" rel="noopener">结合Spring注解标签发布RMI / HTTPInvoker / Hessian / Burlap服务</a><br><a href="https://www.ibm.com/developerworks/cn/java/j-lo-spring-principle/" target="_blank" rel="noopener">spring设计思想</a><br><a href="http://git.oschina.net/wangzhixuan/spring-shiro-training" target="_blank" rel="noopener">shiro</a><br><a href="https://www.cnblogs.com/jinxiao-pu/p/6670672.html" target="_blank" rel="noopener">豆瓣模拟登录验证码处理</a><br><a href="http://jingyan.baidu.com/article/d45ad14894b0d369552b80bd.html" target="_blank" rel="noopener">调研pdf加密</a><br><a href="https://alibaba.github.io/arthas/" target="_blank" rel="noopener">Java 诊断工具</a></p>
+<h2 id="值得一看的代码库"><a href="#值得一看的代码库" class="headerlink" title="值得一看的代码库"></a>值得一看的代码库</h2><ul>
+<li>国人写的模板引擎，代码质量很高：subchen/jetbrick-template-2x</li>
+<li>数据结构和算法类的，同时有测试代码：buptdavid/datastructure | kdn251/interviews</li>
+<li>Java写的高性能数据库：jankotek/mapdb</li>
+<li>Netty实现的高性能RPC，有写博文分析：tang-jie/NettyRPC</li>
+<li>Java编写的原子组件库，内功非常深厚：mindwind/craft-atom</li>
+<li>前点评网的一位大牛黄艺华写的爬虫框架：code4craft/webmagic</li>
+<li>针对Java8的一系列代码示例，纯干货无废话：winterbe/java8-tutorial</li>
+<li>Java设计模式的总结以及代码和文章：iluwatar/java-design-patterns</li>
+<li>线上问题排查神器-Btrace</li>
+<li>增量数据同步神器-canal</li>
+<li>mysql中间件：atlas,mycat</li>
+<li>分库分表数据库中间件：Sharding-JDBC</li>
+<li>调用链: hydra,zipkin,CAT,Hiro,skywalking,pinpoint</li>
+<li>代码静态检测工具：PMD</li>
+<li>canal监控对接一下：prometheus+grafana</li>
+<li>安全监测工具：burpsuit,AWVS,Nmap,Nessus,Openvas,Metasploit,kali<h2 id="jdk"><a href="#jdk" class="headerlink" title="jdk"></a>jdk</h2>util包：ArrayList,HashMap,LinkedHashMap,LinkedList,HashTable,HashSet。<br>lang包：String,Object,StringBuffer,StringBuilder,Integer</li>
+</ul>
+<p>《如何变得有思想》</p>
+<p>jdk里的util包，把这些类。<br>这些类弄明白了，你可以上升一个台阶。<br>还有平时你工作中用到什么类，就看什么类就ok了。<br>可叹的是，有些人写了五六年代码，连String这个类的源码都没看过，还老是对我说未来很迷茫，不知道怎么提升好，其实我想说，这样不迷茫才怪。<br>juc 包里的aqs框架<br>Okhttp：android开发最受欢迎的http客户端，支持http2，websocket等最新协议。总体采用责任链模式，架构简单且扩展性强，看完几个主要的拦截器相当于把http协议重新学习了一遍。<br>jdk8下的ConcurrentHashMap：Doug Lea 大神的大作，实现上非常精巧，采用cas操作就实现了无锁HashMap，仅仅在Hash冲突插入的情况下锁住一个hash桶，并发度比jdk7版的高出不少。<br>spring-mvc：MVC模式的最佳实践，玩设计模式的癫狂之作，扩展性极强最优雅的网络请求库，一个Java文件：kevinsawicki/http-request</p>
+<p><a href="https://pay.weixin.qq.com/wiki/doc/api/H5.php?chapter=23_2&amp;index=1" target="_blank" rel="noopener">网络设置指引：</a></p>
+<p>诗中有画，画中有诗</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-categories" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://chibaolai.github.io/2017/09/08/lb/nginx/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1485,7 +1867,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
